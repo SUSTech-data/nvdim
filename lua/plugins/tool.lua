@@ -175,4 +175,19 @@ return {
         config = true,
         build = function() vim.fn["firenvim#install"](0) end,
     },
+    {
+        "nvim-lua/plenary.nvim",
+        keys = {
+            {
+                "<leader>hpb",
+                function() require("plenary.profile").start("profile.log", { flame = true }) end,
+                desc = "Begin profiling",
+            },
+            {
+                "<leader>hpe",
+                function() require("plenary.profile").stop() end,
+                desc = "End profiling",
+            },
+        },
+    },
 }

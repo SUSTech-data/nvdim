@@ -10,6 +10,7 @@ map({ "n", "v", "o" }, "L", "$", { desc = "Last character of line" })
 map({ "n", "v", "o" }, "J", "<C-d>", { desc = "Join line with smart whitespace removal" })
 map({ "n", "v", "o" }, "K", "<C-u>", { desc = "Join line with smart whitespace removal" })
 map("n", "Q", ":q<cr>", { desc = "quit" })
+map({ "v" }, "C", "J", { desc = "Join line with smart whitespace removal" })
 
 -- Don't yank empty line to clipboard
 map("n", "dd", function()
@@ -30,6 +31,10 @@ map("n", "<C-S-h>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
 map("n", "<C-H>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
 map("n", "<C-S-l>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
 map("n", "<C-L>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
+map("n", "<C-left>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
+map("n", "<C-right>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
+map("n", "<S-left>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
+map("n", "<S-right>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
 map("n", "[b", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
 map("n", "]b", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
 map(
@@ -95,7 +100,7 @@ map("n", "<leader>uc", function() Util.toggle("conceallevel", false, {0, conceal
 if vim.lsp.inlay_hint then
   map("n", "<leader>uh", function() vim.lsp.inlay_hint(0, nil) end, { desc = "Toggle Inlay Hints" })
 end
-
+map("n", "<leader>ut", function() vim.lsp.semantic_tokens(0, nil) end, { desc = "Toggle Inlay Hints" })
 -- lazygit
 map("n", "<leader>gg", function() Util.float_term({ "lazygit" }, { cwd = Util.get_root(), esc_esc = false, ctrl_hjkl = false }) end, { desc = "Lazygit (root dir)" })
 -- map("n", "<leader>gG", function() Util.float_term({ "lazygit" }, {esc_esc = false, ctrl_hjkl = false}) end, { desc = "Lazygit (cwd)" })

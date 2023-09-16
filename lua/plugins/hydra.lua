@@ -20,37 +20,7 @@ return {
         --
         -- local cmd = require("hydra.keymap-util").cmd
         local pcmd = require("hydra.keymap-util").pcmd
-        Hydra({
-            name = "Jupyter",
-            -- mode = "n",
-            body = "<leader>j",
-            config = {
-                hint = { type = "window", border = "single" },
-                invoke_on_body = true,
-                timeout = 500,
-            },
-            timeout = 500,
-            heads = {
-                {
-                    "k",
-                    "<cmd>lua require'jupynium.textobj'.goto_previous_cell_separator()<cr>",
-                    { desc = "prev" },
-                },
-                {
-                    "j",
-                    "<cmd>lua require'jupynium.textobj'.goto_next_cell_separator()<cr>",
-                    { desc = "next" },
-                },
-                { "o", function() insert_cell(false) end, { exit = true } },
-                { "O", function() insert_cell(true) end, { exit = true } },
-                {
-                    "v",
-                    "<cmd>lua require'jupynium.textobj'.select_cell(false, false)<cr>",
-                    -- { exit = true },
-                },
-                { "<CR>", "<cmd>JupyniumExecuteSelectedCells<CR>", { exit = true } },
-            },
-        })
+
         Hydra({
             name = "Buffers",
             body = "<leader>h",
@@ -167,7 +137,8 @@ return {
                 { "<C-w>", "<C-w>w", { exit = true, desc = false } },
                 { "z", "<Cmd>ZenMode<CR>", { exit = true, desc = "Zen mode" } },
                 { "o", "<C-w>o", { exit = true, desc = "remain only" } },
-                { "<C-o>", "<C-w>o", { exit = true, desc = false } },
+                -- { "<C-o>", "<C-w>o", { exit = true, desc = false } },
+                -- { "}", "<C-w>}", { exit = true, desc = false } },
                 {
                     "<Space>",
                     "<CMD>BufferLinePick<CR>",

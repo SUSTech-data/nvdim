@@ -18,7 +18,7 @@ require("lazy").setup({
                 },
             },
         },
-        { import = "lazyvim.plugins.extras.coding.copilot" },
+        -- { import = "lazyvim.plugins.extras.coding.copilot" },
         -- { import = "lazyvim.plugins.extras.dap" },
         -- { import = "lazyvim.plugins.extras.editor.mini-files" },
         { import = "lazyvim.plugins.extras.lang.clangd" },

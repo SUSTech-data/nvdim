@@ -11,6 +11,7 @@ local disables = {
     "echasnovski/mini.surround",
     -- "echasnovski/mini.indentscope",
     -- "echasnovski/mini.bufremove",
+    "lewis6991/gitsigns.nvim",
 }
 local enables = { "IllustratedMan-code/telescope-conda.nvim" }
 local L = {}
@@ -21,4 +22,3 @@ end
 vim.list_extend(L, enables)
 
 return L
-

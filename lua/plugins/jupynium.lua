@@ -60,7 +60,57 @@ return {
             vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
                 pattern = "*.ju.*",
                 callback = function()
+                    local Hydra = require("hydra")
                     local buf_id = vim.api.nvim_get_current_buf()
+                    Hydra({
+                        name = "Jupyter",
+                        -- mode = "n",
+                        body = "<leader>j",
+                        config = {
+                            hint = { type = "window", border = "single" },
+                            invoke_on_body = true,
+                            timeout = 500,
+                        },
+                        timeout = 500,
+                        heads = {
+                            {
+                                "ss",
+                                "<cmd>JupyniumStartSync 2<CR>y<CR>",
+                                { exit = true },
+                                desc = "start sync",
+                            },
+                            {
+                                "kr",
+                                "<cmd>JupyniumKernelRestart<CR>",
+                                { exit = true },
+                                desc = "restart",
+                            },
+                            {
+                                "k",
+                                "<cmd>lua require'jupynium.textobj'.goto_previous_cell_separator()<cr>",
+                                { desc = "prev" },
+                            },
+                            {
+                                "j",
+                                "<cmd>lua require'jupynium.textobj'.goto_next_cell_separator()<cr>",
+                                { desc = "next" },
+                            },
+                            { "o", function() insert_cell(false) end, { exit = true } },
+                            { "O", function() insert_cell(true) end, { exit = true } },
+                            {
+                                "v",
+                                "<cmd>lua require'jupynium.textobj'.select_cell(false, false)<cr>",
+                                -- { exit = true },
+                            },
+                            { "<CR>", "<cmd>JupyniumExecuteSelectedCells<CR>", { exit = true } },
+                        },
+                    })
+                    -- vim.keymap.set(
+                    --     { "n", "x" },
+                    --     "<leader>jss>",
+                    --     "<cmd>JupyniumExecuteSelectedCells<CR>",
+                    --     { buffer = buf_id }
+                    -- )
                     vim.keymap.set(
                         { "n", "x" },
                         "<leader><CR>",

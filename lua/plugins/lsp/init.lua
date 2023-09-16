@@ -56,7 +56,8 @@ return {
             -- },
             {
                 "gd",
-                "<cmd>Lspsaga peek_definition<cr>",
+                -- "<cmd>Lspsaga peek_definition<cr>",
+                "<C-w>}",
                 -- "<cmd>Lspsaga finder def ++inexist<cr>",
                 desc = "go to definition",
             },
@@ -120,7 +121,7 @@ return {
                     project_max_width = 0.5,
                     project_max_height = 0.5,
                     keys = {
-                        quit = "q",
+                        quit = "<C-q>",
                         exec = "<CR>",
                         select = "x",
                     },

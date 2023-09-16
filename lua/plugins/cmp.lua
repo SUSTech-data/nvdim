@@ -72,9 +72,12 @@ return {
             end,
             ["<Tab>"] = cmp.mapping(function(fallback)
                 local luasnip = require("luasnip")
+                if require("copilot.suggestion").is_visible() then
+                    require("copilot.suggestion").accept()
+
                 -- if cmp.visible() then
                 -- 	cmp.select_next_item()
-                if require("luasnip").expand_or_jumpable() then
+                elseif require("luasnip").expand_or_jumpable() then
                     luasnip.expand_or_jump()
                 else
                     fallback()
@@ -92,8 +95,8 @@ return {
 
         local compare = require("cmp.config.compare")
         local comparators = {
-            require("copilot_cmp.comparators").prioritize,
-            require("copilot_cmp.comparators").score,
+            -- require("copilot_cmp.comparators").prioritize,
+            -- require("copilot_cmp.comparators").score,
             -- require("cmp_tabnine.compare"),
             compare.offset, -- items closer to cursor will have lower priority
             compare.exact,
@@ -164,7 +167,7 @@ return {
                     return not string_ctx and not comment_ctx
                 end,
             },
-            { name = "copilot" },
+            -- { name = "copilot" },
             { name = "nvim_lsp" },
             { name = "jupynium" },
             { name = "codeium" },

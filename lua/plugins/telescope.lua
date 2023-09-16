@@ -71,9 +71,15 @@ return {
                     mappings = {
                         n = {
                             ["<c-d>"] = require("telescope.actions").delete_buffer,
+                            ["<C-j>"] = require("telescope.actions").move_selection_next,
+                            ["<C-k>"] = require("telescope.actions").move_selection_previous,
+                            ["<C-l>"] = false,
                         }, -- n
                         i = {
                             ["<c-d>"] = require("telescope.actions").delete_buffer,
+                            ["<C-j>"] = require("telescope.actions").move_selection_next,
+                            ["<C-k>"] = require("telescope.actions").move_selection_previous,
+                            ["<C-l>"] = false,
                         }, -- i
                     }, -- mappings
                 },
