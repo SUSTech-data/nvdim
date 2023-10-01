@@ -44,7 +44,6 @@ return {
         dev = true,
         name = "catppuccin",
         config = function(_, opts)
-            print(opts.transparent_background)
             require("catppuccin").setup(opts)
         end,
         opts = {

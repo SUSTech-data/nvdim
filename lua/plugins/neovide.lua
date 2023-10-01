@@ -15,10 +15,10 @@ vim.api.nvim_create_autocmd("User", {
         -- vim.keymap.set("v", "<C-V>", '"+P') -- Paste visual mode
         -- vim.keymap.set("c", "<C-V>", "<C-R>+") -- Paste command mode
         -- vim.keymap.set("i", "<C-V>", '<ESC>l"+Pli') -- Paste insert mode
-        vim.keymap.set({ "n", "v", "x", "s", "o", "i", "l", "t", "c" }, "<C-j>", "<Down>") -- Paste normal mode
-        vim.keymap.set({ "n", "v", "x", "s", "o", "i", "l", "t", "c" }, "<C-k>", "<Up>") -- Paste normal mode
-        vim.keymap.set({ "n", "v", "x", "s", "o", "i", "l", "t", "c" }, "<C-h>", "<Left>") -- Paste normal mode
-        vim.keymap.set({ "n", "v", "x", "s", "o", "i", "l", "t", "c" }, "<C-l>", "<Right>") -- Paste normal mode
+        -- vim.keymap.set({ "n", "v", "x", "s", "o", "i", "l", "t", "c" }, "<C-j>", "<Down>") -- Paste normal mode
+        -- vim.keymap.set({ "n", "v", "x", "s", "o", "i", "l", "t", "c" }, "<C-k>", "<Up>") -- Paste normal mode
+        -- vim.keymap.set({ "n", "v", "x", "s", "o", "i", "l", "t", "c" }, "<C-h>", "<Left>") -- Paste normal mode
+        -- vim.keymap.set({ "n", "v", "x", "s", "o", "i", "l", "t", "c" }, "<C-l>", "<Right>") -- Paste normal mode
         vim.keymap.set("n", "<C-S-v>", '"+P') -- Paste normal mode
         vim.keymap.set("v", "<C-S-v>", '"+P') -- Paste visual mode
         vim.keymap.set("c", "<C-S-v>", "<C-R>+") -- Paste command mode

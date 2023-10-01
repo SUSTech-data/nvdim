@@ -1,8 +1,16 @@
 return {
+    capabilities = {
+        workspace = {
+            didChangeWatchedFiles = {
+                dynamicRegistration = false,
+            },
+        },
+    },
     settings = {
         python = {
             analysis = {
                 -- loglevel = "trace",
+                autoSearchPaths = true,
                 typeCheckingMode = "off",
                 completeFunctionParens = false,
                 autoImportCompletions = true,

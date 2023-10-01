@@ -80,7 +80,7 @@ return {
                                 desc = "start sync",
                             },
                             {
-                                "kr",
+                                "rk",
                                 "<cmd>JupyniumKernelRestart<CR>",
                                 { exit = true },
                                 desc = "restart",

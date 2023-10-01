@@ -55,10 +55,15 @@ return {
             --     desc = "Hover",
             -- },
             {
-                "gd",
-                -- "<cmd>Lspsaga peek_definition<cr>",
-                "<C-w>}",
+                "gt",
+                "<cmd>Lspsaga peek_definition<cr>",
+                -- "<C-w>}",
                 -- "<cmd>Lspsaga finder def ++inexist<cr>",
+                desc = "go to definition",
+            },
+            {
+                "gd",
+                "<C-w>}",
                 desc = "go to definition",
             },
             {
