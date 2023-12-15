@@ -4,11 +4,11 @@ return {
         event = { "CursorHold", "CursorHoldI" },
         opts = { keys = "etovxqpdygfblzhckisuran" },
         keys = {
-            {
-                "f",
-                "<cmd>HopAnywhereCurrentLine<CR>",
-                mode = { "n", "x", "o" },
-            },
+            -- {
+            --     "f",
+            --     "<cmd>HopAnywhereCurrentLine<CR>",
+            --     mode = { "n", "x", "o" },
+            -- },
             {
                 "F",
                 "<cmd>HopWordMW<CR>",
@@ -39,7 +39,7 @@ return {
                 --     desc = "Treesitter Search",
                 -- },
                 {
-                    "ss",
+                    "f",
                     mode = { "n", "x", "o" },
                     function() require("flash").jump() end,
                     desc = "Flash",

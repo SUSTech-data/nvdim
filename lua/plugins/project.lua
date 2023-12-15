@@ -4,7 +4,7 @@ return {
         event = { "CursorHold", "CursorHoldI" },
         config = function()
             require("project_nvim").setup({
-                ignore_lsp = { "null-ls", "copilot" },
+                ignore_lsp = { "copilot" },
                 silent_chdir = true,
                 scope_chdir = "win",
             })

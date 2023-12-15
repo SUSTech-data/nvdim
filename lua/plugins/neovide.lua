@@ -1,6 +1,9 @@
 if not vim.g.neovide then return {} end
 
-local font = "Iosevka Nerd Font"
+-- local font = "Iosevka Nerd Font"
+-- local font = "VictorMono Nerd Font"
+-- local font = "JetBrainsMono Nerd Font"
+local font = "MonaspiceXe NFM"
 local fontsize = tonumber(os.getenv("GDK_SCALE") or 1)
     * tonumber(os.getenv("GDK_DPI_SCALE") or 1)
     * 15

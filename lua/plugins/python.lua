@@ -13,6 +13,25 @@ local insert_cell = function(above)
 end
 return {
     {
+        "telescope.nvim",
+        opts = {
+            conda = { anaconda_path = "~/.conda" },
+        },
+        dependencies = {
+            {
+                "IllustratedMan-code/telescope-conda.nvim",
+                optional = true,
+                keys = {
+                    {
+                        "<leader>cv",
+                        function() require("telescope").extensions.conda.conda({}) end,
+                        desc = "Select CondaEnv",
+                    },
+                },
+            },
+        },
+    },
+    {
         "kiyoon/jupynium.nvim",
         event = { "BufRead *.ju.*" },
         opts = {

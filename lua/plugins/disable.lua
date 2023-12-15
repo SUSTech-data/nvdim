@@ -9,9 +9,12 @@ local disables = {
     "echasnovski/mini.comment",
     "linux-cultist/venv-selector.nvim",
     "echasnovski/mini.surround",
+    "rafamadriz/friendly-snippets",
     -- "echasnovski/mini.indentscope",
     -- "echasnovski/mini.bufremove",
     "lewis6991/gitsigns.nvim",
+    "nvim-treesitter/nvim-treesitter-context",
+    "lukas-reineke/indent-blankline.nvim",
 }
 local enables = { "IllustratedMan-code/telescope-conda.nvim" }
 local L = {}

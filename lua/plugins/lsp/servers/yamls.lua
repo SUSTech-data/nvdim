@@ -1,7 +1,7 @@
 return {
-	settings = {
-		yaml = {
-			schemas = { kubernetes = "*.yaml" },
-		},
-	},
+    settings = {
+        yaml = {
+            schemas = { kubernetes = "*.yaml" },
+        },
+    },
 }

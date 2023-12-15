@@ -1,3 +1,4 @@
 sync.sh
 jk.patch
 lazy-lock.json
+*.lua1

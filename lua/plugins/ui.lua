@@ -43,9 +43,7 @@ return {
         "catppuccin/nvim",
         dev = true,
         name = "catppuccin",
-        config = function(_, opts)
-            require("catppuccin").setup(opts)
-        end,
+        config = function(_, opts) require("catppuccin").setup(opts) end,
         opts = {
             background = { light = "latte", dark = "mocha" },
             flavour = "macchiato",
@@ -150,10 +148,12 @@ return {
             },
         },
     },
+    { "srcery-colors/srcery-vim", name = "srcery" },
     {
         "LazyVim/LazyVim",
         opts = {
             colorscheme = "catppuccin",
+            -- colorscheme = "srcery",
         },
     },
     -- {

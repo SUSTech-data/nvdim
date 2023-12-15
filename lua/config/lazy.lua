@@ -14,7 +14,7 @@ require("lazy").setup({
             import = "lazyvim.plugins",
             opts = {
                 defaults = {
-                    keymaps = false, -- lazyvim.config.keymaps
+                    keymaps = false,
                 },
             },
         },
@@ -24,9 +24,9 @@ require("lazy").setup({
         { import = "lazyvim.plugins.extras.lang.clangd" },
         { import = "lazyvim.plugins.extras.lang.cmake" },
         -- { import = "lazyvim.plugins.extras.lang.json" },
-        { import = "lazyvim.plugins.extras.lang.python-semshi" },
+        -- { import = "lazyvim.plugins.extras.lang.python-semshi" },
         { import = "lazyvim.plugins.extras.lang.python" },
-        { import = "lazyvim.plugins.extras.lang.python-pylance" },
+        -- { import = "lazyvim.plugins.extras.lang.python-pylance" },
         { import = "lazyvim.plugins.extras.formatting.black" },
         -- { import = "lazyvim.plugins.extras.lang.tex" },
         { import = "lazyvim.plugins.extras.lang.rust" },
@@ -35,9 +35,9 @@ require("lazy").setup({
         -- { import = "lazyvim.plugins.extras.ui.mini-animate" },
         -- { import = "lazyvim.plugins.extras.util.mini-hipatterns" },
         { import = "lazyvim.plugins.extras.vscode" },
-        { import = "lazyvim.plugins.extras.editor.wildfire" },
-        { import = "lazyvim.plugins.extras.editor.rainbow-delimiters" },
-        { import = "lazyvim.plugins.extras.ui.dropbar" },
+        -- { import = "lazyvim.plugins.extras.editor.wildfire" },
+        -- { import = "lazyvim.plugins.extras.editor.rainbow-delimiters" },
+        -- { import = "lazyvim.plugins.extras.ui.dropbar" },
         { import = "plugins" },
     },
     defaults = {
@@ -63,8 +63,8 @@ require("lazy").setup({
     },
     dev = {
         path = "~/codes/nvim-plugins",
-        fallback = false,
-        patterns = jit.os:find("Windows") and {} or { "LazyVim", "sustech-data", "fecet", "jupynium", "lualine-so-fancy" },
+        fallback = true,
+        patterns = jit.os:find("Windows") and {} or { "sustech-data", "fecet", "jupynium", "lualine-so-fancy" },
     },
 })
 

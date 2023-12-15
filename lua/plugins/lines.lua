@@ -1,4 +1,4 @@
-local fg = require("lazyvim.util").fg
+local fg = require("lazyvim.util").ui.fg
 
 local colors = {
     [""] = fg("Special"),

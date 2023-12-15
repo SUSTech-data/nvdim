@@ -1,20 +1,29 @@
-local format = function() require("lazyvim.plugins.lsp.format").format({ force = true }) end
+-- local format = function() require("lazyvim.plugins.lsp.format").format({ force = true }) end
 return {
     { "smjonas/inc-rename.nvim", opts = {} },
     { "williamboman/mason.nvim", version = "1.6.2" },
     {
+        "stevearc/conform.nvim",
+        keys = {
+            { "<leader>cF", false },
+            {
+                "<leader>fm",
+                -- function() require("conform").format({ formatters = { "injected" } }) end,
+                "<cmd>LazyFormat<CR>",
+                mode = { "n", "v" },
+                desc = "Format Injected Langs",
+            },
+        },
+    },
+    {
         "neovim/nvim-lspconfig",
         init = function()
-            local keys = {}
+            local keys = require("lazyvim.plugins.lsp.keymaps").get()
             keys[#keys + 1] = { "K", false }
             keys[#keys + 1] = { "gd", false }
             keys[#keys + 1] = { "gr", false }
             keys[#keys + 1] = { "D", vim.lsp.buf.hover, desc = "Hover" }
             keys[#keys + 1] = { "<leader>cf", false }
-            keys[#keys + 1] = { "<leader>fm", format, desc = "Format Document", has = "formatting" }
-            keys[#keys + 1] =
-                { "<leader>fm", format, desc = "Format Range", mode = "v", has = "rangeFormatting" }
-            vim.list_extend(require("lazyvim.plugins.lsp.keymaps").get(), keys)
         end,
 
         opts = {
@@ -31,12 +40,15 @@ return {
                     severity = {
                         vim.diagnostic.severity.HINT,
                     },
+                    text = {
+                        HINT = "💡",
+                    },
                 },
             },
             inlay_hints = {
                 enabled = false,
             },
-            autoformat = false,
+            -- autoformat = false,
             format_notify = true,
             servers = {
                 pylance = require("plugins.lsp.servers.pylance"),

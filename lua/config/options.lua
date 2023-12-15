@@ -4,6 +4,7 @@
 
 local g, o, opt = vim.g, vim.o, vim.opt
 
+g.autoformat = false
 g.mapleader = " "
 g.maplocalleader = " "
 o.title = true

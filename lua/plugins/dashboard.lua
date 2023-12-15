@@ -72,9 +72,9 @@ local opts = {
 }
 
 return {
-    { "goolord/alpha-nvim", enabled = false },
+    -- { "goolord/alpha-nvim", enabled = false },
     {
-        "glepnir/dashboard-nvim",
+        "nvimdev/dashboard-nvim",
         event = "VimEnter",
         config = function() require("dashboard").setup(opts) end,
         dependencies = { { "nvim-tree/nvim-web-devicons" }, { "fecet/fortune.nvim" } },
