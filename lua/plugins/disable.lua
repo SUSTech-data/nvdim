@@ -12,9 +12,9 @@ local disables = {
     "rafamadriz/friendly-snippets",
     -- "echasnovski/mini.indentscope",
     -- "echasnovski/mini.bufremove",
-    "lewis6991/gitsigns.nvim",
+    -- "lewis6991/gitsigns.nvim",
     "nvim-treesitter/nvim-treesitter-context",
-    "lukas-reineke/indent-blankline.nvim",
+    -- "lukas-reineke/indent-blankline.nvim",
 }
 local enables = { "IllustratedMan-code/telescope-conda.nvim" }
 local L = {}
