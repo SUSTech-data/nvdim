@@ -2,3 +2,4 @@ sync.sh
 jk.patch
 lazy-lock.json
 *.lua1
+lazyvim.json

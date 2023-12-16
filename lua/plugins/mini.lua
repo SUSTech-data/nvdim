@@ -22,22 +22,22 @@ return {
             { "<leader>mf", "<Cmd>lua MiniMap.toggle_focus()<CR>", desc = "MiniMap" },
             { "<leader>ms", "<Cmd>lua MiniMap.toggle_side()<CR>", desc = "MiniMap" },
         },
-        {
-            "echasnovski/mini.bracketed",
-            event = "VeryLazy",
-            opts = {
-                comment = { suffix = "gc" }, -- ]c is for git/diff change
-                indent = { options = { change_type = "diff" } },
-                treesitter = { suffix = "n" },
-            },
-            config = function(_, opts) require("mini.bracketed").setup(opts) end,
+    },
+    {
+        "echasnovski/mini.bracketed",
+        event = "VeryLazy",
+        opts = {
+            comment = { suffix = "gc" }, -- ]c is for git/diff change
+            indent = { options = { change_type = "diff" } },
+            treesitter = { suffix = "n" },
         },
-        {
-            "echasnovski/mini.indentscope",
-            opts = {
-                draw = {
-                    animation = require("mini.indentscope").gen_animation.none(),
-                },
+        config = function(_, opts) require("mini.bracketed").setup(opts) end,
+    },
+    {
+        "echasnovski/mini.indentscope",
+        opts = {
+            draw = {
+                animation = require("mini.indentscope").gen_animation.none(),
             },
         },
     },

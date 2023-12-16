@@ -19,11 +19,12 @@ return {
         "neovim/nvim-lspconfig",
         init = function()
             local keys = require("lazyvim.plugins.lsp.keymaps").get()
-            keys[#keys + 1] = { "K", false }
-            keys[#keys + 1] = { "gd", false }
-            keys[#keys + 1] = { "gr", false }
+            for index, keymap in pairs(keys) do
+                if vim.tbl_contains({ "gd", "gr", "K", "<leader>cf" }, keymap[1]) then
+                    keys[index] = nil
+                end
+            end
             keys[#keys + 1] = { "D", vim.lsp.buf.hover, desc = "Hover" }
-            keys[#keys + 1] = { "<leader>cf", false }
         end,
 
         opts = {
