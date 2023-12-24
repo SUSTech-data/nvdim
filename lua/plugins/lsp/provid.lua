@@ -4,24 +4,16 @@ local pylance_install = function()
 
     local function installer(ctx)
         local script = [[
-    curl -s -c cookies.txt 'https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance' > /dev/null &&
-    curl -s "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ms-python/vsextensions/vscode-pylance/2023.10.40/vspackage"
-         -j -b cookies.txt --compressed --output "pylance.vsix"
-    ]]
+        curl -L -o pylance.vsix https://github.com/mochaaP/pylance-standalone/archive/dist.zip
+        ]]
         ctx.receipt:with_primary_source(ctx.receipt.unmanaged)
         ctx.spawn.bash({ "-c", script:gsub("\n", " ") })
         ctx.spawn.unzip({ "pylance.vsix" })
-        ctx.spawn.sed({
-            "-i",
-            -- "''",
-            [[0,/\(if(\!process\[[^] ]*\]\[[^] ]*\])return\!0x\)1/ s//\10/]],
-            "extension/dist/server.bundle.js",
-        })
         ctx:link_bin(
             "pylance",
             ctx:write_node_exec_wrapper(
                 "pylance",
-                path.concat({ "extension", "dist", "server.bundle.js" })
+                path.concat({ "pylance-standalone-dist", "server.bundle.js" })
             )
         )
     end
