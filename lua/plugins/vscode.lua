@@ -11,7 +11,9 @@ local vscodes = {
     "JoosepAlviste/nvim-ts-context-commentstring",
     "numToStr/Comment.nvim",
     "kiyoon/jupynium.nvim",
-    -- "catppuccin/nvim",
+    "smoka7/hop.nvim",
+    "keaising/im-select.nvim",
+    "Pocco81/auto-save.nvim",
 }
 local L = {}
 for _, key in ipairs(vscodes) do
@@ -21,4 +23,3 @@ end
 -- vim.list_extend(L, enables)
 
 return L
-

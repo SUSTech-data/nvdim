@@ -40,7 +40,8 @@ return {
         },
     },
     {
-        "catppuccin/nvim",
+        -- "catppuccin/nvim",
+        "fecet/catppuccin",
         dev = true,
         name = "catppuccin",
         config = function(_, opts) require("catppuccin").setup(opts) end,

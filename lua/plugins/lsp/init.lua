@@ -19,12 +19,17 @@ return {
         "neovim/nvim-lspconfig",
         init = function()
             local keys = require("lazyvim.plugins.lsp.keymaps").get()
-            for index, keymap in pairs(keys) do
-                if vim.tbl_contains({ "gd", "gr", "K", "<leader>cf" }, keymap[1]) then
-                    keys[index] = nil
-                end
-            end
+            -- for index, keymap in pairs(keys) do
+            --     if vim.tbl_contains({ "gd", "gr", "K", "<leader>cf" }, keymap[1]) then
+            --         keys[index] = false
+            --     end
+            -- end
+            keys[#keys + 1] = { "gd", false }
+            keys[#keys + 1] = { "gr", false }
+            keys[#keys + 1] = { "K", false }
+            keys[#keys + 1] = { "<leader>cf", false }
             keys[#keys + 1] = { "D", vim.lsp.buf.hover, desc = "Hover" }
+            -- print(vim.inspect(keys))
         end,
 
         opts = {
@@ -62,22 +67,23 @@ return {
         -- enabled = false,
         event = "LspAttach",
         keys = {
+            { "K", false },
             -- {
             --     "D",
             --     "<cmd>Lspsaga hover_doc<cr>",
             --     desc = "Hover",
             -- },
             {
-                "gt",
+                "gd",
                 "<cmd>Lspsaga peek_definition<cr>",
                 -- "<C-w>}",
                 -- "<cmd>Lspsaga finder def ++inexist<cr>",
                 desc = "go to definition",
             },
             {
-                "gd",
+                "gt",
                 "<C-w>}",
-                desc = "go to definition",
+                desc = "reference definition",
             },
             {
                 "gr",

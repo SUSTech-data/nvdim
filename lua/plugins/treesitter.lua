@@ -11,7 +11,8 @@ return {
             { "JoosepAlviste/nvim-ts-context-commentstring" },
             {
                 "roobert/tabtree.nvim",
-                enabled = false,
+                -- config = function() require("tabtree").setup() end,
+                -- enabled = false,
                 keys = {
                     {
                         "<Tab>",

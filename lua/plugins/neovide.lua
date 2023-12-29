@@ -56,7 +56,7 @@ return {
         },
         keys = {
             {
-                "<leader>up",
+                "<leader>uD",
                 function() require("presence"):update() end,
                 desc = "Update presence",
             },

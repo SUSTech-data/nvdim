@@ -65,6 +65,7 @@ local root_files = {
     "Pipfile",
     "pyrightconfig.json",
     "environment.yml",
+    ".gitignore",
 }
 
 return {
