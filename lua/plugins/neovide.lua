@@ -3,14 +3,24 @@ if not vim.g.neovide then return {} end
 -- local font = "Iosevka Nerd Font"
 -- local font = "VictorMono Nerd Font"
 -- local font = "JetBrainsMono Nerd Font"
-local font = "MonaspiceXe NFM"
-local fontsize = tonumber(os.getenv("GDK_SCALE") or 1)
-    * tonumber(os.getenv("GDK_DPI_SCALE") or 1)
-    * 15
-vim.api.nvim_set_option_value("guifont", font .. ":h" .. fontsize, {})
-vim.g.neovide_refresh_rate = vim.tbl_contains({ "X1Nano" }, os.getenv("HOST")) and 60 or 1000
--- vim.g.neovide_cursor_vfx_mode = "railgun"
+-- local font = "Comic mono"
+-- local font = "MonaspiceXe NFM"
+-- local fontsize = tonumber(os.getenv("GDK_SCALE") or 1)
+--     * tonumber(os.getenv("GDK_DPI_SCALE") or 1)
+--     * 20
+-- vim.api.nvim_set_option_value("guifont", font .. ":h" .. fontsize, {})
+vim.g.neovide_refresh_rate = 1000
+vim.g.neovide_cursor_vfx_mode = "railgun"
 vim.g.neovide_profiler = true
+vim.g.neovide_window_blurred = true
+vim.g.neovide_transparency = 1
+vim.g.neovide_scroll_animation_far_lines = 1
+vim.g.neovide_hide_mouse_when_typing = true
+vim.g.neovide_underline_stroke_scale = 1.0
+vim.g.neovide_theme = "auto"
+vim.g.neovide_confirm_quit = false
+
+
 vim.api.nvim_create_autocmd("User", {
     pattern = "LazyVimKeymaps",
     callback = function()
@@ -54,12 +64,12 @@ return {
             blacklist = { "*.txt", ".txt" },
             enable_line_number = true,
         },
-        keys = {
-            {
-                "<leader>uD",
-                function() require("presence"):update() end,
-                desc = "Update presence",
-            },
-        },
+        -- keys = {
+        --     {
+        --         "<leader>uD",
+        --         function() require("presence"):update() end,
+        --         desc = "Update presence",
+        --     },
+        -- },
     },
 }

@@ -10,7 +10,7 @@ local vscodes = {
     "mizlan/iswap.nvim",
     "JoosepAlviste/nvim-ts-context-commentstring",
     "numToStr/Comment.nvim",
-    "kiyoon/jupynium.nvim",
+    -- "kiyoon/jupynium.nvim",
     "smoka7/hop.nvim",
     "keaising/im-select.nvim",
     "Pocco81/auto-save.nvim",

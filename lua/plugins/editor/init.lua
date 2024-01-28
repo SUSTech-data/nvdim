@@ -62,7 +62,11 @@ local editor = {
         event = "LspAttach",
         config = true,
     },
-    
+    {
+        "wsdjeg/vim-fetch",
+        event = "VeryLazy",
+        -- config = true,
+    },
 }
 
 return editor

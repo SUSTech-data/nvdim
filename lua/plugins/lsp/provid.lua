@@ -24,6 +24,8 @@ local pylance_install = function()
         homepage = "https://github.com/microsoft/pylance",
         languages = { Pkg.Lang.Python },
         categories = { Pkg.Cat.LSP },
+        -- source = { id = "pkg:npm/@delance/runtime" },
+        -- bin = { pylance = "npm/@delance/runtime" },
         install = installer,
     })
 end

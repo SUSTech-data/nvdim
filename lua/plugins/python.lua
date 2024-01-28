@@ -134,6 +134,7 @@ return {
                         { "n", "x" },
                         "<leader><CR>",
                         "<cmd>JupyniumExecuteSelectedCells<CR>",
+                        -- ":Neopyter run current<CR>",
                         { buffer = buf_id }
                     )
                     vim.keymap.set(
@@ -199,5 +200,13 @@ return {
                 end,
             })
         end,
+    },
+    {
+        "sustech-data/neopyter",
+        enabled = false,
+        opts = {
+            file_pattern = { "*.ju.*" },
+        },
+        ft = "python",
     },
 }

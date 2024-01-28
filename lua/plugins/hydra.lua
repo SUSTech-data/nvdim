@@ -12,7 +12,7 @@ local insert_cell = function(above)
 end
 
 return {
-    "nvim-island/hydra.nvim",
+    "nvimtools/hydra.nvim",
     -- event = "VeryLazy",
     init = function()
         local Hydra = require("hydra")

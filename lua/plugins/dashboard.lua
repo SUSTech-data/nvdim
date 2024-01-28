@@ -78,5 +78,17 @@ return {
         event = "VimEnter",
         config = function() require("dashboard").setup(opts) end,
         dependencies = { { "nvim-tree/nvim-web-devicons" }, { "fecet/fortune.nvim" } },
+    }, -- Lazy.nvim
+    {
+        "TobinPalmer/Tip.nvim",
+        enabled=false,
+        event = "VimEnter",
+        init = function()
+            require("tip").setup({
+                seconds = 2,
+                title = "Tip!",
+                url = "https://vtip.43z.one",
+            })
+        end,
     },
 }
