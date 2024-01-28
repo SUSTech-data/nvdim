@@ -1,7 +1,6 @@
 -- local format = function() require("lazyvim.plugins.lsp.format").format({ force = true }) end
 return {
     { "smjonas/inc-rename.nvim", opts = {} },
-    { "williamboman/mason.nvim", version = "1.6.2" },
     {
         "stevearc/conform.nvim",
         keys = {
