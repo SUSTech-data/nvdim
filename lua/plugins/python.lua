@@ -11,29 +11,173 @@ local insert_cell = function(above)
     vim.api.nvim_buf_set_lines(0, row - 1, row - 1, false, { "# %%", "" })
     vim.api.nvim_win_set_cursor(0, { row + 1, 0 })
 end
-return {
-    {
-        "telescope.nvim",
-        opts = {
-            conda = { anaconda_path = "~/.conda" },
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "python" },
+    callback = function() require("swenv.api").auto_venv() end,
+})
+
+local jupyter_callback = function()
+    local Hydra = require("hydra")
+    local buf_id = vim.api.nvim_get_current_buf()
+    Hydra({
+        name = "Jupyter",
+        -- mode = "n",
+        body = "<leader>j",
+        config = {
+            hint = { type = "window", border = "single" },
+            invoke_on_body = true,
+            timeout = 500,
         },
-        dependencies = {
+        timeout = 500,
+        heads = {
             {
-                "IllustratedMan-code/telescope-conda.nvim",
-                optional = true,
-                keys = {
-                    {
-                        "<leader>cv",
-                        function() require("telescope").extensions.conda.conda({}) end,
-                        desc = "Select CondaEnv",
-                    },
-                },
+                "ss",
+                "<cmd>JupyniumStartSync 2<CR>y<CR>",
+                { exit = true },
+                desc = "start sync",
+            },
+            {
+                "rk",
+                "<cmd>JupyniumKernelRestart<CR>",
+                { exit = true },
+                desc = "restart",
+            },
+            {
+                "k",
+                "<cmd>lua require'jupynium.textobj'.goto_previous_cell_separator()<cr>",
+                { desc = "prev" },
+            },
+            {
+                "j",
+                "<cmd>lua require'jupynium.textobj'.goto_next_cell_separator()<cr>",
+                { desc = "next" },
+            },
+            { "o", function() insert_cell(false) end, { exit = true } },
+            { "O", function() insert_cell(true) end, { exit = true } },
+            {
+                "v",
+                "<cmd>lua require'jupynium.textobj'.select_cell(false, false)<cr>",
+                -- { exit = true },
+            },
+            { "<CR>", "<cmd>JupyniumExecuteSelectedCells<CR>", { exit = true } },
+        },
+    })
+    -- vim.keymap.set(
+    --     { "n", "x" },
+    --     "<leader>jss>",
+    --     "<cmd>JupyniumExecuteSelectedCells<CR>",
+    --     { buffer = buf_id }
+    -- )
+    vim.keymap.set(
+        { "n", "x" },
+        "<leader><CR>",
+        -- "<cmd>JupyniumExecuteSelectedCells<CR>",
+        ":Neopyter run current<CR>",
+        { buffer = buf_id }
+    )
+    vim.keymap.set(
+        { "i", "n", "x" },
+        "<C-CR>",
+        -- "<cmd>JupyniumExecuteSelectedCells<CR>",
+        ":Neopyter run current<CR>",
+        { buffer = buf_id }
+    )
+    vim.keymap.set(
+        { "n" },
+        "gj",
+        "<cmd>JupyniumKernelHover<cr>",
+        { buffer = buf_id, desc = "Jupynium hover (inspect a variable)" }
+    )
+    vim.keymap.set(
+        { "n", "x", "o" },
+        "<C-b>",
+        "<cmd>lua require'jupynium.textobj'.goto_previous_cell_separator()<cr>",
+        { buffer = buf_id }
+    )
+    vim.keymap.set(
+        { "n", "x", "o" },
+        "<C-f>",
+        "<cmd>lua require'jupynium.textobj'.goto_next_cell_separator()<cr>",
+        { buffer = buf_id }
+    )
+    -- vim.keymap.set(
+    --     { "n", "x", "o" },
+    --     "<leader>jo",
+    --     function() insert_cell(false) end,
+    --     { buffer = buf_id }
+    -- )
+    -- vim.keymap.set(
+    --     { "n", "x", "o" },
+    --     "<leader>jO",
+    --     function() insert_cell(true) end,
+    --     { buffer = buf_id }
+    -- )
+    vim.keymap.set(
+        { "x", "o" },
+        "aj",
+        "<cmd>lua require'jupynium.textobj'.select_cell(true, false)<cr>",
+        { buffer = buf_id }
+    )
+    vim.keymap.set(
+        { "x", "o" },
+        "ij",
+        "<cmd>lua require'jupynium.textobj'.select_cell(false, false)<cr>",
+        { buffer = buf_id }
+    )
+    vim.keymap.set(
+        { "x", "o" },
+        "aJ",
+        "<cmd>lua require'jupynium.textobj'.select_cell(true, true)<cr>",
+        { buffer = buf_id }
+    )
+    vim.keymap.set(
+        { "x", "o" },
+        "iJ",
+        "<cmd>lua require'jupynium.textobj'.select_cell(false, true)<cr>",
+        { buffer = buf_id }
+    )
+end
+
+return {
+    -- {
+    --     "telescope.nvim",
+    --     opts = {
+    --         conda = { anaconda_path = "~/.conda" },
+    --     },
+    --     dependencies = {
+    --         {
+    --             "IllustratedMan-code/telescope-conda.nvim",
+    --             optional = true,
+    --             keys = {
+    --                 {
+    --                     "<leader>cv",
+    --                     function() require("telescope").extensions.conda.conda({}) end,
+    --                     desc = "Select CondaEnv",
+    --                 },
+    --             },
+    --         },
+    --     },
+    -- },
+    {
+        "AckslD/swenv.nvim",
+        opts = {
+            get_venvs = function(venvs_path) return require("swenv.api").get_venvs(venvs_path) end,
+            -- Path passed to `get_venvs`.
+            venvs_path = vim.fn.expand("~/.conda/envs"),
+            -- Something to do after setting an environment, for example call vim.cmd.LspRestart
+            post_set_venv = nil,
+        },
+        keys = {
+            {
+                "<leader>cv",
+                function() require("swenv.api").pick_venv() end,
+                desc = "Select CondaEnv",
             },
         },
     },
     {
         "kiyoon/jupynium.nvim",
-        event = { "BufRead *.ju.*" },
+        -- event = { "BufRead *.ju.*" },
         opts = {
             python_host = "/opt/mambaforge/bin/python",
             default_notebook_URL = "localhost:8888",
@@ -74,136 +218,17 @@ return {
             shortsighted = false,
             auto_close_tab = false,
         },
-        config = function(_, opts)
-            require("jupynium").setup(opts)
-            vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
-                pattern = "*.ju.*",
-                callback = function()
-                    local Hydra = require("hydra")
-                    local buf_id = vim.api.nvim_get_current_buf()
-                    Hydra({
-                        name = "Jupyter",
-                        -- mode = "n",
-                        body = "<leader>j",
-                        config = {
-                            hint = { type = "window", border = "single" },
-                            invoke_on_body = true,
-                            timeout = 500,
-                        },
-                        timeout = 500,
-                        heads = {
-                            {
-                                "ss",
-                                "<cmd>JupyniumStartSync 2<CR>y<CR>",
-                                { exit = true },
-                                desc = "start sync",
-                            },
-                            {
-                                "rk",
-                                "<cmd>JupyniumKernelRestart<CR>",
-                                { exit = true },
-                                desc = "restart",
-                            },
-                            {
-                                "k",
-                                "<cmd>lua require'jupynium.textobj'.goto_previous_cell_separator()<cr>",
-                                { desc = "prev" },
-                            },
-                            {
-                                "j",
-                                "<cmd>lua require'jupynium.textobj'.goto_next_cell_separator()<cr>",
-                                { desc = "next" },
-                            },
-                            { "o", function() insert_cell(false) end, { exit = true } },
-                            { "O", function() insert_cell(true) end, { exit = true } },
-                            {
-                                "v",
-                                "<cmd>lua require'jupynium.textobj'.select_cell(false, false)<cr>",
-                                -- { exit = true },
-                            },
-                            { "<CR>", "<cmd>JupyniumExecuteSelectedCells<CR>", { exit = true } },
-                        },
-                    })
-                    -- vim.keymap.set(
-                    --     { "n", "x" },
-                    --     "<leader>jss>",
-                    --     "<cmd>JupyniumExecuteSelectedCells<CR>",
-                    --     { buffer = buf_id }
-                    -- )
-                    vim.keymap.set(
-                        { "n", "x" },
-                        "<leader><CR>",
-                        "<cmd>JupyniumExecuteSelectedCells<CR>",
-                        -- ":Neopyter run current<CR>",
-                        { buffer = buf_id }
-                    )
-                    vim.keymap.set(
-                        { "i", "n", "x" },
-                        "<C-CR>",
-                        "<cmd>JupyniumExecuteSelectedCells<CR>",
-                        { buffer = buf_id }
-                    )
-                    vim.keymap.set(
-                        { "n" },
-                        "gj",
-                        "<cmd>JupyniumKernelHover<cr>",
-                        { buffer = buf_id, desc = "Jupynium hover (inspect a variable)" }
-                    )
-                    vim.keymap.set(
-                        { "n", "x", "o" },
-                        "<C-b>",
-                        "<cmd>lua require'jupynium.textobj'.goto_previous_cell_separator()<cr>",
-                        { buffer = buf_id }
-                    )
-                    vim.keymap.set(
-                        { "n", "x", "o" },
-                        "<C-f>",
-                        "<cmd>lua require'jupynium.textobj'.goto_next_cell_separator()<cr>",
-                        { buffer = buf_id }
-                    )
-                    -- vim.keymap.set(
-                    --     { "n", "x", "o" },
-                    --     "<leader>jo",
-                    --     function() insert_cell(false) end,
-                    --     { buffer = buf_id }
-                    -- )
-                    -- vim.keymap.set(
-                    --     { "n", "x", "o" },
-                    --     "<leader>jO",
-                    --     function() insert_cell(true) end,
-                    --     { buffer = buf_id }
-                    -- )
-                    vim.keymap.set(
-                        { "x", "o" },
-                        "aj",
-                        "<cmd>lua require'jupynium.textobj'.select_cell(true, false)<cr>",
-                        { buffer = buf_id }
-                    )
-                    vim.keymap.set(
-                        { "x", "o" },
-                        "ij",
-                        "<cmd>lua require'jupynium.textobj'.select_cell(false, false)<cr>",
-                        { buffer = buf_id }
-                    )
-                    vim.keymap.set(
-                        { "x", "o" },
-                        "aJ",
-                        "<cmd>lua require'jupynium.textobj'.select_cell(true, true)<cr>",
-                        { buffer = buf_id }
-                    )
-                    vim.keymap.set(
-                        { "x", "o" },
-                        "iJ",
-                        "<cmd>lua require'jupynium.textobj'.select_cell(false, true)<cr>",
-                        { buffer = buf_id }
-                    )
-                end,
-            })
-        end,
+        -- config = function(_, opts)
+        --     require("jupynium").setup(opts)
+        --     vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
+        --         pattern = "*.ju.*",
+        --         callback = jupyter_callback,
+        --     })
+        -- end,
     },
     {
         "sustech-data/neopyter",
-        enabled = false,
+        -- enabled = false,
         opts = {
             file_pattern = { "*.ju.*" },
         },

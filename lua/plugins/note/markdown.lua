@@ -57,24 +57,4 @@ return {
         end,
         ft = { "markdown", "norg", "rmd", "org", "quarto" },
     },
-    {
-        "quarto-dev/quarto-nvim",
-        opts = {
-            lspFeatures = {
-                languages = { "r", "python", "julia", "bash", "html", "lua" },
-            },
-            keymap = { hover = "D" },
-        },
-        ft = "quarto",
-    },
-
-    {
-        "jmbuhr/otter.nvim",
-        -- enabled = false,
-        opts = {
-            buffers = {
-                set_filetype = false,
-            },
-        },
-    },
 }

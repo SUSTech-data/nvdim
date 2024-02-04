@@ -103,7 +103,6 @@ return {
                             },
                         },
                     },
-                    conda = { anaconda_path = "~/.conda" },
                 },
             }
             return opts

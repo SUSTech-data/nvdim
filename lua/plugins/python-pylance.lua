@@ -1,5 +1,6 @@
 -- require("completion.providers.python")
 local root_files = {
+    ".gitignore",
     "pyproject.toml",
     "setup.py",
     "setup.cfg",
@@ -7,7 +8,6 @@ local root_files = {
     "Pipfile",
     "pyrightconfig.json",
     "environment.yml",
-    ".gitignore",
 }
 
 return {
@@ -40,9 +40,9 @@ return {
                     capabilities = capabilities,
                     on_init = function(client)
                         if vim.env.VIRTUAL_ENV then
-                            local path = require("mason-core.path")
+                            -- local path = require("mason-core.path")
                             client.config.settings.python.pythonPath =
-                                path.join(vim.env.VIRTUAL_ENV, "bin", "python")
+                                vim.fn.resolve(vim.env.VIRTUAL_ENV .. "/bin/python")
                         else
                             client.config.settings.python.pythonPath = vim.fn.exepath("python3")
                                 or vim.fn.exepath("python")

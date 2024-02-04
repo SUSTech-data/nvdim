@@ -179,7 +179,7 @@ return {
     {
         "b0o/incline.nvim",
         -- enabled=false,
-        branch = "main",
+        -- branch = "main",
         event = "BufReadPost",
         opts = {
             highlight = {
@@ -241,6 +241,8 @@ return {
                     if #label > 0 then table.insert(label, { "┊ " }) end
                     return label
                 end
+
+                local ft_icon = ft_icon == nil and "" or ft_icon
 
                 local buffer = {
                     { get_diagnostic_label() },

@@ -1,57 +1,4 @@
-local markdown_family = { "markdown", "rmd", "quarto", "qmd", "norg" }
-
 return {
-    {
-        "L3MON4D3/LuaSnip",
-        event = "BufRead",
-        dependencies = {
-            { "fecet/vim-snippets" },
-            {
-                -- "fecet/luasnips-mathtex-snippets",
-                "fecet/luasnip-latex-snippets.nvim",
-                ft = markdown_family,
-                dependencies = {
-                    "preservim/vim-markdown",
-                    "lervag/vimtex",
-                },
-                config = function()
-                    vim.o.conceallevel = 2
-                    vim.g.tex_conceal = "abdmgs"
-                    vim.g.tex_flavor = "latex"
-                    vim.g.vim_markdown_math = 1
-                    vim.g.vim_markdown_folding_disabled = 1
-                    vim.cmd("hi clear conceal")
-                    require("luasnip-latex-snippets").setup({
-                        use_treesitter = true,
-                        allow_on_markdown = false,
-                    })
-                    require("luasnip-latex-snippets").setup_markdown()
-                end,
-            },
-        },
-        keys = function()
-            return {
-                { "<BS>", "<C-G>s", mode = "s" },
-            }
-        end,
-        config = function()
-            local luasnip = require("luasnip")
-            require("luasnip.loaders.from_lua").lazy_load()
-            require("luasnip.loaders.from_vscode").lazy_load()
-            require("luasnip.loaders.from_snipmate").lazy_load()
-            for i = 2, #markdown_family do
-                luasnip.filetype_extend(markdown_family[i], { "markdown" })
-            end
-            luasnip.filetype_extend("quarto", { "qmd" })
-            local opts = {
-                update_events = "TextChanged,TextChangedI",
-                delete_check_events = "TextChanged,InsertLeave",
-                enable_autosnippets = true,
-                store_selection_keys = "<tab>",
-            }
-            luasnip.config.setup(opts)
-        end,
-    },
     {
         "hrsh7th/nvim-cmp",
         -- commit = "6c84bc75c64f778e9f1dcb798ed41c7fcb93b639",
@@ -59,6 +6,7 @@ return {
         dependencies = {
             "hrsh7th/cmp-cmdline",
             "dmitmel/cmp-cmdline-history",
+            "jalvesaq/cmp-zotcite",
         },
         opts = function(_, opts)
             local cmp = require("cmp")
@@ -127,7 +75,7 @@ return {
                     -- load lspkind icons
                     vim_item.kind = string.format(
                         " %s  %s",
-                        icons[vim_item.kind] or icons.cmp.undefined,
+                        icons[vim_item.kind] or icons.TabNine,
                         vim_item.kind or ""
                     )
 
@@ -146,6 +94,7 @@ return {
                         spell = "[SPELL]",
                         jupynium = "[JUP]",
                         codeium = "[CDM]",
+                        neopyter = "[JUP]",
                     }, {
                         __index = function()
                             return "[BTN]" -- builtin/unknown source names
@@ -176,7 +125,9 @@ return {
                 },
                 -- { name = "copilot" },
                 { name = "nvim_lsp" },
-                { name = "jupynium" },
+                { name = "cmp_zotcite" },
+                -- { name = "jupynium" },
+                { name = "neopyter" },
                 { name = "codeium" },
                 { name = "nvim_lua" },
                 { name = "path" },

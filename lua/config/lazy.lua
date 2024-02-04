@@ -44,7 +44,8 @@ require("lazy").setup({
     dev = {
         path = "~/codes/nvim-plugins",
         fallback = true,
-        patterns = jit.os:find("Windows") and {} or { "sustech-data", "fecet", "jupynium", "lualine-so-fancy" },
+        patterns = jit.os:find("Windows") and {}
+            or { "sustech-data", "fecet", "jupynium", "lualine-so-fancy", "zotcite" },
     },
 })
 
