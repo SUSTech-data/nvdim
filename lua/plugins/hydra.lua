@@ -1,16 +1,3 @@
-local insert_cell = function(above)
-    local cells = require("jupynium.cells")
-    local current_separator_row = cells.current_cell_separator()
-    if current_separator_row == nil then return end
-    local start_row = current_separator_row
-    local next_row = cells.next_cell_separator()
-    local end_row = next_row and next_row or vim.api.nvim_buf_line_count(0)
-    -- print(start_row, end_row)
-    local row = above and start_row or end_row
-    vim.api.nvim_buf_set_lines(0, row - 1, row - 1, false, { "# %%", "" })
-    vim.api.nvim_win_set_cursor(0, { row + 1, 0 })
-end
-
 return {
     "nvimtools/hydra.nvim",
     -- event = "VeryLazy",
@@ -30,7 +17,7 @@ return {
             -- Move   ^_H_^ ^_L_^
             -- ]],
             config = {
-                hint = { type = "window", border = "single" },
+                -- hint = { type = "window", border = "single" },
                 invoke_on_body = true,
                 on_key = function()
                     -- Preserve animation
@@ -105,10 +92,10 @@ return {
             config = {
                 -- on_key = function() vim.wait(1) end,
                 invoke_on_body = true,
-                hint = {
-                    border = "rounded",
-                    offset = -1,
-                },
+                -- hint = {
+                --     border = "rounded",
+                --     offset = -1,
+                -- },
                 timeout = 500,
             },
             mode = "n",
@@ -179,7 +166,7 @@ return {
                 color = "amaranth",
                 invoke_on_body = true,
                 hint = {
-                    border = "rounded",
+                    -- border = "rounded",
                     position = "middle",
                 },
             },

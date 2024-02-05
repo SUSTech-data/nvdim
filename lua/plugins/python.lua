@@ -32,7 +32,8 @@ local jupyter_callback = function()
         heads = {
             {
                 "ss",
-                "<cmd>JupyniumStartSync 2<CR>y<CR>",
+                -- "<cmd>JupyniumStartSync 2<CR>y<CR>",
+                "<cmd>Neopyter sync current<CR>y<CR>",
                 { exit = true },
                 desc = "start sync",
             },
@@ -82,12 +83,12 @@ local jupyter_callback = function()
         ":Neopyter run current<CR>",
         { buffer = buf_id }
     )
-    vim.keymap.set(
-        { "n" },
-        "gj",
-        "<cmd>JupyniumKernelHover<cr>",
-        { buffer = buf_id, desc = "Jupynium hover (inspect a variable)" }
-    )
+    -- vim.keymap.set(
+    --     { "n" },
+    --     "gj",
+    --     "<cmd>JupyniumKernelHover<cr>",
+    --     { buffer = buf_id, desc = "Jupynium hover (inspect a variable)" }
+    -- )
     vim.keymap.set(
         { "n", "x", "o" },
         "<C-b>",
@@ -233,5 +234,12 @@ return {
             file_pattern = { "*.ju.*" },
         },
         ft = "python",
+        config = function(_, opts)
+            require("neopyter").setup(opts)
+            vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
+                pattern = "*.ju.*",
+                callback = jupyter_callback,
+            })
+        end,
     },
 }
