@@ -5,7 +5,7 @@ return {
         config = function()
             require("project_nvim").setup({
                 ignore_lsp = { "copilot" },
-                silent_chdir = false,
+                silent_chdir = true,
                 scope_chdir = "win",
             })
         end,

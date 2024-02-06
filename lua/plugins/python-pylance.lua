@@ -1,15 +1,3 @@
--- require("completion.providers.python")
-local root_files = {
-    ".gitignore",
-    "pyproject.toml",
-    "setup.py",
-    "setup.cfg",
-    "requirements.txt",
-    "Pipfile",
-    "pyrightconfig.json",
-    "environment.yml",
-}
-
 return {
 
     {
@@ -34,7 +22,16 @@ return {
             configs["pylance"] = {
                 default_config = {
                     filetypes = { "python" },
-                    root_dir = util.root_pattern(unpack(root_files)),
+                    root_dir = util.root_pattern(unpack({
+                        ".gitignore",
+                        "pyproject.toml",
+                        "setup.py",
+                        "setup.cfg",
+                        "requirements.txt",
+                        "Pipfile",
+                        "pyrightconfig.json",
+                        "environment.yml",
+                    })),
                     cmd = { "pylance", "--stdio" },
                     single_file_support = true,
                     capabilities = capabilities,
@@ -79,11 +76,11 @@ return {
     {
         "wookayin/semshi",
         enabled = false,
-        -- event = { "LspAttach", "BufReadPost" },
-        -- cond = function()
-        --   local clients = vim.lsp.get_clients({ bufnr = vim.api.nvim_get_current_buf() })
-        --   print(vim.inspect(clients))
-        --   return not vim.tbl_contains(clients, "pylance")
-        -- end,
+        event = { "LspAttach", "BufReadPost" },
+        cond = function()
+            local clients = vim.lsp.get_clients({ bufnr = vim.api.nvim_get_current_buf() })
+            print(vim.inspect(clients))
+            return not vim.tbl_contains(clients, "pylance")
+        end,
     },
 }

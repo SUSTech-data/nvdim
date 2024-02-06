@@ -24,7 +24,7 @@ local jupyter_callback = function()
         -- mode = "n",
         body = "<leader>j",
         config = {
-            hint = { type = "window", border = "single" },
+            hint = { type = "window" },
             invoke_on_body = true,
             timeout = 500,
         },
