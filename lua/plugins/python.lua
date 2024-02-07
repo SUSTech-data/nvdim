@@ -15,6 +15,8 @@ vim.api.nvim_create_autocmd("FileType", {
     pattern = { "python" },
     callback = function() require("swenv.api").auto_venv() end,
 })
+local tool = "jupynium"
+-- local tool="neopyter"
 
 local jupyter_callback = function()
     local Hydra = require("hydra")
@@ -32,8 +34,8 @@ local jupyter_callback = function()
         heads = {
             {
                 "ss",
-                -- "<cmd>JupyniumStartSync 2<CR>y<CR>",
-                "<cmd>Neopyter sync current<CR>y<CR>",
+                "<cmd>JupyniumStartSync 2<CR>y<CR>",
+                -- "<cmd>Neopyter sync current<CR>y<CR>",
                 { exit = true },
                 desc = "start sync",
             },
@@ -72,15 +74,15 @@ local jupyter_callback = function()
     vim.keymap.set(
         { "n", "x" },
         "<leader><CR>",
-        -- "<cmd>JupyniumExecuteSelectedCells<CR>",
-        ":Neopyter run current<CR>",
+        "<cmd>JupyniumExecuteSelectedCells<CR>",
+        -- ":Neopyter run current<CR>",
         { buffer = buf_id }
     )
     vim.keymap.set(
         { "i", "n", "x" },
         "<C-CR>",
-        -- "<cmd>JupyniumExecuteSelectedCells<CR>",
-        ":Neopyter run current<CR>",
+        "<cmd>JupyniumExecuteSelectedCells<CR>",
+        -- ":Neopyter run current<CR>",
         { buffer = buf_id }
     )
     -- vim.keymap.set(
@@ -178,7 +180,8 @@ return {
     },
     {
         "kiyoon/jupynium.nvim",
-        -- event = { "BufRead *.ju.*" },
+        cond = tool == "jupynium",
+        event = { "BufRead *.ju.*" },
         opts = {
             python_host = "/opt/mambaforge/bin/python",
             default_notebook_URL = "localhost:8888",
@@ -219,17 +222,17 @@ return {
             shortsighted = false,
             auto_close_tab = false,
         },
-        -- config = function(_, opts)
-        --     require("jupynium").setup(opts)
-        --     vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
-        --         pattern = "*.ju.*",
-        --         callback = jupyter_callback,
-        --     })
-        -- end,
+        config = function(_, opts)
+            require("jupynium").setup(opts)
+            vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
+                pattern = "*.ju.*",
+                callback = jupyter_callback,
+            })
+        end,
     },
     {
         "sustech-data/neopyter",
-        -- enabled = false,
+        cond = tool == "neopyter",
         opts = {
             file_pattern = { "*.ju.*" },
         },
