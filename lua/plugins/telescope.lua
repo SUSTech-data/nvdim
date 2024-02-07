@@ -19,7 +19,7 @@ return {
             { "nvim-telescope/telescope-symbols.nvim" },
         },
         opts = function()
-            local icons = require("lazyvim.config").icons
+            -- local icons = require("lazyvim.config").icons
             local opts = {
                 defaults = {
                     vimgrep_arguments = {
