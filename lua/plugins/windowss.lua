@@ -45,7 +45,6 @@ return {
     -- { "kwkarlwang/bufresize.nvim", opts = {}, event = "WinEnter" }, -- on terminal resize
     {
         "mrjones2014/smart-splits.nvim",
-        lazy = false,
         keys = function() return {} end,
         opts = {
             resize_mode = { hooks = { on_leave = function() require("bufresize").register() end } },
