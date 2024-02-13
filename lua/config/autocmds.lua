@@ -3,10 +3,10 @@
 -- Add any additional autocmds here
 
 -- Plain terminal
-vim.api.nvim_create_autocmd("TermOpen", {
-  pattern = "term://*",
-  command = [[setlocal listchars= nonumber norelativenumber | startinsert]],
-})
+-- vim.api.nvim_create_autocmd("TermOpen", {
+--   pattern = "term://*",
+--   command = [[setlocal listchars= nonumber norelativenumber | startinsert]],
+-- })
 
 -- vim.api.nvim_create_autocmd("TermClose", {
 --   callback = function()
