@@ -101,10 +101,10 @@ return {
             mode = "n",
             body = "<C-w>",
             heads = {
-                { "h", "<CMD>SmartCursorMoveLeft<CR>" },
-                { "j", "<CMD>SmartCursorMoveDown<CR>" },
-                { "k", "<CMD>SmartCursorMoveUp<CR>" },
-                { "l", "<CMD>SmartCursorMoveRight<CR>" },
+                { "h", require("smart-splits").move_cursor_left },
+                { "j", require("smart-splits").move_cursor_down },
+                { "k", require("smart-splits").move_cursor_up },
+                { "l", require("smart-splits").move_cursor_left },
 
                 { "H", "<Cmd>WinShift left<CR>" },
                 { "J", "<Cmd>WinShift down<CR>" },
