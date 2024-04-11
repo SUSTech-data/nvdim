@@ -2,7 +2,7 @@ return {
     -- { "goolord/alpha-nvim", enabled = false },
     {
         "nvimdev/dashboard-nvim",
-        cond = function() return vim.env.KITTY_SCROLLBACK_NVIM == nil end,
+        cond = function() return vim.env.KITTY_SCROLLBACK_NVIM == nil and vim.g.vscode == nil end,
         event = "VimEnter",
         opts = {
             theme = "hyper",
@@ -49,12 +49,12 @@ return {
                         return require("persisted").load()
                     end,
                 },
-                mru = { limit = 8, label = "Most Recent Files" },
+                mru = { limit = 8, label = "Most Recent Files", cwd_only = true },
                 footer = function()
                     local stats = require("lazy").stats()
                     local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
                     local str = "   " .. stats.count .. " plugins in " .. ms .. "ms"
-                    return vim.list_extend({ "", str, "" }, require("fortune").fortune(true))
+                    return vim.list_extend({ "", str, "" }, require("fortune").get_fortune())
                 end, -- footer,
             },
             hide = {
@@ -69,6 +69,16 @@ return {
             vim.cmd("highlight link DashboardHeader " .. colors[wday])
             require("dashboard").setup(opts)
         end,
-        dependencies = { { "nvim-tree/nvim-web-devicons" }, { "fecet/fortune.nvim" } },
+        dependencies = { { "nvim-tree/nvim-web-devicons" }, { "rubiin/fortune.nvim" } },
+    },
+    {
+        "rubiin/fortune.nvim",
+        version = "*",
+        config = function()
+            require("fortune").setup({
+                max_width = 60,
+                content_type = "tips",
+            })
+        end,
     },
 }

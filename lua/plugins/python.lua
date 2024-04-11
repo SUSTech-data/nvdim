@@ -1,3 +1,6 @@
+if vim.g.vscode then return {} end
+
+
 local file_pattern = { "*.ju.*" }
 local insert_cell = function(above)
     local cells = require("jupynium.cells")
