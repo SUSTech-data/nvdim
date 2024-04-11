@@ -44,6 +44,7 @@ return {
 
         opts = {
             diagnostics = {
+                update_in_insert = true,
                 virtual_text = {
                     severity = {
                         vim.diagnostic.severity.INFO,

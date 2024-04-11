@@ -39,4 +39,21 @@ return {
             },
         },
     },
+    -- {
+    --     "willothy/flatten.nvim",
+    --     config = true,
+    --     lazy = false,
+    --     priority = 1001,
+    --     opts = function()
+    --         return {
+    --             window = {
+    --                 open = "current",
+    --             },
+    --             -- nest_if_no_args = true,
+    --             -- one_per = {
+    --             --     kitty = false,
+    --             -- },
+    --         }
+    --     end,
+    -- },
 }

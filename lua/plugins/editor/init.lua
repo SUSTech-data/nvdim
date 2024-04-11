@@ -70,7 +70,7 @@ local editor = {
     {
         "stevearc/aerial.nvim",
         keys = {
-            { "go", "<cmd>AerialToggle<cr>", desc = "Aerial (Symbols)" },
+            -- { "go", "<cmd>AerialToggle<cr>", desc = "Aerial (Symbols)" },
             { "<Tab>", "<cmd>AerialNext<CR>" },
             { "<S-Tab>", "<cmd>AerialPrev<CR>" },
         },

@@ -101,10 +101,10 @@ return {
             mode = "n",
             body = "<C-w>",
             heads = {
-                { "h", require("smart-splits").move_cursor_left },
-                { "j", require("smart-splits").move_cursor_down },
-                { "k", require("smart-splits").move_cursor_up },
-                { "l", require("smart-splits").move_cursor_left },
+                { "h", function() require("smart-splits").move_cursor_left() end },
+                { "j", function() require("smart-splits").move_cursor_down() end },
+                { "k", function() require("smart-splits").move_cursor_up() end },
+                { "l", function() require("smart-splits").move_cursor_left() end },
 
                 { "H", "<Cmd>WinShift left<CR>" },
                 { "J", "<Cmd>WinShift down<CR>" },

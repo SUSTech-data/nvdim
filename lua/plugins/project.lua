@@ -1,36 +1,63 @@
 return {
     {
         "coffebar/project.nvim",
-        event = { "CursorHold", "CursorHoldI" },
         config = function()
             require("project_nvim").setup({
                 ignore_lsp = { "copilot" },
                 silent_chdir = true,
-                scope_chdir = "win",
+                scope_chdir = "global",
+                patterns = {
+                    "!>home",
+                    "!=tmp",
+                    ".lazy.lua",
+                    ".justfile",
+                    ".git",
+                    ".idea",
+                    ".svn",
+                    "PKGBUILD",
+                    "composer.json",
+                    "package.json",
+                    "Makefile",
+                    "README.md",
+                    "Cargo.toml",
+                },
             })
         end,
+        lazy = false,
+    },
+    {
+        "coffebar/neovim-project",
+        enabled = false,
+        opts = {
+            projects = { -- define project roots
+                "~/codes/*",
+                "~/.config/*",
+                "~/Nutstore Files/codes/*",
+                "~/Nutstore Files/codes/nvim-plugins/*",
+            },
+        },
+        init = function()
+            -- enable saving the state of plugins in the session
+            vim.opt.sessionoptions:append("globals") -- save global variables that start with an uppercase letter and contain at least one lowercase letter.
+        end,
+        dependencies = {
+            { "nvim-lua/plenary.nvim" },
+            { "nvim-telescope/telescope.nvim" },
+            { "Shatur/neovim-session-manager" },
+        },
+        lazy = false,
+        priority = 100,
     },
     {
         "Shatur/neovim-session-manager",
         enabled = false,
         event = "VeryLazy",
-        config = function()
-            local Autoload = require("session_manager.config").AutoloadMode
-            local mode = Autoload.LastSession
-            local project_root, _ = require("project_nvim.project").get_project_root()
-            if project_root ~= nil then mode = Autoload.CurrentDir end
-            require("session_manager").setup({
-                autoload_mode = mode,
-                autosave_last_session = true,
-                autosave_ignore_not_normal = false,
-                autosave_ignore_filetypes = {
-                    "ccc-ui",
-                    "gitcommit",
-                    "qf",
-                },
-                autosave_only_in_session = true,
-            })
-        end,
+        opts = {
+            autosave_ignore_filetypes = { -- All buffers of these file types will be closed before the session is saved.
+                "gitcommit",
+                "gitrebase",
+            },
+        },
         keys = {
             {
                 "<leader>qs",

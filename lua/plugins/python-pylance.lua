@@ -20,7 +20,8 @@ return {
                 default_config = {
                     filetypes = { "python" },
                     root_dir = util.root_pattern(unpack({
-                        ".gitignore",
+                        ".venv",
+                        ".git",
                         "pyproject.toml",
                         "setup.py",
                         "setup.cfg",
@@ -76,7 +77,7 @@ return {
         event = { "LspAttach", "BufReadPost" },
         cond = function()
             local clients = vim.lsp.get_clients({ bufnr = vim.api.nvim_get_current_buf() })
-            print(vim.inspect(clients))
+            -- print(vim.inspect(clients))
             return not vim.tbl_contains(clients, "pylance")
         end,
     },

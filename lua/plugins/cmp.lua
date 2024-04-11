@@ -94,7 +94,7 @@ return {
                         spell = "[SPELL]",
                         jupynium = "[JUP]",
                         codeium = "[CDM]",
-                        neopyter = "[JUP]",
+                        -- neopyter = "[JUP]",
                     }, {
                         __index = function()
                             return "[BTN]" -- builtin/unknown source names
@@ -126,7 +126,7 @@ return {
                 -- { name = "copilot" },
                 { name = "nvim_lsp" },
                 { name = "cmp_zotcite" },
-                -- { name = "jupynium" },
+                { name = "jupynium" },
                 { name = "neopyter" },
                 { name = "codeium" },
                 { name = "nvim_lua" },

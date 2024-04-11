@@ -45,7 +45,17 @@ return {
     -- { "kwkarlwang/bufresize.nvim", opts = {}, event = "WinEnter" }, -- on terminal resize
     {
         "mrjones2014/smart-splits.nvim",
-        keys = function() return {} end,
+        keys = {
+            { "<A-h>", function() require("smart-splits").move_cursor_left() end },
+            { "<A-j>", function() require("smart-splits").move_cursor_down() end },
+            { "<A-k>", function() require("smart-splits").move_cursor_up() end },
+            { "<A-l>", function() require("smart-splits").move_cursor_right() end },
+            { "<M-Left>", "<CMD>SmartResizeLeft<CR>" },
+            { "<M-Down>", "<CMD>SmartResizeDown<CR>" },
+            { "<M-Up>", "<CMD>SmartResizeUp<CR>" },
+            { "<M-Right>", "<CMD>SmartResizeRight<CR>" },
+        },
+        build = "./kitty/install-kittens.bash",
         opts = {
             resize_mode = { hooks = { on_leave = function() require("bufresize").register() end } },
         },

@@ -9,11 +9,11 @@ return {
             --     "<cmd>HopAnywhereCurrentLine<CR>",
             --     mode = { "n", "x", "o" },
             -- },
-            {
-                "F",
-                "<cmd>HopWordMW<CR>",
-                mode = { "n", "x", "o" },
-            },
+            -- {
+            --     "F",
+            --     "<cmd>HopWordMW<CR>",
+            --     mode = { "n", "x", "o" },
+            -- },
             {
                 "<leader>l",
                 "<cmd>HopLineMW<CR>",
@@ -26,7 +26,7 @@ return {
         opts = {
             labels = "fjdklsa'oqcvnbgherioptyu",
             modes = {
-                char = { enabled = false },
+                char = { enabled = true },
             },
             jump = { autojump = true, nohlsearch = false },
         },
@@ -39,7 +39,7 @@ return {
                 --     desc = "Treesitter Search",
                 -- },
                 {
-                    "f",
+                    "S",
                     mode = { "n", "x", "o" },
                     function() require("flash").jump() end,
                     desc = "Flash",

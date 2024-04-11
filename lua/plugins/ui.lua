@@ -40,11 +40,10 @@ return {
         },
     },
     {
-        -- "catppuccin/nvim",
-        "fecet/catppuccin",
-        dev = true,
+        "catppuccin/nvim",
         name = "catppuccin",
-        config = function(_, opts) require("catppuccin").setup(opts) end,
+        -- config = function(_, opts) require("catppuccin").setup(opts) end,
+        priority = 1000,
         opts = {
             background = { light = "latte", dark = "mocha" },
             flavour = "macchiato",

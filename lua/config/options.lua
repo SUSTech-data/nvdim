@@ -16,7 +16,7 @@ o.linebreak = true -- Wrap long lines at 'breakat' (if 'wrap' is set)
 o.wrap = true
 
 o.formatoptions = "jcqlnt" -- tcqj
-o.whichwrap = "h,l,<,>,[,],~"
+-- o.whichwrap = "h,l,<,>,[,],~"
 o.numberwidth = 3
 o.cursorline = true
 o.updatetime = 500
