@@ -69,7 +69,7 @@ return {
             format_notify = true,
             servers = {
                 pylance = require("plugins.lsp.servers.pylance"),
-                ruff_lsp = require("plugins.lsp.servers.ruff"),
+                ruff = require("plugins.lsp.servers.ruff"),
             },
         },
     },
