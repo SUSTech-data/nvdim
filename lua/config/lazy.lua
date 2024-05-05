@@ -5,6 +5,12 @@ if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazypath })
 end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
+vim.keymap.set(
+    { "n", "v", "o" },
+    "K",
+    "<C-u>",
+    { desc = "Join line with smart whitespace removal" }
+)
 
 require("lazy").setup({
     pin = true,
