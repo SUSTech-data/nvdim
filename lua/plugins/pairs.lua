@@ -14,7 +14,7 @@ local pairs_spec = {
     },
     {
         "kylechui/nvim-surround",
-        event = "VeryLazy",
+        event = "User IceLoad",
         opts = {
             keymaps = {
                 insert = "<C-g>s",

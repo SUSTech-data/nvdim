@@ -1,6 +1,6 @@
 return {
     "numToStr/Comment.nvim",
-    event = { "CursorHold", "CursorHoldI" },
+    -- event = { "CursorHold", "CursorHoldI" },
     opts = {
         -- ignore = function()
         --     -- Only ignore empty lines for lua files

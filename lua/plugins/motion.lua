@@ -1,7 +1,7 @@
 return {
     {
         "smoka7/hop.nvim",
-        event = { "CursorHold", "CursorHoldI" },
+        -- event = function() return "User IceLoad" end,
         opts = { keys = "etovxqpdygfblzhckisuran" },
         keys = {
             -- {
@@ -23,6 +23,7 @@ return {
     },
     {
         "folke/flash.nvim",
+        event = function() return "User IceLoad" end,
         opts = {
             labels = "fjdklsa'oqcvnbgherioptyu",
             modes = {

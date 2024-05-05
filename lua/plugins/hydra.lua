@@ -1,7 +1,7 @@
 return {
     "nvimtools/hydra.nvim",
-    -- event = "VeryLazy",
-    init = function()
+    event = "User IceLoad",
+    config = function()
         local Hydra = require("hydra")
         -- local splits = require("smart-splits")
         --

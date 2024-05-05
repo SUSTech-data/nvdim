@@ -2,7 +2,7 @@ return {
     {
         "akinsho/bufferline.nvim",
         -- enabled = false,
-        event = { "UIEnter" },
+        event = function() return "User IceLoad" end,
         opts = function(_, opts)
             opts.options = {
                 -- mode = "tabs",
@@ -10,6 +10,10 @@ return {
             }
             return opts
         end,
+        keys = {
+            { "<S-h>", false },
+            { "<S-l>", false },
+        },
     },
     {
         "nanozuki/tabby.nvim",

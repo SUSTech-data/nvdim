@@ -26,7 +26,8 @@ end
 return {
     {
         "nvim-lualine/lualine.nvim",
-        event = { "BufReadPost", "BufAdd", "BufNewFile" },
+        -- enabled = false,
+        event = function(event) return "User IceLoad" end,
         dependencies = { "meuter/lualine-so-fancy.nvim" },
         opts = {
             options = {

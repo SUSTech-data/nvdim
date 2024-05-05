@@ -1,6 +1,7 @@
 return {
     {
         "nvim-treesitter/nvim-treesitter",
+        event = function(event) return "User IceLoad" end,
         keys = {
             { "<leader>sw", ":ISwapNodeWith<CR>", desc = "swap node" },
         },
@@ -34,12 +35,12 @@ return {
                 "sustech-data/wildfire.nvim",
                 config = function(_, opts)
                     require("wildfire").setup(opts)
-                    vim.api.nvim_set_keymap(
-                        "n",
-                        "<leader>a",
-                        ":lua require'wildfire'.init_selection()<CR>:lua require('tsht').nodes()<CR>",
-                        { noremap = true, silent = true }
-                    )
+                    -- vim.api.nvim_set_keymap(
+                    --     "n",
+                    --     "<leader>a",
+                    --     ":lua require'wildfire'.init_selection()<CR>:lua require('tsht').nodes()<CR>",
+                    --     { noremap = true, silent = true }
+                    -- )
                 end,
             },
             {

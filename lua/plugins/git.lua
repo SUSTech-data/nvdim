@@ -3,7 +3,6 @@ return {
     -- 'tpope/vim-rhubarb' -- Fugitive-companion to interact with github
     {
         "sindrets/diffview.nvim",
-        event = "BufEnter",
         keys = {
             { "<leader>gh", "<Cmd>DiffviewFileHistory %<CR>", desc = "file history" },
             { "<leader>gH", "<Cmd>DiffviewFileHistory <CR>", desc = "Commit history" },
