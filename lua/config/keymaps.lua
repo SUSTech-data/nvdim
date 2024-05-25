@@ -9,7 +9,7 @@ map({ "n", "v", "o" }, "H", "^", { desc = "First character of line" })
 map({ "n", "v", "o" }, "L", "$", { desc = "Last character of line" })
 map({ "n", "v", "o" }, "J", "<C-d>", { desc = "Join line with smart whitespace removal" })
 map({ "n", "v", "o" }, "K", "<C-u>", { desc = "Join line with smart whitespace removal" })
-map("n", "Q", ":q<cr>", { desc = "quit" })
+map("n", "Q", "<cmd>q<cr>", { desc = "quit" })
 map({ "v" }, "C", "J", { desc = "Join line with smart whitespace removal" })
 
 -- Don't yank empty line to clipboard
