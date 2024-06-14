@@ -64,8 +64,9 @@ local editor = {
     },
     {
         "wsdjeg/vim-fetch",
-        event = "VeryLazy",
-        -- config = true,
+        enabled = false,
+        -- event = "VeryLazy",
+        config = true,
     },
     {
         "stevearc/aerial.nvim",

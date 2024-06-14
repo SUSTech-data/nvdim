@@ -1,6 +1,7 @@
 return {
     {
         "folke/noice.nvim",
+        event = function(event) return "User IceLoad" end,
         opts = {
             cmdline = { view = "cmdline" },
             notify = { enabled = true },

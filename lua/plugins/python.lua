@@ -1,6 +1,5 @@
 if vim.g.vscode then return {} end
 
-
 local file_pattern = { "*.ju.*" }
 local insert_cell = function(above)
     local cells = require("jupynium.cells")
@@ -246,6 +245,20 @@ return {
                 pattern = "*.ju.*",
                 callback = jupyter_callback,
             })
+        end,
+    },
+    {
+        "benlubas/molten-nvim",
+        -- version = "^1.0.0", -- use version <2.0.0 to avoid breaking changes
+        enabled = false,
+
+        dependencies = { "3rd/image.nvim" },
+        event = { "BufRead *.ju.*" },
+        build = ":UpdateRemotePlugins",
+        init = function()
+            -- these are examples, not defaults. Please see the readme
+            vim.g.molten_image_provider = "image.nvim"
+            vim.g.molten_output_win_max_height = 20
         end,
     },
 }

@@ -45,7 +45,7 @@ require("lazy").setup({
         version = false, -- always use the latest git commit
         -- version = "*", -- try installing the latest stable version for plugins that support semver
     },
-    checker = { enabled = true, frequency = 3600 * 6 }, -- automatically check for plugin updates
+    checker = { enabled = false, frequency = 3600 * 6 }, -- automatically check for plugin updates
     change_detection = { enabled = true, notify = false },
     performance = {
         rtp = {

@@ -6,7 +6,7 @@ return {
         --     -- Only ignore empty lines for lua files
         --     if vim.bo.filetype == "python" then return "^(%s*)# %%" end
         -- end,
-        pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+        -- pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
     },
     config = function(_, opts)
         require("Comment").setup(opts)

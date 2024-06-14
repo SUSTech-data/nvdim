@@ -7,6 +7,7 @@ return {
             "hrsh7th/cmp-cmdline",
             "dmitmel/cmp-cmdline-history",
             "jalvesaq/cmp-zotcite",
+            "saadparwaiz1/cmp_luasnip",
         },
         opts = function(_, opts)
             local cmp = require("cmp")

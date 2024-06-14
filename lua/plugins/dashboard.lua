@@ -55,6 +55,7 @@ return {
                     local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
                     local str = "   " .. stats.count .. " plugins in " .. ms .. "ms"
                     return vim.list_extend({ "", str, "" }, require("fortune").get_fortune())
+                    -- return { "", str, "" }
                 end, -- footer,
             },
             hide = {

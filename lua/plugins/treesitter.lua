@@ -6,6 +6,7 @@ return {
             { "<leader>sw", ":ISwapNodeWith<CR>", desc = "swap node" },
         },
         dependencies = {
+            { "nvim-treesitter-textobjects", event = function(event) return "User IceLoad" end },
             { "mfussenegger/nvim-treehopper" },
             { "mizlan/iswap.nvim" },
             { "NvChad/nvim-colorizer.lua" },

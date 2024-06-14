@@ -3,8 +3,8 @@ return {
     {
         "nvim-telescope/telescope.nvim",
         keys = {
-            { "<leader>fw", Util.telescope("live_grep"), desc = "Grep (root dir)" },
-            { "<leader>fs", Util.telescope("grep_string"), desc = "Grep (root dir)" },
+            { "<leader>fw", Util.pick("live_grep"), desc = "Grep (root dir)" },
+            { "<leader>fs", Util.pick("grep_string"), desc = "Grep (root dir)" },
             { "<leader>/", false },
             { "<leader>sw", false },
         },
