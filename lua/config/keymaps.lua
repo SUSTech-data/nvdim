@@ -151,6 +151,7 @@ map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 -- )
 
 -- Copy/paste with system clipboard
+map({ "x" }, "y", 'mmy`m', { desc = "no move yank" })
 map({ "n", "x" }, "gy", '"+y', { desc = "Copy to system clipboard" })
 map("n", "gY", '"+y$', { desc = "Copy to system clipboard" })
 map("n", "gp", '"+p', { desc = "Paste from system clipboard" })

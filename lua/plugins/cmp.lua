@@ -9,6 +9,9 @@ return {
             "jalvesaq/cmp-zotcite",
             "saadparwaiz1/cmp_luasnip",
         },
+        keys = {
+            { "<Tab>", false, mode = { "i", "s" } },
+        },
         opts = function(_, opts)
             local cmp = require("cmp")
             local t = function(str) return vim.api.nvim_replace_termcodes(str, true, true, true) end
@@ -35,6 +38,10 @@ return {
                         luasnip.expand_or_jump()
                     elseif require("copilot.suggestion").is_visible() then
                         require("copilot.suggestion").accept()
+                    elseif vim.snippet.active() then
+                        -- FIXME: bump to build in snippet
+                        vim.snippet.stop()
+                        fallback()
                     else
                         fallback()
                     end
