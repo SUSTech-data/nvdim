@@ -29,6 +29,18 @@ local pairs_spec = {
                 change = "sc",
                 change_line = "cS",
             },
+            surrounds = {
+                ["s"] = {
+                    add = function()
+                        M = require("nvim-surround.config")
+                        local left_delimiter = M.get_input("Enter the delimiter: ")
+                        local right_delimiter = left_delimiter
+                        return { { left_delimiter }, { right_delimiter } }
+                    end,
+                    find = function() end,
+                    delete = function() end,
+                },
+            },
         },
     },
 }

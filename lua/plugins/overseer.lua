@@ -12,8 +12,8 @@ return {
         "folke/which-key.nvim",
         event = function(event) return "User IceLoad" end,
         opts = {
-            defaults = {
-                ["<leader>o"] = { name = "+overseer" },
+            spec = {
+                ["<leader>o"] = { group = "overseer" },
             },
         },
     },

@@ -39,7 +39,7 @@ return {
                     elseif require("copilot.suggestion").is_visible() then
                         require("copilot.suggestion").accept()
                     elseif vim.snippet.active() then
-                        -- FIXME: bump to build in snippet
+                        -- FIXME: bump to build-in snippet
                         vim.snippet.stop()
                         fallback()
                     else
