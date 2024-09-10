@@ -14,7 +14,7 @@ return {
                 },
                 shortcut = {
                     {
-                        desc = " New files",
+                        desc = " New files",
                         -- group = "@property",
                         action = "enew",
                         key = "n",
@@ -53,7 +53,7 @@ return {
                 footer = function()
                     local stats = require("lazy").stats()
                     local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-                    local str = "   " .. stats.count .. " plugins in " .. ms .. "ms"
+                    local str = " 󱫤 " .. stats.count .. " plugins in " .. ms .. "ms"
                     return vim.list_extend({ "", str, "" }, require("fortune").get_fortune())
                     -- return { "", str, "" }
                 end, -- footer,
