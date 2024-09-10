@@ -26,7 +26,7 @@ o.infercase = true -- Infer letter cases for a richer built-in keyword completio
 
 o.virtualedit = "block,onemore" -- Allow going past the end of line in visual block mode
 
--- opt.sessionoptions = { "buffers", "curdir", "folds", "winsize" }
+opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
 g.python3_host_prog = "python3"
 g.python_host_prog = "python"
 -- g.lazyvim_python_lsp = "basedpyright"

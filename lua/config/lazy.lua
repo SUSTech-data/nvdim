@@ -26,6 +26,18 @@ vim.api.nvim_create_autocmd("User", {
         end
     end,
 })
+
+-- vim.api.nvim_create_autocmd({ "UIEnter", "ColorScheme" }, {
+--     callback = function()
+--         local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
+--         if not normal.bg then return end
+--         io.write(string.format("\027]11;#%06x\027\\", normal.bg))
+--     end,
+-- })
+--
+-- vim.api.nvim_create_autocmd("UILeave", {
+--     callback = function() io.write("\027]111\027\\") end,
+-- })
 require("lazy").setup({
     pin = true,
     spec = {
@@ -33,9 +45,9 @@ require("lazy").setup({
             "LazyVim/LazyVim",
             import = "lazyvim.plugins",
             opts = {
-                defaults = {
-                    keymaps = false,
-                },
+                -- defaults = {
+                --     keymaps = false,
+                -- },
             },
         },
         { import = "plugins" },
@@ -64,8 +76,15 @@ require("lazy").setup({
     dev = {
         path = "~/codes/nvim-plugins",
         fallback = true,
-        patterns = jit.os:find("Windows") and {}
-            or { "sustech-data", "fecet", "jupynium", "lualine-so-fancy", "zotcite", "catppuccin" },
+        patterns = jit.os:find("Windows") and {} or {
+            "sustech-data",
+            "fecet",
+            "jupynium",
+            "lualine-so-fancy",
+            "zotcite",
+            "catppuccin",
+            "neopyter",
+        },
     },
 })
 
