@@ -110,17 +110,17 @@ return {
                             return colors[status.status] or colors[""]
                         end,
                     },
-                    {
-                        function()
-                            local icon = "󰙯 "
-                            return icon
-                        end,
-                        color = fg("Special"),
-                        cond = function()
-                            local ok, presence = pcall(require, "presence")
-                            return ok and presence.is_connected
-                        end,
-                    },
+                    -- {
+                    --     function()
+                    --         local icon = "󰙯 "
+                    --         return icon
+                    --     end,
+                    --     color = fg("Special"),
+                    --     cond = function()
+                    --         local ok, presence = pcall(require, "cord")
+                    --         return ok and presence.is_connected()
+                    --     end,
+                    -- },
                     -- {
                     --     function()
                     --         local icon = require("lazyvim.config").icons.kinds.Copilot

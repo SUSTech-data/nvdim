@@ -56,20 +56,20 @@ vim.api.nvim_create_autocmd("User", {
 })
 
 return {
-    {
-        "andweeb/presence.nvim",
-        config = true,
-        event = "VeryLazy",
-        opts = {
-            blacklist = { "*.txt", ".txt" },
-            enable_line_number = true,
-        },
-        -- keys = {
-        --     {
-        --         "<leader>uD",
-        --         function() require("presence"):update() end,
-        --         desc = "Update presence",
-        --     },
-        -- },
-    },
+    -- {
+    --     "andweeb/presence.nvim",
+    --     config = true,
+    --     event = "VeryLazy",
+    --     opts = {
+    --         blacklist = { "*.txt", ".txt" },
+    --         enable_line_number = true,
+    --     },
+    --     -- keys = {
+    --     --     {
+    --     --         "<leader>uD",
+    --     --         function() require("presence"):update() end,
+    --     --         desc = "Update presence",
+    --     --     },
+    --     -- },
+    -- },
 }
