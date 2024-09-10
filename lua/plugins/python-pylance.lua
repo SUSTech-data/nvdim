@@ -2,10 +2,11 @@ return {
 
     {
         "williamboman/mason.nvim",
-        opts = function(_, opts)
-            vim.list_extend(opts.ensure_installed, { "pylance" })
-            opts.registries = { "github:fecet/mason-registry" }
-        end,
+        -- opts = function(_, opts)
+        --     vim.list_extend(opts.ensure_installed, { "pylance" })
+        --     opts.registries = { "github:fecet/mason-registry" }
+        -- end,
+        opts = { ensure_installed = { "pylance" }, registries = { "github:fecet/mason-registry" } },
     },
     {
         "neovim/nvim-lspconfig",

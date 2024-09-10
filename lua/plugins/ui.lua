@@ -18,10 +18,20 @@ return {
                 },
                 {
                     filter = {
+                        find = "kernelComplete",
+                    },
+                    opts = { skip = true },
+                },
+                {
+                    filter = {
                         event = "notify",
                         any = { { find = "# Plugin Updates" } },
                     },
                     view = "notify_send",
+                },
+                {
+                    view = "split",
+                    filter = { event = "msg_show", min_height = 20 },
                 },
             },
             popupmenu = {
@@ -151,8 +161,13 @@ return {
     },
     { "srcery-colors/srcery-vim", name = "srcery" },
     {
+        "0xstepit/flow.nvim",
+        opts = {},
+    },
+    {
         "LazyVim/LazyVim",
         opts = {
+            -- colorscheme = "flow",
             colorscheme = "catppuccin",
             -- colorscheme = "srcery",
         },

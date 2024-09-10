@@ -102,7 +102,7 @@ return {
                         spell = "[SPELL]",
                         jupynium = "[JUP]",
                         codeium = "[CDM]",
-                        -- neopyter = "[JUP]",
+                        neopyter = "[JUP]",
                     }, {
                         __index = function()
                             return "[BTN]" -- builtin/unknown source names
