@@ -5,7 +5,8 @@ local editor = {
     },
     {
         "Pocco81/auto-save.nvim",
-        event = "BufRead",
+        event = "VeryLazy",
+        cond = vim.env.KITTY_SCROLLBACK_NVIM ~= "true",
         opts = {
             enabled = true,
             execution_message = {
@@ -16,11 +17,18 @@ local editor = {
                 cleaning_interval = 1250,
             },
             trigger_events = { "InsertLeave", "TextChanged" },
-            conditions = {
-                exists = true,
-                filetype_is_not = { "oil" },
-                modifiable = true,
-            },
+            condition = function(buf)
+                local fn = vim.fn
+                local utils = require("auto-save.utils.data")
+
+                if
+                    fn.getbufvar(buf, "&modifiable") == 1
+                    and utils.not_in(fn.getbufvar(buf, "&filetype"), { "oil", "OverseerForm" })
+                then
+                    return true -- met condition(s), can save
+                end
+                return false -- can't save
+            end,
             write_all_buffers = false,
             on_off_commands = true,
             clean_command_line_interval = 0,
@@ -35,6 +43,7 @@ local editor = {
     },
     {
         "kevinhwang91/rnvimr",
+        enabled = false,
         cmd = "RnvimrToggle",
         keys = { { "<leader>ee", ":RnvimrToggle<CR>", desc = "ranger" } },
         config = function()
@@ -55,6 +64,38 @@ local editor = {
                 { maxwidth = 49, ratio = { 1 } },
             }
         end,
+    },
+    {
+        "mikavilpas/yazi.nvim",
+        event = "VeryLazy",
+        keys = {
+            -- 👇 in this section, choose your own keymappings!
+            {
+                "<leader>ef",
+                "<cmd>Yazi<cr>",
+                desc = "Open yazi at the current file",
+            },
+            {
+                -- Open in the current working directory
+                "<leader>ew",
+                "<cmd>Yazi cwd<cr>",
+                desc = "Open the file manager in nvim's working directory",
+            },
+            {
+                -- NOTE: this requires a version of yazi that includes
+                -- https://github.com/sxyazi/yazi/pull/1305 from 2024-07-18
+                "<leader>ee",
+                "<cmd>Yazi toggle<cr>",
+                desc = "Resume the last yazi session",
+            },
+        },
+        opts = {
+            -- if you want to open yazi instead of netrw, see below for more info
+            open_for_directories = true,
+            keymaps = {
+                show_help = "<f1>",
+            },
+        },
     },
     {
         "roobert/hoversplit.nvim",

@@ -23,7 +23,8 @@ vim.api.nvim_create_autocmd("FileType", {
             if vim.g.VirtualEnvironment then
                 require("swenv.api").set_venv(vim.g.VirtualEnvironment)
             else
-                require("swenv.api").auto_venv()
+                require("swenv.api").set_venv("base")
+                -- require("swenv.api").auto_venv()
             end
         end
     end,
@@ -56,7 +57,7 @@ local jupyter_callback = function()
             },
             {
                 "rk",
-                "<cmd>JupyniumKernelRestart<CR>",
+                "<cmd>JupyniumKernelRestart<CR>" and use_jupynium or "<cmd>Neopyter kernel restart<CR>",
                 { exit = true },
                 desc = "restart",
             },

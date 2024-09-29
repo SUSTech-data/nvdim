@@ -15,12 +15,8 @@ vim.api.nvim_create_autocmd("User", {
     pattern = "VeryLazy",
     callback = function()
         local function _trigger() vim.api.nvim_exec_autocmds("User", { pattern = "IceLoad" }) end
-
         if vim.bo.filetype == "dashboard" then
-            vim.api.nvim_create_autocmd("BufRead", {
-                once = true,
-                callback = _trigger,
-            })
+            vim.api.nvim_create_autocmd("BufRead", { once = true, callback = _trigger })
         else
             _trigger()
         end
@@ -39,7 +35,8 @@ vim.api.nvim_create_autocmd("User", {
 --     callback = function() io.write("\027]111\027\\") end,
 -- })
 require("lazy").setup({
-    pin = true,
+    -- pin = true,
+    local_spec = true,
     spec = {
         {
             "LazyVim/LazyVim",

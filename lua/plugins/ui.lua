@@ -18,6 +18,7 @@ return {
                 },
                 {
                     filter = {
+                        -- any = { { find = "kernelComplete" }, { find = "[cord.nvim]" } },
                         find = "kernelComplete",
                     },
                     opts = { skip = true },
@@ -28,6 +29,13 @@ return {
                         any = { { find = "# Plugin Updates" } },
                     },
                     view = "notify_send",
+                },
+                {
+                    filter = {
+                        -- any = { { find = "kernelComplete" }, { find = "[cord.nvim]" } },
+                        find = "SUCCESS",
+                    },
+                    view = "mini",
                 },
                 {
                     view = "split",

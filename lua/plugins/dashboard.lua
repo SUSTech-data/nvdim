@@ -49,7 +49,11 @@ return {
                         return require("persisted").load()
                     end,
                 },
-                mru = { limit = 8, label = "Most Recent Files", cwd_only = true },
+                mru = {
+                    limit = 8,
+                    label = "Most Recent Files",
+                    -- cwd_only = true,
+                },
                 footer = function()
                     local stats = require("lazy").stats()
                     local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)

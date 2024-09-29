@@ -39,6 +39,10 @@ return {
             },
         },
     },
+    {
+        "fladson/vim-kitty",
+        ft = "kitty",
+    },
     -- {
     --     "willothy/flatten.nvim",
     --     config = true,

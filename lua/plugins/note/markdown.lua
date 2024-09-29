@@ -41,24 +41,6 @@ return {
             vim.g.mkdp_combine_preview = 1
         end,
     },
-    {
-        "lukas-reineke/headlines.nvim",
-        opts = function()
-            local opts = {}
-            for _, ft in ipairs({ "markdown", "norg", "rmd", "org", "quarto" }) do
-                opts[ft] = {
-                    headline_highlights = {},
-                }
-                for i = 1, 6 do
-                    local hl = "Headline" .. i
-                    vim.api.nvim_set_hl(0, hl, { link = "Headline", default = true })
-                    table.insert(opts[ft].headline_highlights, hl)
-                end
-            end
-            return opts
-        end,
-        ft = { "markdown", "norg", "rmd", "org", "quarto" },
-    },
 
     {
         "vhyrro/luarocks.nvim",

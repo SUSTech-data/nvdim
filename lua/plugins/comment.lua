@@ -28,6 +28,7 @@ return {
             ft({ "go", "rust", "proto" }, ft.get("c"))
             ft({ "toml", "graphql" }, "#%s")
             ft({ "rmd", "lean3", "quarto", "qmd" }, "-- %s")
+            ft({ "just" }, ft.get("sh"))
         end,
     },
     {

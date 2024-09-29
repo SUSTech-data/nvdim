@@ -41,5 +41,5 @@ return {
             },
         },
     },
-    { "echasnovski/mini.bufremove", version = false },
+    { "ojroques/nvim-bufdel", cmd = { "BufDel", "BufDelAll", "BufDelOthers" } },
 }

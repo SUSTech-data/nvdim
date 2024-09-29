@@ -2,13 +2,26 @@ return {
     {
         "nvim-treesitter/nvim-treesitter",
         event = function(event) return "User IceLoad" end,
-        keys = {
-            { "<leader>sw", ":ISwapNodeWith<CR>", desc = "swap node" },
+        -- opts = function(_, opts)
+        --     if type(opts.ensure_installed) == "table" then
+        --         vim.list_extend(opts.ensure_installed, { "proto", "latex", "just" })
+        --     end
+        -- end,
+        opts = {
+            ensure_installed = { "proto", "latex", "just" },
+            indent = {
+                disable = { "yaml" },
+            },
         },
         dependencies = {
             { "nvim-treesitter-textobjects", event = function(event) return "User IceLoad" end },
-            { "mfussenegger/nvim-treehopper" },
-            { "mizlan/iswap.nvim" },
+            -- { "mfussenegger/nvim-treehopper" },
+            {
+                "mizlan/iswap.nvim",
+                keys = {
+                    { "<leader>sw", ":ISwapNodeWith<CR>", desc = "swap node" },
+                },
+            },
             { "NvChad/nvim-colorizer.lua" },
             { "JoosepAlviste/nvim-ts-context-commentstring" },
             {

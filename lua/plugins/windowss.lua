@@ -50,10 +50,26 @@ return {
     {
         "mrjones2014/smart-splits.nvim",
         keys = {
-            { "<A-h>", function() require("smart-splits").move_cursor_left() end },
-            { "<A-j>", function() require("smart-splits").move_cursor_down() end },
-            { "<A-k>", function() require("smart-splits").move_cursor_up() end },
-            { "<A-l>", function() require("smart-splits").move_cursor_right() end },
+            {
+                "<A-h>",
+                function() require("smart-splits").move_cursor_left() end,
+                mode = { "n", "x", "o", "i" },
+            },
+            {
+                "<A-j>",
+                function() require("smart-splits").move_cursor_down() end,
+                mode = { "n", "x", "o", "i" },
+            },
+            {
+                "<A-k>",
+                function() require("smart-splits").move_cursor_up() end,
+                mode = { "n", "x", "o", "i" },
+            },
+            {
+                "<A-l>",
+                function() require("smart-splits").move_cursor_right() end,
+                mode = { "n", "x", "o", "i" },
+            },
             { "<M-Left>", "<CMD>SmartResizeLeft<CR>" },
             { "<M-Down>", "<CMD>SmartResizeDown<CR>" },
             { "<M-Up>", "<CMD>SmartResizeUp<CR>" },
@@ -63,5 +79,48 @@ return {
         opts = {
             resize_mode = { hooks = { on_leave = function() require("bufresize").register() end } },
         },
+    },
+    {
+        "s1n7ax/nvim-window-picker",
+        keys = {
+            {
+                "<A-a>",
+                function()
+                    local pick_id = require("window-picker").pick_window()
+                        or vim.api.nvim_get_current_win()
+                    vim.api.nvim_set_current_win(pick_id)
+                end,
+            },
+        },
+        name = "window-picker",
+        -- version = "2.*",
+        opts = {
+            hint = "floating-big-letter",
+            selection_chars = "FJDKSLA;CMRUEIWOQP",
+            filter_rules = {
+                include_current_win = false,
+                autoselect_one = true,
+                -- filter using buffer options
+                bo = {
+                    -- if the file type is one of following, the window will be ignored
+                    filetype = {
+                        "neo-tree",
+                        "neo-tree-popup",
+                        "notify",
+                        "noice",
+                        "lualine",
+                        "incline",
+                    },
+                    -- if the buffer type is one of following, the window will be ignored
+                    buftype = { "terminal", "quickfix" },
+                },
+            },
+        },
+        config = true,
+        -- config = function()
+        --     require("window-picker").setup({
+        --         hint = "floating-big-letter",
+        --     })
+        -- end,
     },
 }

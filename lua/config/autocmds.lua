@@ -41,3 +41,7 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
     pattern = ".rsync_exclude",
     command = "setf gitignore", -- or whatever ':set filetype' evaluates to in a .ini file
 })
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+    pattern = "JUSTFILE",
+    command = "setf just", -- or whatever ':set filetype' evaluates to in a .ini file
+})

@@ -31,7 +31,7 @@ map("n", "<C-left>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
 map("n", "<C-right>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
 map("n", "<S-left>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
 map("n", "<S-right>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
-map("n", "<A-q>", LazyVim.ui.bufremove, { desc = "Delete Buffer" })
+map("n", "<A-q>", "<cmd>BufDel<cr>", { desc = "Delete Buffer" })
 
 vim.keymap.del("n", "gco")
 vim.keymap.del("n", "gcO")
@@ -92,3 +92,5 @@ vim.api.nvim_set_keymap("", "<C-S-v>", "+p<CR>", { noremap = true, silent = true
 vim.api.nvim_set_keymap("!", "<C-S-v>", "<C-R>+", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("t", "<C-S-v>", "<C-R>+", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("v", "<C-S-v>", "<C-R>+", { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap("x", "/", "<Esc>/\\%V", { noremap = true, silent = true })
