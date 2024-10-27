@@ -38,6 +38,13 @@ return {
                     view = "mini",
                 },
                 {
+                    filter = {
+                        -- any = { { find = "kernelComplete" }, { find = "[cord.nvim]" } },
+                        find = "cord.nvim",
+                    },
+                    view = "mini",
+                },
+                {
                     view = "split",
                     filter = { event = "msg_show", min_height = 20 },
                 },
