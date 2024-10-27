@@ -78,8 +78,8 @@ return {
                     },
                     { function() return "%=" end, separator = "" },
                     {
-                        require("noice").api.status.message.get_hl,
-                        cond = require("noice").api.status.message.has,
+                        function() require("noice").api.status.message.get_hl() end,
+                        cond = function() require("noice").api.status.message.has() end,
                     },
                 },
                 lualine_x = {
