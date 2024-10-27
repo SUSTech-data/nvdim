@@ -5,7 +5,7 @@ local editor = {
     },
     {
         "Pocco81/auto-save.nvim",
-        event = "VeryLazy",
+        event = "User IceLoad",
         cond = vim.env.KITTY_SCROLLBACK_NVIM ~= "true",
         opts = {
             enabled = true,
@@ -67,7 +67,6 @@ local editor = {
     },
     {
         "mikavilpas/yazi.nvim",
-        event = "VeryLazy",
         keys = {
             -- 👇 in this section, choose your own keymappings!
             {
