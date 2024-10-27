@@ -45,3 +45,7 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
     pattern = "JUSTFILE",
     command = "setf just", -- or whatever ':set filetype' evaluates to in a .ini file
 })
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+    pattern = ".condarc",
+    command = "setf yaml", -- or whatever ':set filetype' evaluates to in a .ini file
+})
