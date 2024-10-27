@@ -2,17 +2,13 @@ return {
     {
         "nvim-treesitter/nvim-treesitter",
         event = function(event) return "User IceLoad" end,
-        -- opts = function(_, opts)
-        --     if type(opts.ensure_installed) == "table" then
-        --         vim.list_extend(opts.ensure_installed, { "proto", "latex", "just" })
-        --     end
-        -- end,
-        opts = {
-            ensure_installed = { "proto", "latex", "just" },
-            indent = {
-                disable = { "yaml" },
-            },
-        },
+        opts = function(_, opts)
+            if type(opts.ensure_installed) == "table" then
+                vim.list_extend(opts.ensure_installed, { "proto", "latex", "just" })
+            end
+            opts.indent.disable = { "yaml" }
+            vim.treesitter.language.register("bash", "zsh")
+        end,
         dependencies = {
             { "nvim-treesitter-textobjects", event = function(event) return "User IceLoad" end },
             -- { "mfussenegger/nvim-treehopper" },
