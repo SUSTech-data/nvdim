@@ -3,7 +3,6 @@ return {
     {
         "nvimdev/dashboard-nvim",
         cond = function() return vim.env.KITTY_SCROLLBACK_NVIM == nil and vim.g.vscode == nil end,
-        event = "VimEnter",
         opts = {
             theme = "hyper",
             config = {
@@ -55,11 +54,23 @@ return {
                     -- cwd_only = true,
                 },
                 footer = function()
+                    -- local stats = require("lazy").stats()
+                    -- local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
+                    -- local str = " 󱫤 " .. stats.count .. " plugins in " .. ms .. "ms"
+                    -- return vim.list_extend({ "", str, "" }, require("fortune").get_fortune())
+                    -- return { "", str, "" }
+                    --
                     local stats = require("lazy").stats()
                     local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-                    local str = " 󱫤 " .. stats.count .. " plugins in " .. ms .. "ms"
-                    return vim.list_extend({ "", str, "" }, require("fortune").get_fortune())
-                    -- return { "", str, "" }
+                    return {
+                        "⚡ Neovim loaded "
+                            .. stats.loaded
+                            .. "/"
+                            .. stats.count
+                            .. " plugins in "
+                            .. ms
+                            .. "ms",
+                    }
                 end, -- footer,
             },
             hide = {
