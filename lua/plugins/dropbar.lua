@@ -1,8 +1,8 @@
 -- From MariaSolOs/dotfiles
 
 local function close()
-    local api = require("dropbar.api")
-    local menu = api.get_current_dropbar_menu()
+    local utils = require("dropbar.utils")
+    local menu = utils.menu.get_current()
     while menu and menu.prev_menu do
         menu = menu.prev_menu
     end
@@ -23,7 +23,7 @@ return {
             },
         },
         opts = {
-            general = {
+            bar = {
                 enable = function(bufnr, winnr)
                     -- default enable function
                     return not vim.api.nvim_win_get_config(winnr).zindex
@@ -32,8 +32,6 @@ return {
                         and vim.api.nvim_buf_get_name(bufnr) ~= ""
                         and not vim.wo[winnr].diff
                 end,
-            },
-            bar = {
                 sources = function(buf, _)
                     local sources = require("dropbar.sources")
                     local utils = require("dropbar.utils")
@@ -63,8 +61,8 @@ return {
                     ["h"] = "<C-w>c",
                     -- Expands the entry if possible.
                     ["l"] = function()
-                        local api = require("dropbar.api")
-                        local menu = api.get_current_dropbar_menu()
+                        local utils = require("dropbar.utils")
+                        local menu = utils.menu.get_current()
                         if not menu then return end
                         local cursor = vim.api.nvim_win_get_cursor(menu.win)
                         local component = menu.entries[cursor[1]]:first_clickable(cursor[2])
@@ -72,8 +70,8 @@ return {
                     end,
                     -- "Jump and close".
                     ["<CR>"] = function()
-                        local api = require("dropbar.api")
-                        local menu = api.get_current_dropbar_menu()
+                        local utils = require("dropbar.utils")
+                        local menu = utils.menu.get_current()
                         if not menu then return end
                         local cursor = vim.api.nvim_win_get_cursor(menu.win)
                         local entry = menu.entries[cursor[1]]
