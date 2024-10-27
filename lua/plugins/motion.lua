@@ -9,11 +9,11 @@ return {
             --     "<cmd>HopAnywhereCurrentLine<CR>",
             --     mode = { "n", "x", "o" },
             -- },
-            -- {
-            --     "F",
-            --     "<cmd>HopWordMW<CR>",
-            --     mode = { "n", "x", "o" },
-            -- },
+            {
+                "S",
+                "<cmd>HopWordMW<CR>",
+                mode = { "n", "x", "o" },
+            },
             {
                 "<leader>l",
                 "<cmd>HopLineMW<CR>",
@@ -44,11 +44,10 @@ return {
     },
     {
         "rainzm/flash-zh.nvim",
-        event = "VeryLazy",
         dependencies = "folke/flash.nvim",
         keys = {
             {
-                "S",
+                "F",
                 mode = { "n", "x", "o" },
                 function()
                     require("flash-zh").jump({
