@@ -60,4 +60,16 @@ return {
             },
         },
     },
+    {
+        "MeanderingProgrammer/render-markdown.nvim",
+        ft = { "markdown", "norg", "rmd", "org", "quarto" },
+    },
+    {
+        "Thiago4532/mdmath.nvim",
+        ft = { "markdown", "norg", "rmd", "org", "quarto" },
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+        },
+        opts = { filetypes = { "markdown", "quarto" } },
+    },
 }
