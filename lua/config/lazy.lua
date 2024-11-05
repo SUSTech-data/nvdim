@@ -56,6 +56,9 @@ require("lazy").setup({
     },
     checker = { enabled = false, frequency = 3600 * 6 }, -- automatically check for plugin updates
     change_detection = { enabled = true, notify = false },
+    rocks = {
+        hererocks = true,
+    },
     performance = {
         rtp = {
             disabled_plugins = {
