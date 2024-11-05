@@ -1,32 +1,28 @@
-local ignored_codes = {
-    "E402",
-    "E501",
-    "W291",
-    "PLR0913",
-    "W293",
-    "S101",
-    "RET504",
-    "RET505",
-    "C901",
-    "TRY003",
-    "F401",
-    "E401",
-    "F403",
-    "F405",
-    "F841",
-    "F811",
-    "I001",
-    "E741",
-}
-
 return {
     init_options = {
         settings = {
-            args = {
-                "--extend-select",
-                "I",
-                "--ignore",
-                table.concat(ignored_codes, ","),
+            format = {
+                preview = true,
+            },
+            lint = {
+                select = { "C4", "LOG", "PERF", "PLE" },
+                ignore = {
+                    "C408",
+                    "D102",
+                    "D105",
+                    "D107",
+                    "D203",
+                    "D212",
+                    "D213",
+                    "D401",
+                    "D404",
+                    "D417",
+                    "E501",
+                    "E722",
+                    "E741",
+                    "PERF2",
+                    "PERF4",
+                },
             },
         },
     },
