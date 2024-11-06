@@ -37,15 +37,22 @@ vim.api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
     end,
 })
 
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-    pattern = ".rsync_exclude",
-    command = "setf gitignore", -- or whatever ':set filetype' evaluates to in a .ini file
-})
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-    pattern = "JUSTFILE",
-    command = "setf just", -- or whatever ':set filetype' evaluates to in a .ini file
-})
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-    pattern = ".condarc",
-    command = "setf yaml", -- or whatever ':set filetype' evaluates to in a .ini file
+vim.filetype.add({
+    extension = {
+        conf = "conf",
+        -- env = "dotenv",
+        tiltfile = "tiltfile",
+        Tiltfile = "tiltfile",
+    },
+    filename = {
+        -- [".env"] = "dotenv",
+        ["tsconfig.json"] = "jsonc",
+        [".yamlfmt"] = "yaml",
+        [".rsync_exclude"] = "gitignore",
+        ["JUSTFILE"] = "just",
+        [".condarc"] = "yaml",
+    },
+    -- pattern = {
+    --     ["%.env%.[%w_.-]+"] = "dotenv",
+    -- },
 })
