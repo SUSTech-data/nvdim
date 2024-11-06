@@ -206,12 +206,12 @@ return {
         "nvim-lua/plenary.nvim",
         keys = {
             {
-                "<leader>hpb",
+                "<leader>pb",
                 function() require("plenary.profile").start("profile.log", { flame = true }) end,
                 desc = "Begin profiling",
             },
             {
-                "<leader>hpe",
+                "<leader>pe",
                 function() require("plenary.profile").stop() end,
                 desc = "End profiling",
             },
