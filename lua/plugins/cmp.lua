@@ -16,6 +16,10 @@ return {
             local cmp = require("cmp")
             local t = function(str) return vim.api.nvim_replace_termcodes(str, true, true, true) end
 
+            opts.snippet = {
+                expand = function(args) require("luasnip").lsp_expand(args.body) end,
+            }
+
             opts.mapping = vim.tbl_extend("force", opts.mapping, {
                 ["<C-e>"] = cmp.mapping(function(fallback)
                     if cmp.visible() then
@@ -26,22 +30,21 @@ return {
                 end),
                 ["<C-k>"] = cmp.mapping.select_prev_item(),
                 ["<C-j>"] = cmp.mapping.select_next_item(),
-                ["<CR>"] = function(fallback)
-                    if cmp.visible() then vim.api.nvim_feedkeys(t("<C-g>u"), "n", true) end
-                    local confirm_opts = { select = true }
-                    -- local confirm_opts = { select = true, behavior = cmp.ConfirmBehavior.Replace }
-                    if not cmp.confirm(confirm_opts) then fallback() end
-                end,
+                ["<CR>"] = cmp.mapping(function(fallback)
+                    if cmp.visible() then
+                        vim.api.nvim_feedkeys(t("<C-g>u"), "n", true)
+                        cmp.confirm({ select = true })
+                    else
+                        fallback()
+                    end
+                end),
+
                 ["<Tab>"] = cmp.mapping(function(fallback)
                     local luasnip = require("luasnip")
                     if require("luasnip").expand_or_jumpable() then
                         luasnip.expand_or_jump()
                     elseif require("copilot.suggestion").is_visible() then
                         require("copilot.suggestion").accept()
-                    elseif vim.snippet.active() then
-                        -- FIXME: bump to build-in snippet
-                        vim.snippet.stop()
-                        fallback()
                     else
                         fallback()
                     end
