@@ -6,9 +6,10 @@ local Util = require("lazyvim.util")
 
 -- Fold
 map({ "n", "v", "o" }, "H", "^", { desc = "First character of line" })
-map({ "n", "v", "o" }, "L", "$", { desc = "Last character of line" })
-map({ "n", "v", "o" }, "J", "<C-d>", { desc = "Join line with smart whitespace removal" })
-map({ "n", "v", "o" }, "K", "<C-u>", { desc = "Join line with smart whitespace removal" })
+map({ "n", "o" }, "L", "$", { desc = "Last character of line" })
+map({ "v" }, "L", "$h", { desc = "Last character of line" })
+map({ "n", "v", "o" }, "J", "6j", { desc = "Join line with smart whitespace removal" })
+map({ "n", "v", "o" }, "K", "6k", { desc = "Join line with smart whitespace removal" })
 map("n", "Q", "<cmd>q<cr>", { desc = "quit" })
 map({ "v" }, "C", "J", { desc = "Join line with smart whitespace removal" })
 
@@ -94,3 +95,5 @@ vim.api.nvim_set_keymap("t", "<C-S-v>", "<C-R>+", { noremap = true, silent = tru
 vim.api.nvim_set_keymap("v", "<C-S-v>", "<C-R>+", { noremap = true, silent = true })
 
 vim.api.nvim_set_keymap("x", "/", "<Esc>/\\%V", { noremap = true, silent = true })
+
+map("n", "<C-i>", "<C-i>")
