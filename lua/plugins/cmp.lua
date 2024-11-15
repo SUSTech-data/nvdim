@@ -35,21 +35,21 @@ return {
                 --     end
                 -- end),
 
-                ["<tab>"] = cmp.mapping(
-                    function(fallback)
-                        return LazyVim.cmp.map({ "snippet_forward", "ai_accept" }, fallback)()
-                    end
-                ),
-                -- ["<Tab>"] = cmp.mapping(function(fallback)
-                --     local luasnip = require("luasnip")
-                --     if require("luasnip").expand_or_jumpable() then
-                --         luasnip.expand_or_jump()
-                --     elseif require("copilot.suggestion").is_visible() then
-                --         require("copilot.suggestion").accept()
-                --     else
-                --         fallback()
+                -- ["<tab>"] = cmp.mapping(
+                --     function(fallback)
+                --         return LazyVim.cmp.map({ "snippet_forward", "ai_accept" }, fallback)()
                 --     end
-                -- end, { "i", "s" }),
+                -- ),
+                ["<Tab>"] = cmp.mapping(function(fallback)
+                    local luasnip = require("luasnip")
+                    if require("luasnip").expand_or_jumpable() then
+                        luasnip.expand_or_jump()
+                    elseif require("copilot.suggestion").is_visible() then
+                        require("copilot.suggestion").accept()
+                    else
+                        fallback()
+                    end
+                end, { "i", "s" }),
                 ["<S-Tab>"] = cmp.mapping(function(fallback)
                     local luasnip = require("luasnip")
                     if luasnip.jumpable(-1) then
