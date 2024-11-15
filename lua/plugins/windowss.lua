@@ -2,7 +2,7 @@ return {
     {
         "akinsho/bufferline.nvim",
         -- enabled = false,
-        event = function() return "User IceLoad" end,
+        -- event = function() return "User IceLoad" end,
         opts = function(_, opts)
             opts.options = {
                 -- mode = "tabs",
