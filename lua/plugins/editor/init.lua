@@ -23,7 +23,7 @@ local editor = {
 
                 if
                     fn.getbufvar(buf, "&modifiable") == 1
-                    and utils.not_in(fn.getbufvar(buf, "&filetype"), { "oil", "OverseerForm", "harpoon" })
+                    and utils.not_in(fn.getbufvar(buf, "&filetype"), { "oil", "OverseerForm", "harpoon", "VoltWindow" })
                 then
                     return true -- met condition(s), can save
                 end
