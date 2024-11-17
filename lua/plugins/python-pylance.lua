@@ -34,17 +34,6 @@ return {
                     cmd = { "pylance", "--stdio" },
                     single_file_support = true,
                     capabilities = capabilities,
-                    on_init = function(client)
-                        if vim.env.VIRTUAL_ENV then
-                            -- local path = require("mason-core.path")
-                            client.config.settings.python.pythonPath =
-                                vim.fn.resolve(vim.env.VIRTUAL_ENV .. "/bin/python")
-                        else
-                            client.config.settings.python.pythonPath = vim.fn.exepath("python3")
-                                or vim.fn.exepath("python")
-                                or "python"
-                        end
-                    end,
                     before_init = function() end,
                     on_new_config = function(new_config, new_root_dir)
                         new_config.settings.python.pythonPath = vim.fn.exepath("python")
