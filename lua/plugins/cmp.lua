@@ -137,9 +137,17 @@ return {
                 { name = "buffer" },
                 { name = "cmp_zotcite" },
                 { name = "jupynium" },
-                { name = "path" },
+                { name = "treesitter" },
+                { name = "nvim_lsp" },
+                { name = "nvim_lua" },
+                { name = "cmp_tabnine" },
+                { name = "copilot" },
+                { name = "orgmode" },
+                { name = "tmux" },
+                { name = "latex_symbols" },
                 { name = "spell" },
             })
+            table.remove(opts.sources, 2) -- remove path
         end,
 
         config = function(_, opts)
