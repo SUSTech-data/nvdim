@@ -6,7 +6,7 @@ return {
             "jbyuki/instant.nvim",
         },
         config = function()
-            vim.g.instant_userame = "anonymous"
+            vim.g.instant_username = "anonymous"
             require("live-share").setup({
                 port_internal = 9876,
                 max_attempts = 20, -- 10 seconds
