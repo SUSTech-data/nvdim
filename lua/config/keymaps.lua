@@ -69,15 +69,15 @@ vim.api.nvim_set_keymap("i", "<C-q>", "<ESC><CR>s)i", { noremap = false, silent 
 -- vim.keymap.set("v", "<C-V>", '"+P') -- Paste visual mode
 -- vim.keymap.set("c", "<C-V>", "<C-R>+") -- Paste command mode
 -- vim.keymap.set("i", "<C-V>", '<ESC>l"+Pli') -- Paste insert mode
-vim.keymap.set("n", "<C-S-v>", '"+P') -- Paste normal mode
-vim.keymap.set("v", "<C-S-v>", '"+P') -- Paste visual mode
-vim.keymap.set("c", "<C-S-v>", "<C-R>+") -- Paste command mode
-vim.keymap.set("i", "<C-S-v>", '<ESC>l"+Pli') -- Paste insert mode
-vim.keymap.set("n", "<S-C-v>", '"+P') -- Paste normal mode
-vim.keymap.set("v", "<S-C-v>", '"+P') -- Paste visual mode
-vim.keymap.set("c", "<S-C-v>", "<C-R>+") -- Paste command mode
-vim.keymap.set("i", "<S-C-v>", '<ESC>l"+Pli') -- Paste insert mode
-vim.keymap.set(
+map("n", "<C-S-v>", '"+P') -- Paste normal mode
+map("v", "<C-S-v>", '"+P') -- Paste visual mode
+map("c", "<C-S-v>", "<C-R>+") -- Paste command mode
+map("i", "<C-S-v>", '<ESC>l"+Pli') -- Paste insert mode
+map("n", "<S-C-v>", '"+P') -- Paste normal mode
+map("v", "<S-C-v>", '"+P') -- Paste visual mode
+map("c", "<S-C-v>", "<C-R>+") -- Paste command mode
+map("i", "<S-C-v>", '<ESC>l"+Pli') -- Paste insert mode
+map(
     { "n", "x", "o", "i" },
     "<C-=>",
     function() vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.01 end
@@ -97,3 +97,4 @@ vim.api.nvim_set_keymap("v", "<C-S-v>", "<C-R>+", { noremap = true, silent = tru
 vim.api.nvim_set_keymap("x", "/", "<Esc>/\\%V", { noremap = true, silent = true })
 
 map("n", "<C-i>", "<C-i>")
+map("n", "D", "K", { noremap = true })
