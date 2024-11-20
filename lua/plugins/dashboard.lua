@@ -1,7 +1,107 @@
 return {
     -- { "goolord/alpha-nvim", enabled = false },
     {
+        "folke/snacks.nvim",
+        opts = {
+            dashboard = {
+                -- width = 100,
+                autokeys = "fjdklsa'oqcvnbgherioptyu",
+                preset = {
+                    keys = {
+                        {
+                            icon = " ",
+                            key = "n",
+                            desc = "New File",
+                            action = ":ene | startinsert",
+                        },
+                        {
+                            icon = " ",
+                            key = "f",
+                            desc = "Recent Files",
+                            action = ":lua Snacks.dashboard.pick('oldfiles')",
+                        },
+                        {
+                            icon = "󰒲 ",
+                            key = "a",
+                            desc = "Lazy",
+                            action = ":Lazy",
+                            enabled = package.loaded.lazy ~= nil,
+                        },
+                        {
+                            icon = " ",
+                            key = "d",
+                            desc = "Config",
+                            action = ":lua Snacks.dashboard.pick('live_grep', {cwd = vim.fn.stdpath('config')})",
+                        },
+                        {
+                            icon = " ",
+                            key = "g",
+                            desc = "Find Text",
+                            action = ":lua Snacks.dashboard.pick('live_grep')",
+                        },
+                        {
+                            icon = " ",
+                            key = "s",
+                            desc = "Restore Session",
+                            action = ":Telescope persisted",
+                        },
+                        { icon = " ", key = "q", desc = "Quit", action = ":qa" },
+                    },
+                },
+                sections = {
+                    {
+                        section = "terminal",
+                        cmd = "cmatrix",
+                        height = 5,
+                        pane = 2,
+                        padding = 3,
+                    },
+
+                    { section = "header" },
+                    -- {
+                    --     pane = 2,
+                    --     section = "terminal",
+                    --     cmd = "colorscript -e square",
+                    --     height = 5,
+                    --     padding = 1,
+                    -- },
+                    { section = "keys", padding = 4 },
+                    {
+                        pane = 2,
+                        icon = " ",
+                        title = "Recent Files",
+                        section = "recent_files",
+                        indent = 2,
+                        padding = 1,
+                    },
+                    {
+                        pane = 2,
+                        icon = " ",
+                        title = "Projects",
+                        section = "projects",
+                        indent = 2,
+                        padding = 1,
+                    },
+                    {
+                        pane = 2,
+                        icon = " ",
+                        title = "Git Status",
+                        section = "terminal",
+                        enabled = vim.fn.isdirectory(".git") == 1,
+                        cmd = "hub diff --stat -B -M -C",
+                        height = 5,
+                        padding = 1,
+                        ttl = 0,
+                        indent = 3,
+                    },
+                    { section = "startup" },
+                },
+            },
+        },
+    },
+    {
         "nvimdev/dashboard-nvim",
+        enabled = false,
         cond = function() return vim.env.KITTY_SCROLLBACK_NVIM == nil and vim.g.vscode == nil end,
         opts = {
             theme = "hyper",

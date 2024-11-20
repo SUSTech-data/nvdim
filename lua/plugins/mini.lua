@@ -33,13 +33,5 @@ return {
         },
         config = function(_, opts) require("mini.bracketed").setup(opts) end,
     },
-    {
-        "echasnovski/mini.indentscope",
-        opts = {
-            draw = {
-                animation = require("mini.indentscope").gen_animation.none(),
-            },
-        },
-    },
     { "ojroques/nvim-bufdel", cmd = { "BufDel", "BufDelAll", "BufDelOthers" } },
 }

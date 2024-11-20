@@ -40,6 +40,7 @@ return {
                     "TelescopePrompt",
                     "Mundo",
                     "MundoDiff",
+                    "snacks_dashboard",
                 },
                 -- always_divide_middle = false,
             },

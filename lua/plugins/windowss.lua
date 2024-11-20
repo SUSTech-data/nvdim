@@ -1,15 +1,13 @@
 return {
     {
         "akinsho/bufferline.nvim",
-        -- enabled = false,
-        -- event = function() return "User IceLoad" end,
-        opts = function(_, opts)
-            opts.options = {
-                -- mode = "tabs",
-                always_show_bufferline = true,
-            }
-            return opts
-        end,
+        opts = {
+            options = {
+                -- always_show_bufferline = true,
+                diagnostics = false,
+                diagnostics_indicator = false,
+            },
+        },
         keys = {
             { "<S-h>", false },
             { "<S-l>", false },
