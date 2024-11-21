@@ -14,7 +14,10 @@ vim.keymap.set(
 vim.api.nvim_create_autocmd("User", {
     pattern = "VeryLazy",
     callback = function()
-        local function _trigger() vim.api.nvim_exec_autocmds("User", { pattern = "IceLoad" }) end
+        local function _trigger()
+            vim.o.wrap = true
+            vim.api.nvim_exec_autocmds("User", { pattern = "IceLoad" })
+        end
         if vim.tbl_contains({ "dashboard", "snacks_dashboard" }, vim.bo.filetype) then
             vim.api.nvim_create_autocmd("BufRead", { once = true, callback = _trigger })
         else

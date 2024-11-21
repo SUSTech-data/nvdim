@@ -13,7 +13,6 @@ o.swapfile = false
 o.showbreak = "↳ " -- character show in front of wrapped lines
 -- o.breakindentopt = "shift:-2" -- dedent showbreak
 o.linebreak = true -- Wrap long lines at 'breakat' (if 'wrap' is set)
-o.wrap = true
 
 o.formatoptions = "jcqlnt" -- tcqj
 -- o.whichwrap = "h,l,<,>,[,],~"
