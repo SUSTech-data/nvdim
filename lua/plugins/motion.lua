@@ -25,7 +25,7 @@ return {
         "folke/flash.nvim",
         event = function() return "User IceLoad" end,
         opts = {
-            labels = "fjdklsa'oqcvnbgherioptyu",
+            labels = "fjdklsa'oqcvnbgheriptyu",
             modes = {
                 char = { enabled = true },
             },
