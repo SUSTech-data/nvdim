@@ -5,7 +5,7 @@ return {
         opts = {
             dashboard = {
                 -- width = 100,
-                autokeys = "fjdklsa'oqcvnbgherioptyu",
+                autokeys = "etovxqpdygfblzhckisuran",
                 preset = {
                     keys = {
                         {
@@ -19,6 +19,12 @@ return {
                             key = "f",
                             desc = "Recent Files",
                             action = ":lua Snacks.dashboard.pick('oldfiles')",
+                        },
+                        {
+                            icon = " ",
+                            key = "o",
+                            desc = "Oil",
+                            action = ":e .",
                         },
                         {
                             icon = "󰒲 ",
@@ -73,6 +79,7 @@ return {
                         section = "recent_files",
                         indent = 2,
                         padding = 1,
+                        action = function(path) vim.cmd(":e " .. path) end,
                     },
                     {
                         pane = 2,
@@ -81,6 +88,25 @@ return {
                         section = "projects",
                         indent = 2,
                         padding = 1,
+                        action = function(path)
+                            vim.fn.system({
+                                "kitty",
+                                "@",
+                                "action",
+                                "combine",
+                                ":",
+                                "close_window",
+                                -- "signal_child",
+                                -- "SIGKILL",
+                                ":",
+                                "launch",
+                                "--cwd=" .. path,
+                                "zsh",
+                                "-c",
+                                -- '"cd ' .. path .. '&& nvim +SessionLoad; zsh -l"',
+                                '"direnv exec . nvim +SessionLoad; zsh -l"',
+                            })
+                        end,
                     },
                     {
                         pane = 2,
@@ -88,7 +114,7 @@ return {
                         title = "Git Status",
                         section = "terminal",
                         enabled = vim.fn.isdirectory(".git") == 1,
-                        cmd = "hub diff --stat -B -M -C",
+                        cmd = "hub status --short --branch --renames",
                         height = 5,
                         padding = 1,
                         ttl = 0,
