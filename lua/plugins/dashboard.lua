@@ -58,6 +58,7 @@ return {
                     {
                         section = "terminal",
                         cmd = "cmatrix",
+                        enabled = vim.env.TERM ~= "linux",
                         height = 5,
                         pane = 2,
                         padding = 3,
@@ -89,6 +90,10 @@ return {
                         indent = 2,
                         padding = 1,
                         action = function(path)
+                            if vim.env.SSH_TTY ~= nil then
+                                vim.cmd(":cd " .. path)
+                                return require("persisted").load()
+                            end
                             vim.fn.system({
                                 "kitty",
                                 "@",
@@ -100,10 +105,9 @@ return {
                                 -- "SIGKILL",
                                 ":",
                                 "launch",
-                                "--cwd=" .. path,
+                                "--cwd=" .. string.gsub(path, " ", "\\ "),
                                 "zsh",
                                 "-c",
-                                -- '"cd ' .. path .. '&& nvim +SessionLoad; zsh -l"',
                                 '"direnv exec . nvim +SessionLoad; zsh -l"',
                             })
                         end,
