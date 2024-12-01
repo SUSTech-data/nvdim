@@ -1,7 +1,7 @@
 return {
     {
         "coffebar/project.nvim",
-        event = "User IceLoad",
+        event = "BufRead",
         config = function()
             require("project_nvim").setup({
                 ignore_lsp = { "copilot" },
@@ -24,7 +24,6 @@ return {
                 },
             })
         end,
-        lazy = true,
     },
     {
         "olimorris/persisted.nvim",
