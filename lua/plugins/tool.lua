@@ -179,19 +179,6 @@ return {
         end,
     },
     {
-        "niuiic/code-shot.nvim",
-        dependencies = { "niuiic/core.nvim" },
-        config = true,
-        keys = {
-            {
-                "<leader>ps",
-                function() require("code-shot").shot() end,
-                desc = "PrintScr",
-                mode = { "n", "v" },
-            },
-        },
-    },
-    {
         "keaising/im-select.nvim",
         config = true,
         event = { "InsertEnter" },
