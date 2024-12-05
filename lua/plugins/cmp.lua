@@ -41,10 +41,12 @@ return {
                 -- ),
                 ["<Tab>"] = cmp.mapping(function(fallback)
                     local luasnip = require("luasnip")
-                    if require("luasnip").expand_or_jumpable() then
-                        luasnip.expand_or_jump()
+                    if require("luasnip").expandable() then
+                        luasnip.expand()
                     elseif require("copilot.suggestion").is_visible() then
                         require("copilot.suggestion").accept()
+                    elseif luasnip.jumpable(1) then
+                        luasnip.jump(1)
                     else
                         fallback()
                     end
