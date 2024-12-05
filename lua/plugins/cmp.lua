@@ -211,13 +211,12 @@ return {
                 luasnip.filetype_extend(markdown_family[i], { "markdown" })
             end
             luasnip.filetype_extend("quarto", { "qmd" })
-            local opts = {}
-            luasnip.config.setup({
+            local opts = {
                 update_events = "TextChanged,TextChangedI",
                 delete_check_events = "TextChanged,InsertLeave",
                 enable_autosnippets = true,
                 store_selection_keys = "<tab>",
-            })
+            }
             luasnip.config.setup(opts)
         end,
     },
