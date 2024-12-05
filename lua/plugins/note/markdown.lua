@@ -72,4 +72,32 @@ return {
         },
         opts = { filetypes = { "markdown", "quarto" } },
     },
+    {
+        "neovim/nvim-lspconfig",
+        -- opts = function(_, opts)
+        --     opts.servers["protols"] = {}
+        --     opts.servers["clangd"].filetypes = { "c", "cpp", "cuda" }
+        -- end,
+        opts = {
+            servers = {
+                marksman = false,
+            },
+        },
+    },
+    {
+        "mfussenegger/nvim-lint",
+        opts = {
+            linters = {
+                -- https://github.com/LazyVim/LazyVim/discussions/4094#discussioncomment-10178217
+                ["markdownlint-cli2"] = {
+                    args = {
+                        "--config",
+                        ---@diagnostic disable-next-line: param-type-mismatch
+                        vim.fs.joinpath(vim.fn.stdpath("config"), "markdownlint.yaml"),
+                        "--",
+                    },
+                },
+            },
+        },
+    },
 }
