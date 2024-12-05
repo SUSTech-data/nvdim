@@ -45,9 +45,7 @@ require("lazy").setup({
             "LazyVim/LazyVim",
             import = "lazyvim.plugins",
             opts = {
-                -- defaults = {
-                --     keymaps = false,
-                -- },
+                colorscheme = "catppuccin",
             },
         },
         { import = "plugins" },
@@ -87,6 +85,7 @@ require("lazy").setup({
             "zotcite",
             "catppuccin",
             "neopyter",
+            -- "luasnip-latex-snippets",
         },
     },
 })

@@ -179,17 +179,4 @@ return {
         "0xstepit/flow.nvim",
         opts = {},
     },
-    {
-        "LazyVim/LazyVim",
-        opts = {
-            -- colorscheme = "flow",
-            colorscheme = "catppuccin",
-            -- colorscheme = "srcery",
-        },
-    },
-    -- {
-    --     "xiyaowong/nvim-transparent",
-    --     opts = {},
-    --     keys = { { "\\t", "<Cmd>TransparentToggle<CR>", desc = "Toggle Transparent" } },
-    -- },
 }
