@@ -1,6 +1,7 @@
 return {
     {
         "echasnovski/mini.map",
+        enabled = false,
         config = function()
             local map = require("mini.map")
             map.setup({
