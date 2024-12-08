@@ -98,3 +98,7 @@ vim.api.nvim_set_keymap("x", "/", "<Esc>/\\%V", { noremap = true, silent = true 
 
 map("n", "<C-i>", "<C-i>")
 map("n", "D", "K", { noremap = true })
+-- https://www.reddit.com/r/neovim/comments/1h7f0bz/share_your_coolest_keymap/
+map("n", "dc", "yy<cmd>normal gcc<CR>p", { desc = "Copy current line and comment" })
+
+map("v", "dc", "ygv<cmd>normal gc<CR>gv<esc>o<esc>p", { desc = "Copy current line and comment" })
