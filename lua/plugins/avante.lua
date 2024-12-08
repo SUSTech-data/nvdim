@@ -1,10 +1,8 @@
 return {
     {
         "yetone/avante.nvim",
-        init = function() require("avante_lib").load() end,
-        event = "VeryLazy",
-        -- we want to use head for now, since the releases are not frequent
-        version = false,
+        -- init = function() require("avante_lib").load() end,
+        keys = { "<leader>a" },
         opts = {
             provider = "copilot",
             hints = { enabled = false },
