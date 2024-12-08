@@ -182,7 +182,7 @@ return {
                 -- "fecet/luasnips-mathtex-snippets",
                 "fecet/luasnip-latex-snippets.nvim",
                 dependencies = {
-                    "preservim/vim-markdown",
+                    -- "preservim/vim-markdown",
                     -- "lervag/vimtex",
                 },
                 ft = { "markdown", "rmd", "quarto", "norg" },
