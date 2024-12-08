@@ -2,7 +2,7 @@
 if vim.g.vscode then return {} end
 
 -- if vim.g.swenv == nil then vim.g.swenv = "dl" end
-local file_pattern = { "*.ju.*" }
+local file_pattern = { "*.ju.*", "*_jnb.*" }
 local insert_cell = function(above)
     local cells = require("jupynium.cells")
     local current_separator_row = cells.current_cell_separator()
@@ -16,27 +16,29 @@ local insert_cell = function(above)
     vim.api.nvim_win_set_cursor(0, { row + 1, 0 })
 end
 
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "python" },
-    callback = function()
-        if not vim.g.vscode then
-            if vim.g.VirtualEnvironment then
-                require("swenv.api").set_venv(vim.g.VirtualEnvironment)
-            else
-                require("swenv.api").set_venv("base")
-                -- require("swenv.api").auto_venv()
-            end
-        end
-    end,
-})
+-- vim.api.nvim_create_autocmd("FileType", {
+--     pattern = { "python" },
+--     callback = function()
+--         if vim.g.vscode then return end
+--
+--         if vim.env.CONDA_PREFIX == nil then
+--             if vim.g.VirtualEnvironment then
+--                 require("swenv.api").set_venv(vim.g.VirtualEnvironment)
+--             else
+--                 require("swenv.api").set_venv("base")
+--                 -- require("swenv.api").auto_venv()
+--             end
+--         end
+--     end,
+-- })
 
 -- local tool = "jupynium"
 local tool = "neopyter"
 local use_jupynium = tool == "jupynium"
 
-local jupyter_callback = function()
+local jupyter_callback = function(buf_id)
     local Hydra = require("hydra")
-    local buf_id = vim.api.nvim_get_current_buf()
+    -- local buf_id = vim.api.nvim_get_current_buf()
     Hydra({
         name = "Jupyter",
         -- mode = "n",
@@ -57,10 +59,17 @@ local jupyter_callback = function()
             },
             {
                 "rk",
-                "<cmd>JupyniumKernelRestart<CR>" and use_jupynium or "<cmd>Neopyter kernel restart<CR>",
+                "<cmd>JupyniumKernelRestart<CR>" and use_jupynium
+                    or "<cmd>Neopyter kernel restart<CR>",
                 { exit = true },
                 desc = "restart",
             },
+            -- {
+            --     "r",
+            --     "<space>X",
+            --     "<cmd>Neopyter execute notebook:run-all-above<cr>",
+            --     "run all above cell",
+            -- },
             {
                 "k",
                 "<cmd>lua require'jupynium.textobj'.goto_previous_cell_separator()<cr>",
@@ -180,7 +189,7 @@ return {
         opts = {
             get_venvs = function(venvs_path) return require("swenv.api").get_venvs(venvs_path) end,
             -- Path passed to `get_venvs`.
-            venvs_path = vim.fn.expand("~/.conda/envs"),
+            venvs_path = vim.fn.expand((vim.env.MICROMAMBA_ROOT_PREFI or "~/.conda") .. "/envs"),
             -- Something to do after setting an environment, for example call vim.cmd.LspRestart
             post_set_venv = nil,
         },
@@ -192,85 +201,16 @@ return {
             },
         },
     },
-    -- {
-    --     "kiyoon/jupynium.nvim",
-    --     cond = tool == "jupynium",
-    --     event = { "BufRead *.ju.*" },
-    --     opts = {
-    --         python_host = "/opt/mambaforge/bin/python",
-    --         default_notebook_URL = "localhost:8888",
-    --         firefox_profiles_ini_path = "~/.mozilla/firefox/profiles.ini",
-    --         firefox_profile_name = nil,
-    --         auto_start_server = {
-    --             enable = false,
-    --             file_pattern = file_pattern,
-    --         },
-    --         auto_attach_to_server = {
-    --             enable = true,
-    --             file_pattern = file_pattern,
-    --         },
-    --         auto_start_sync = {
-    --             enable = false,
-    --             file_pattern = file_pattern,
-    --         },
-    --         auto_download_ipynb = false,
-    --         autoscroll = {
-    --             enable = true,
-    --             mode = "always", -- "always" or "invisible"
-    --             cell = {
-    --                 top_margin_percent = 20,
-    --             },
-    --         },
-    --
-    --         scroll = {
-    --             page = { step = 0.5 },
-    --             cell = {
-    --                 top_margin_percent = 20,
-    --             },
-    --         },
-    --
-    --         use_default_keybindings = false,
-    --         textobjects = {
-    --             use_default_keybindings = false,
-    --         },
-    --         shortsighted = false,
-    --         auto_close_tab = false,
-    --     },
-    --     config = function(_, opts)
-    --         require("jupynium").setup(opts)
-    --         vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
-    --             pattern = "*.ju.*",
-    --             callback = jupyter_callback,
-    --         })
-    --     end,
-    -- },
     {
         "sustech-data/neopyter",
         cond = tool == "neopyter",
         dependencies = {
             "AbaoFromCUG/websocket.nvim",
-            -- {
-            --     "nvim-treesitter/nvim-treesitter",
-            --     opts = {
-            --         textobjects = {
-            --             move = {
-            --                 enable = true,
-            --                 goto_next_start = {
-            --                     ["<C-f>"] = "@cellseparator",
-            --                     ["]c"] = "@cellcontent",
-            --                 },
-            --                 goto_previous_start = {
-            --                     ["<C-b>"] = "@cellseparator",
-            --                     ["[c"] = "@cellcontent",
-            --                 },
-            --             },
-            --         },
-            --     },
-            -- },
             {
                 "kiyoon/jupynium.nvim",
                 opts = {
-                    python_host = "/opt/mambaforge/bin/python",
+                    jupynium_file_pattern = file_pattern,
+                    python_host = (vim.env.MICROMAMBA_ROOT_PREFI or "~/.conda") .. "/bin/python",
                     default_notebook_URL = "localhost:8888",
                     firefox_profiles_ini_path = "~/.mozilla/firefox/profiles.ini",
                     firefox_profile_name = nil,
@@ -305,9 +245,16 @@ return {
             },
         },
         opts = {
+            filename_mapper = function(ju_path)
+                local ipynb_path = ju_path:gsub("%.ju%.%w+", ".ipynb")
+                return ipynb_path
+            end,
+
             -- remote_address = "0.0.0.0:9001",
-            -- auto_attach = false,
-            file_pattern = { "*.ju.*" },
+            auto_attach = true,
+            -- auto_connect = true,
+            on_attach = jupyter_callback,
+            file_pattern = file_pattern,
             highlight = { enable = false },
             jupyter = { scroll = {
                 align = "start",
@@ -317,18 +264,10 @@ return {
             },
         },
         ft = "python",
-        config = function(_, opts)
-            require("neopyter").setup(opts)
-            vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
-                pattern = "*.ju.*",
-                callback = jupyter_callback,
-            })
-        end,
     },
     {
         "benlubas/molten-nvim",
         enabled = false,
-
         dependencies = { "3rd/image.nvim" },
         event = { "BufRead *.ju.*" },
         build = ":UpdateRemotePlugins",
