@@ -53,7 +53,10 @@ return {
         "sindrets/winshift.nvim",
         cmd = "WinShift",
         opts = { highlight_moving_win = true },
-        -- keys = { "<leader>wS", "<CMD>WinShift<CR>", desc = "Win Shift/Swap" },
+        keys = {
+            { "<leader>ws", "<CMD>WinShift<CR>", desc = "Win Shift/Swap" },
+            { "<C-w>s", "<CMD>WinShift<CR>", desc = "Win Shift/Swap" },
+        },
     },
     -- { "kwkarlwang/bufresize.nvim", opts = {}, event = "WinEnter" }, -- on terminal resize
     {
