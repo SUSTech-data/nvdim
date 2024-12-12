@@ -9,4 +9,21 @@ return {
             { "<leader>gv", "<Cmd>DiffviewOpen<CR>", desc = "Diff View" },
         },
     },
+    {
+        "fredrikaverpil/pr.nvim",
+        lazy = true,
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+        },
+        ---@type PR.Config
+        opts = {},
+        keys = {
+            {
+                "<leader>gp",
+                function() require("pr").view() end,
+                desc = "View PR in browser",
+            },
+        },
+        cmd = { "PRView" },
+    },
 }
