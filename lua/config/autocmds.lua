@@ -51,6 +51,7 @@ vim.filetype.add({
         [".rsync_exclude"] = "gitignore",
         ["JUSTFILE"] = "just",
         [".condarc"] = "yaml",
+        ["pixi.lock"] = "yaml",
     },
     -- pattern = {
     --     ["%.env%.[%w_.-]+"] = "dotenv",
