@@ -23,7 +23,10 @@ local editor = {
 
                 if
                     fn.getbufvar(buf, "&modifiable") == 1
-                    and utils.not_in(fn.getbufvar(buf, "&filetype"), { "oil", "OverseerForm", "harpoon", "VoltWindow" })
+                    and utils.not_in(
+                        fn.getbufvar(buf, "&filetype"),
+                        { "oil", "OverseerForm", "harpoon", "VoltWindow" }
+                    )
                 then
                     return true -- met condition(s), can save
                 end
@@ -112,8 +115,19 @@ local editor = {
         "stevearc/aerial.nvim",
         keys = {
             -- { "go", "<cmd>AerialToggle<cr>", desc = "Aerial (Symbols)" },
-            { "<Tab>", "<cmd>AerialNext<CR>" },
-            { "<S-Tab>", "<cmd>AerialPrev<CR>" },
+            -- { "<Tab>", "<cmd>AerialNext<CR>" },
+            -- { "<S-Tab>", "<cmd>AerialPrev<CR>" },
+        },
+    },
+    {
+        "aaronik/treewalker.nvim",
+        cmd = "Treewalker",
+        opts = {
+            highlight = true, -- default is false
+        },
+        keys = {
+            { "<Tab>", "<cmd>Treewalker Down<CR>" },
+            { "<S-Tab>", "<cmd>Treewalker Up<CR>" },
         },
     },
 }
