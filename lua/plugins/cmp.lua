@@ -1,6 +1,54 @@
 return {
     {
+        "Saghen/blink.cmp",
+        dependencies = {
+            { "Saghen/blink.compat" },
+        },
+        opts = {
+            sources = {
+                compat = { "neopyter" },
+                default = { "lsp", "path", "snippets", "buffer" },
+                cmdline = function()
+                    local type = vim.fn.getcmdtype()
+                    if type == "/" or type == "?" then return { "buffer" } end
+                    if type == ":" or type == "@" then return { "cmdline" } end
+                    return {}
+                end,
+                providers = {
+                    neopyter = {
+                        name = "neopyter",
+                        module = "blink.compat.source",
+                        opts = { completers = { "CompletionProvider:kernel" } },
+                    },
+                },
+            },
+            keymap = {
+                preset = "enter",
+                ["<Tab>"] = {
+                    function(cmp)
+                        if cmp.snippet_active() then return cmp.accept() end
+                    end,
+                    LazyVim.cmp.map({ "snippet_forward", "ai_accept" }),
+                    "fallback",
+                },
+                ["<S-Tab>"] = {
+                    function(cmp)
+                        if cmp.snippet_active() then return cmp.accept() end
+                    end,
+                    LazyVim.cmp.map({ "snippet_forward", "ai_accept" }),
+                    "fallback",
+                },
+                cmdline = {
+                    preset = "super-tab",
+                    ["<Tab>"] = { "select_next" },
+                    ["<S-Tab>"] = { "select_prev" },
+                },
+            },
+        },
+    },
+    {
         "hrsh7th/nvim-cmp",
+        enabled = false,
         event = { "InsertEnter", "CmdlineEnter" },
         dependencies = {
             "hrsh7th/cmp-cmdline",

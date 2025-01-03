@@ -1,5 +1,5 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
   -- bootstrap lazy.nvim
   -- stylua: ignore
   vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazypath })
@@ -47,6 +47,13 @@ require("lazy").setup({
             opts = {
                 colorscheme = "catppuccin",
             },
+        },
+        {
+            "folke/snacks.nvim",
+            opts = function(_, opts)
+                opts.scroll.enabled = false
+                opts.indent.enabled = false
+            end,
         },
         { import = "plugins" },
     },
