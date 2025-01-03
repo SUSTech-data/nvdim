@@ -23,6 +23,12 @@ return {
                     },
                     opts = { skip = true },
                 },
+                -- {
+                --     filter = {
+                --         any = { { find = "Neopyter" }, { find = "incorrect offset" } },
+                --     },
+                --     opts = { skip = true },
+                -- },
                 {
                     filter = {
                         event = "notify",
