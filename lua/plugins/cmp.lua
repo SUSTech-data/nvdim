@@ -1,181 +1,69 @@
 return {
     {
-        "hrsh7th/nvim-cmp",
-        event = { "InsertEnter", "CmdlineEnter" },
+        "Saghen/blink.cmp",
         dependencies = {
-            "hrsh7th/cmp-cmdline",
-            "dmitmel/cmp-cmdline-history",
-            "jalvesaq/cmp-zotcite",
-            "saadparwaiz1/cmp_luasnip",
+            { "Saghen/blink.compat" },
         },
-        opts = function(_, opts)
-            table.insert(
-                opts.snippet,
-                { expand = function(args) require("luasnip").lsp_expand(args.body) end }
-            )
-            local cmp = require("cmp")
-
-            opts.mapping = vim.tbl_extend("force", opts.mapping, {
-                ["<C-e>"] = cmp.mapping(function(fallback)
-                    if cmp.visible() then
-                        cmp.close()
-                    else
-                        cmp.complete()
+        opts = {
+            snippets = {
+                preset = "luasnip",
+                expand = function(snippet) require("luasnip").lsp_expand(snippet) end,
+                active = function(filter)
+                    if filter and filter.direction then
+                        return require("luasnip").jumpable(filter.direction)
                     end
-                end),
-                ["<C-k>"] = cmp.mapping.select_prev_item(),
-                ["<C-j>"] = cmp.mapping.select_next_item(),
-                -- ["<CR>"] = cmp.mapping(function(fallback)
-                --     if cmp.visible() then
-                --         vim.api.nvim_feedkeys(t("<C-g>u"), "n", true)
-                --         cmp.confirm({ select = true })
-                --     else
-                --         fallback()
-                --     end
-                -- end),
-
-                -- ["<tab>"] = cmp.mapping(
-                --     function(fallback)
-                --         return LazyVim.cmp.map({ "snippet_forward", "ai_accept" }, fallback)()
-                --     end
-                -- ),
-                ["<Tab>"] = cmp.mapping(function(fallback)
-                    local luasnip = require("luasnip")
-                    if require("luasnip").expandable() then
-                        luasnip.expand()
-                    elseif require("copilot.suggestion").is_visible() then
-                        require("copilot.suggestion").accept()
-                    elseif luasnip.jumpable(1) then
-                        luasnip.jump(1)
-                    else
-                        fallback()
-                    end
-                end, { "i", "s" }),
-                ["<S-Tab>"] = cmp.mapping(function(fallback)
-                    local luasnip = require("luasnip")
-                    if luasnip.jumpable(-1) then
-                        luasnip.expand_or_jump()
-                    else
-                        fallback()
-                    end
-                end, { "i", "s" }),
-            })
-
-            local compare = require("cmp.config.compare")
-            opts.sorting = {
-                priority_weight = 2,
-                comparators = {
-                    -- require("copilot_cmp.comparators").prioritize,
-                    -- require("copilot_cmp.comparators").score,
-                    -- require("cmp_tabnine.compare"),
-                    compare.offset, -- items closer to cursor will have lower priority
-                    compare.exact,
-                    compare.scopes,
-                    compare.sort_text,
-                    compare.score,
-                    compare.recently_used,
-                    -- compare.locality, -- items closer to cursor will have higher priority, conflicts with `offset`
-                    compare.kind,
-                    compare.length,
-                    compare.order,
-                },
-            }
-            opts.formatting = {
-                fields = { "abbr", "kind", "menu" },
-                format = function(entry, vim_item)
-                    local icons = require("lazyvim.config").icons.kinds
-                    -- load lspkind icons
-                    vim_item.kind = string.format(
-                        " %s  %s",
-                        icons[vim_item.kind] or icons.TabNine,
-                        vim_item.kind or ""
-                    )
-
-                    vim_item.menu = setmetatable({
-                        cmp_tabnine = "[TN]",
-                        copilot = "[CPT]",
-                        buffer = "[BUF]",
-                        orgmode = "[ORG]",
-                        nvim_lsp = "[LSP]",
-                        nvim_lua = "[LUA]",
-                        path = "[PATH]",
-                        tmux = "[TMUX]",
-                        treesitter = "[TS]",
-                        latex_symbols = "[LTEX]",
-                        luasnip = "[SNIP]",
-                        spell = "[SPELL]",
-                        jupynium = "[JUP]",
-                        codeium = "[CDM]",
-                        neopyter = "[JUP]",
-                    }, {
-                        __index = function()
-                            return "[BTN]" -- builtin/unknown source names
-                        end,
-                    })[entry.source.name]
-
-                    local label = vim_item.abbr
-                    local truncated_label = vim.fn.strcharpart(label, 0, 80)
-                    if truncated_label ~= label then vim_item.abbr = truncated_label .. "..." end
-
-                    return vim_item
+                    return require("luasnip").in_snippet()
                 end,
-            }
-            vim.tbl_extend("force", opts.sources, {
-                {
-                    name = "luasnip",
-                    group_index = 1,
-                    option = { use_show_condition = true },
-                    entry_filter = function()
-                        local context = require("cmp.config.context")
-                        local string_ctx = context.in_treesitter_capture("string")
-                            or context.in_syntax_group("String")
-                        local comment_ctx = context.in_treesitter_capture("comment")
-                            or context.in_syntax_group("Comment")
-
-                        return not string_ctx and not comment_ctx
+                jump = function(direction) require("luasnip").jump(direction) end,
+            },
+            sources = {
+                compat = { "neopyter" },
+                default = { "lsp", "path", "snippets", "buffer" },
+                cmdline = function()
+                    local type = vim.fn.getcmdtype()
+                    if type == "/" or type == "?" then return { "buffer" } end
+                    if type == ":" or type == "@" then return { "cmdline" } end
+                    return {}
+                end,
+                providers = {
+                    neopyter = {
+                        name = "neopyter",
+                        module = "blink.compat.source",
+                        opts = { completers = { "CompletionProvider:kernel" } },
+                    },
+                },
+            },
+            keymap = {
+                preset = "enter",
+                ["<Tab>"] = {
+                    function(cmp)
+                        if cmp.snippet_active() then return cmp.accept() end
                     end,
+                    LazyVim.cmp.map({ "snippet_forward", "ai_accept" }),
+                    "fallback",
                 },
-                { name = "neopyter", option = { completers = { "CompletionProvider:kernel" } } },
-                { name = "buffer" },
-                { name = "cmp_zotcite" },
-                { name = "jupynium" },
-                { name = "treesitter" },
-                { name = "nvim_lsp" },
-                { name = "nvim_lua" },
-                { name = "cmp_tabnine" },
-                { name = "copilot" },
-                { name = "orgmode" },
-                { name = "tmux" },
-                { name = "latex_symbols" },
-                { name = "spell" },
-            })
-            table.remove(opts.sources, 2) -- remove path
-        end,
-
-        config = function(_, opts)
-            local cmp = require("cmp")
-            cmp.setup(opts) -- insert mode completion
-            cmp.setup.cmdline({ "/", "?" }, {
-                completion = { completeopt = "menu,menuone,noselect" },
-                mapping = cmp.mapping.preset.cmdline(),
-                sources = {
-                    { name = "buffer" },
+                ["<S-Tab>"] = {
+                    function(cmp)
+                        if cmp.snippet_active() then return cmp.accept() end
+                    end,
+                    LazyVim.cmp.map({ "snippet_forward", "ai_accept" }),
+                    "fallback",
                 },
-            })
-            cmp.setup.cmdline(":", {
-                completion = { completeopt = "menu,menuone,noselect" },
-                mapping = cmp.mapping.preset.cmdline(),
-                sources = cmp.config.sources({
-                    { name = "path" },
-                    { name = "cmdline" },
-                    { name = "cmdline_history" },
-                }),
-            })
-        end,
+                cmdline = {
+                    preset = "super-tab",
+                    ["<Tab>"] = { "select_next" },
+                    ["<S-Tab>"] = { "select_prev" },
+                },
+            },
+        },
     },
     {
         "L3MON4D3/LuaSnip",
         event = "BufRead",
+        opts = {
+            history = true,
+            delete_check_events = "TextChanged",
+        },
         dependencies = {
             { "fecet/vim-snippets" },
             {
@@ -200,6 +88,11 @@ return {
                 end,
             },
         },
+        keys = function()
+            return {
+                { "<BS>", "<C-G>c", mode = "s" },
+            }
+        end,
         config = function()
             local luasnip = require("luasnip")
             local markdown_family = { "markdown", "rmd", "quarto", "qmd", "norg" }
@@ -218,6 +111,23 @@ return {
                 store_selection_keys = "<tab>",
             }
             luasnip.config.setup(opts)
+        end,
+    },
+    {
+        "L3MON4D3/LuaSnip",
+        opts = function()
+            LazyVim.cmp.actions.snippet_forward = function()
+                if require("luasnip").jumpable(1) then
+                    require("luasnip").jump(1)
+                    return true
+                end
+            end
+            LazyVim.cmp.actions.snippet_stop = function()
+                if require("luasnip").expand_or_jumpable() then -- or just jumpable(1) is fine?
+                    require("luasnip").unlink_current()
+                    return true
+                end
+            end
         end,
     },
 }

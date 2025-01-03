@@ -1,11 +1,3 @@
-local fg = require("lazyvim.util").ui.fg
-
-local colors = {
-    [""] = fg("Special"),
-    ["Normal"] = fg("Special"),
-    ["Warning"] = fg("DiagnosticError"),
-    ["InProgress"] = fg("DiagnosticWarn"),
-}
 local function get_venv(variable)
     local venv = os.getenv(variable)
     if venv ~= nil and string.find(venv, "/") then
@@ -106,6 +98,14 @@ return {
                             return ok and #clients > 0
                         end,
                         color = function()
+                            -- local fg = Snacks.util.color
+
+                            local colors = {
+                                [""] = { fg = Snacks.util.color("Special") },
+                                ["Normal"] = { fg = Snacks.util.color("Special") },
+                                ["Warning"] = { fg = Snacks.util.color("DiagnosticError") },
+                                ["InProgress"] = { fg = Snacks.util.color("DiagnosticWarn") },
+                            }
                             if not package.loaded["copilot"] then return end
                             local status = require("copilot.api").status.data
                             return colors[status.status] or colors[""]
@@ -137,7 +137,7 @@ return {
                     {
                         require("lazy.status").updates,
                         cond = require("lazy.status").has_updates,
-                        color = fg("Special"),
+                        color = function() return { fg = Snacks.util.color("Special") } end,
                     },
                 },
                 lualine_y = {
