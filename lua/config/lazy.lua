@@ -43,6 +43,7 @@ require("lazy").setup({
     spec = {
         {
             "LazyVim/LazyVim",
+            version = "13.x",
             import = "lazyvim.plugins",
             opts = {
                 colorscheme = "catppuccin",
