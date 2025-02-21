@@ -1,8 +1,8 @@
 return {
     {
         "vyfor/cord.nvim",
-        build = "./build || .\\build",
+        build = ":Cord update",
         event = "User IceLoad",
-        opts = { log_level = "trace" }, -- calls require('cord').setup()
+        -- opts = { log_level = "trace" }, -- calls require('cord').setup()
     },
 }

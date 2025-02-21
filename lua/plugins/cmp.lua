@@ -19,12 +19,6 @@ return {
             sources = {
                 compat = { "neopyter" },
                 default = { "lsp", "path", "snippets", "buffer" },
-                cmdline = function()
-                    local type = vim.fn.getcmdtype()
-                    if type == "/" or type == "?" then return { "buffer" } end
-                    if type == ":" or type == "@" then return { "cmdline" } end
-                    return {}
-                end,
                 providers = {
                     neopyter = {
                         name = "neopyter",
@@ -32,6 +26,19 @@ return {
                         opts = { completers = { "CompletionProvider:kernel" } },
                     },
                 },
+            },
+            cmdline = {
+                keymap = {
+                    preset = "super-tab",
+                    ["<Tab>"] = { "select_next" },
+                    ["<S-Tab>"] = { "select_prev" },
+                },
+                sources = function()
+                    local type = vim.fn.getcmdtype()
+                    if type == "/" or type == "?" then return { "buffer" } end
+                    if type == ":" or type == "@" then return { "cmdline" } end
+                    return {}
+                end,
             },
             keymap = {
                 preset = "enter",
@@ -48,11 +55,6 @@ return {
                     end,
                     LazyVim.cmp.map({ "snippet_forward", "ai_accept" }),
                     "fallback",
-                },
-                cmdline = {
-                    preset = "super-tab",
-                    ["<Tab>"] = { "select_next" },
-                    ["<S-Tab>"] = { "select_prev" },
                 },
             },
         },
