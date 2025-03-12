@@ -1,3 +1,8 @@
+if not vim.g.vscode then return {} end
+
+local g, o, opt = vim.g, vim.o, vim.opt
+o.cmdheight = 10
+local map = LazyVim.safe_keymap_set
 local vscodes = {
     "nvim-treesitter/nvim-treesitter",
     "sustech-data/wildfire.nvim",
@@ -14,11 +19,99 @@ local vscodes = {
     "smoka7/hop.nvim",
     "keaising/im-select.nvim",
     "Pocco81/auto-save.nvim",
+    -- "stevearc/conform.nvim",
+    -- "williamboman/mason.nvim",
+    -- "neovim/nvim-lspconfig",
+    -- "p00f/clangd_extensions.nvim",
+    -- "mikavilpas/yazi.nvim",
+    -- "nvim-lua/plenary.nvim",
 }
 local L = {}
 for _, key in ipairs(vscodes) do
     L[#L + 1] = { key, vscode = true }
 end
+vim.api.nvim_create_autocmd("User", {
+    pattern = "LazyVimKeymapsDefaults",
+    callback = function()
+        vim.keymap.set("n", "<leader>ff", "<cmd>Find<cr>")
+        vim.keymap.set(
+            "n",
+            "<leader>fw",
+            [[<cmd>lua require('vscode').action('workbench.action.findInFiles')<cr>]]
+        )
+        vim.keymap.set(
+            "n",
+            "<leader>ss",
+            [[<cmd>lua require('vscode').action('workbench.action.gotoSymbol')<cr>]]
+        )
+
+        -- Navigate VSCode tabs like lazyvim buffers
+        vim.keymap.del("n", "<c-/>")
+        vim.keymap.del("n", "<c-_>")
+        vim.keymap.del("n", "<leader>gg")
+        vim.keymap.del("n", "<leader>gG")
+        vim.keymap.del("n", "<leader>ft")
+        map(
+            "n",
+            "<c-/>",
+            function() require("vscode").action("workbench.action.terminal.toggleTerminal") end,
+            { desc = "Open terminal" }
+        )
+        local terminal_name = "zsh"
+        map("n", "<leader>ft", function()
+            -- 通过 eval 查找当前终端列表中是否存在指定名称的终端，findIndex 返回 -1 表示未找到
+            local idx = require("vscode").eval(
+                "return vscode.window.terminals.findIndex((t, i) => i > 0 && t.name === '"
+                    .. terminal_name
+                    .. "')"
+            )
+            if idx == -1 then
+                require("vscode").call("workbench.action.terminal.new")
+            else
+                local focus_command = "workbench.action.terminal.focusAtIndex" .. idx
+                require("vscode").call(focus_command)
+            end
+        end, { silent = true })
+        local yazi_name = "yazi_cmd"
+
+        map("n", "<leader>ee", function()
+            -- 通过 eval 查找当前终端列表中是否存在指定名称的终端，findIndex 返回 -1 表示未找到
+            local idx = require("vscode").eval(
+                "return vscode.window.terminals.findIndex(t => t.name === '" .. yazi_name .. "')"
+            )
+            if idx == -1 then
+                require("vscode").call("workbench.action.tasks.runTask", { args = { "yazi" } })
+            else
+                local focus_command = "workbench.action.terminal.focusAtIndex" .. idx
+                require("vscode").call(focus_command)
+            end
+        end, { silent = true })
+        map(
+            "n",
+            "<leader>gg",
+            function()
+                require("vscode").call("workbench.action.tasks.runTask", { args = { "lazygit" } })
+            end
+        )
+        map("n", "ga", function() require("vscode").call("editor.action.quickFix") end)
+        map("n", "<leader>rn", function() require("vscode").call("editor.action.rename") end)
+        map(
+            { "v", "o" },
+            "<leader>fm",
+            function() require("vscode").call("editor.action.formatSelection") end
+        )
+        map(
+            { "n" },
+            "<leader>fm",
+            function() require("vscode").call("editor.action.formatDocument") end
+        )
+        map(
+            "n",
+            "gr",
+            function() require("vscode").call("editor.action.referenceSearch.trigger") end
+        )
+    end,
+})
 
 -- vim.list_extend(L, enables)
 
