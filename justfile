@@ -8,8 +8,8 @@ syncfrom target:
 
 syncto target:
     -rsync -avP ~/codes/nvim/ {{ target }}:~/.config/nvim/ --delete
-    -rsync -avP ~/.local/share/nvim/ {{ target }}:~/.local/share/nvim/ --delete
-    -rsync -avPL ~/.local/share/nvim/mason/ {{ target }}:~/.local/share/nvim/mason/ --delete
+    -rsync -avP ~/.local/share/nvim/ {{ target }}:~/.local/share/nvim/ --delete --exclude mason
+    # -rsync -avPL ~/.local/share/nvim/mason/ {{ target }}:~/.local/share/nvim/mason/ --delete
     -rsync -avP ~/.local/share/bob/ {{ target }}:~/.local/share/bob/ --delete
     -rsync -avP ~/.cache/nvim/ {{ target }}:~/.cache/nvim/ --delete
     -rsync -avP ~/codes/nvim-plugins/ {{ target }}:~/codes/nvim-plugins/ --delete
