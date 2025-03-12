@@ -110,6 +110,8 @@ vim.api.nvim_create_autocmd("User", {
             "gr",
             function() require("vscode").call("editor.action.referenceSearch.trigger") end
         )
+
+        map("n", "go", function() require("vscode").call("breadcrumbs.focusAndSelect") end)
     end,
 })
 
