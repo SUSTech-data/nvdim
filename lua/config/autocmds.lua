@@ -52,6 +52,13 @@ vim.filetype.add({
         ["JUSTFILE"] = "just",
         [".condarc"] = "yaml",
         ["pixi.lock"] = "yaml",
+        [".eslintrc.json"] = "jsonc",
+    },
+    pattern = {
+        ["tsconfig*.json"] = "jsonc",
+        [".*/%.vscode/.*%.json"] = "jsonc",
+        [".*/vscode/.*%.json"] = "jsonc",
+        [".*/.config/Code/User/.*%.json"] = "jsonc",
     },
     -- pattern = {
     --     ["%.env%.[%w_.-]+"] = "dotenv",
