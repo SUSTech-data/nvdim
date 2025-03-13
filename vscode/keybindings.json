@@ -86,6 +86,16 @@
     }
   },
   {
+    "key": "shift+h",
+    "command": "cursorHome",
+    "when": "editorTextFocus && neovim.mode != insert"
+  },
+  {
+    "key": "shift+l",
+    "command": "cursorLineEnd",
+    "when": "editorTextFocus && neovim.mode != insert"
+  },
+  {
     "key": "alt+q",
     "command": "vscode-neovim.send",
     "when": "editorTextFocus && neovim.mode != insert",

@@ -50,6 +50,7 @@ vim.api.nvim_create_autocmd("User", {
         vim.keymap.del("n", "<leader>gg")
         vim.keymap.del("n", "<leader>gG")
         vim.keymap.del("n", "<leader>ft")
+        vim.keymap.del("n", "gf")
         map(
             "n",
             "<c-/>",
@@ -78,6 +79,7 @@ vim.api.nvim_create_autocmd("User", {
             local idx = require("vscode").eval(
                 "return vscode.window.terminals.findIndex(t => t.name === '" .. yazi_name .. "')"
             )
+            print(vim.inspect(require("vscode").eval("return vscode.window.terminals")))
             if idx == -1 then
                 require("vscode").call("workbench.action.tasks.runTask", { args = { "yazi" } })
             else

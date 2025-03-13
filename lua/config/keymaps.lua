@@ -8,8 +8,6 @@ local Util = require("lazyvim.util")
 map({ "n", "v", "o" }, "H", "^", { desc = "First character of line" })
 map({ "n", "o" }, "L", "$", { desc = "Last character of line" })
 map({ "v" }, "L", "$h", { desc = "Last character of line" })
-map({ "n", "v", "o" }, "J", "6j", { desc = "Join line with smart whitespace removal" })
-map({ "n", "v", "o" }, "K", "6k", { desc = "Join line with smart whitespace removal" })
 map({ "v" }, "C", "J", { desc = "Join line with smart whitespace removal" })
 
 -- Don't yank empty line to clipboard
@@ -67,35 +65,15 @@ if vim.g.vscode then
         function() require("vscode").call("workbench.action.navigateRight") end,
         { noremap = true }
     )
-    map("n", "D", function() require("vscode").call("editor.action.showHover") end, { noremap = true })
-
-    -- map(
-    --     { "n", "v", "o", "t" },
-    --     "<A-Left>",
-    --     function() require("vscode").call("workbench.action.increaseViewWidth") end,
-    --     { noremap = true }
-    -- )
-    --
-    -- map(
-    --     { "n", "v", "o", "t" },
-    --     "<A-Down>",
-    --     "<Cmd>call <SID>manageEditorHeight(v:count,  'increase')<CR>",
-    --     { noremap = true }
-    -- )
-    --
-    -- map(
-    --     { "n", "v", "o", "t" },
-    --     "<A-Up>",
-    --     "<Cmd>call <SID>manageEditorHeight(v:count,  'decrease')<CR>",
-    --     { noremap = true }
-    -- )
-    -- map(
-    --     { "n", "v", "o", "t" },
-    --     "<A-Right>",
-    --     "<Cmd>call <SID>manageEditorWidth(v:count,  'increase')<CR>",
-    --     { noremap = true }
-    -- )
+    map(
+        "n",
+        "D",
+        function() require("vscode").call("editor.action.showHover") end,
+        { noremap = true }
+    )
 else
+    map({ "n", "v", "o" }, "J", "6j", { desc = "Join line with smart whitespace removal" })
+    map({ "n", "v", "o" }, "K", "6k", { desc = "Join line with smart whitespace removal" })
     map("n", "Q", "<cmd>q<cr>", { desc = "quit" })
     map("n", "<C-S-h>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
     map("n", "<C-S-l>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
@@ -174,5 +152,5 @@ vim.api.nvim_set_keymap("x", "/", "<Esc>/\\%V", { noremap = true, silent = true 
 map("n", "<C-i>", "<C-i>")
 -- https://www.reddit.com/r/neovim/comments/1h7f0bz/share_your_coolest_keymap/
 map("n", "dc", "yy<cmd>normal gcc<CR>p", { desc = "Copy current line and comment" })
-
-map("v", "dc", "ygv<cmd>normal gc<CR>gv<esc>o<esc>p", { desc = "Copy current line and comment" })
+--
+-- map("v", "dc", "ygv<cmd>normal gc<CR>gv<esc>o<esc>p", { desc = "Copy current line and comment" })
