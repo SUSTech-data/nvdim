@@ -154,46 +154,6 @@ vim.api.nvim_create_autocmd("User", {
             '<Cmd>call VSCodeNotify("editor.toggleFold")<CR>',
             { noremap = true, silent = true }
         )
-        -- map(
-        --     { "n", "v", "o" },
-        --     "j",
-        --     function()
-        --         require("vscode").call(
-        --             "cursorMove",
-        --             { args = { to = "down", by = "wrappedLine", value = 1 } }
-        --         )
-        --     end
-        -- )
-        -- map(
-        --     { "n", "v", "o" },
-        --     "k",
-        --     function()
-        --         require("vscode").call(
-        --             "cursorMove",
-        --             { args = { to = "up", by = "wrappedLine", value = 1 } }
-        --         )
-        --     end
-        -- )
-        -- map(
-        --     { "n", "v", "o" },
-        --     "J",
-        --     function()
-        --         require("vscode").call(
-        --             "cursorMove",
-        --             { args = { to = "down", by = "wrappedLine", value = 6 } }
-        --         )
-        --     end
-        -- )
-        -- map(
-        --     { "n", "v", "o" },
-        --     "K",
-        --     function()
-        --         require("vscode").call(
-        --             "cursorMove",
-        --             { args = { to = "up", by = "wrappedLine", value = 6 } }
-        --         )
-        --     end
-        -- )
         map("n", "h", function()
             local col = vim.api.nvim_win_get_cursor(0)[2]
             local textBeforeCursor = vim.api.nvim_get_current_line():sub(1, col)
@@ -230,8 +190,6 @@ vim.api.nvim_create_autocmd("User", {
 
   return ! isVisible;
             ]])
-            print("isOnFold", isOnFold)
-            -- local action = isOnFold and "zo" or "l"
             if isOnFold then
                 require("vscode").call("editor.unfold")
             else
