@@ -1,0 +1,114 @@
+{
+  "http.proxy": "http://127.0.0.1:7890",
+  "editor.inlineSuggest.enabled": true,
+  "editor.tabSize": 2,
+  "editor.fontSize": 25,
+  "editor.fontFamily": "JetBrainsMono Nerd Font",
+  "editor.smoothScrolling": true,
+  "python.analysis.autoFormatStrings": true,
+  "python.analysis.enablePytestSupport": false,
+  "python.analysis.packageIndexDepths": [
+    {
+      "name": "sklearn",
+      "depth": 2
+    },
+    {
+      "name": "matplotlib",
+      "depth": 2
+    },
+    {
+      "name": "scipy",
+      "depth": 2
+    },
+    {
+      "name": "django",
+      "depth": 2
+    },
+    {
+      "name": "flask",
+      "depth": 2
+    },
+    {
+      "name": "fastapi",
+      "depth": 2
+    },
+    {
+      "name": "vectorbtpro",
+      "depth": 5
+    },
+  ],
+  "workbench.colorTheme": "Catppuccin Macchiato",
+  "vscode-neovim.logOutputToConsole": true,
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false
+  },
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1
+  },
+  "files.autoSaveDelay": 10,
+  "files.autoSave": "afterDelay",
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/*.olean": true
+  },
+  "liveshare.diagnosticLogging": true,
+  "liveshare.diagnosticLoggingLevel": "Trace",
+  "liveshare.diagnosticMode": true,
+  "liveshare.notebooks.allowGuestExecuteCells": true,
+  "liveshare.publishWorkspaceInfo": true,
+  "http.proxyStrictSSL": false,
+  "diffEditor.codeLens": true,
+  "codetogether.userName": "host",
+  "remote.SSH.configFile": "~/.ssh/config",
+  "remote.SSH.remotePlatform": {
+    "frp-host": "linux",
+    "stat1-stat2": "linux"
+  },
+  "security.workspace.trust.untrustedFiles": "open",
+  "vscode-neovim.useWSL": true,
+  "window.customMenuBarAltFocus": false,
+  "terminal.integrated.enableImages": true,
+  "terminal.integrated.fontLigatures.enabled": true,
+  "terminal.integrated.smoothScrolling": true,
+  "terminal.integrated.fontFamily": "VictorMono Nerd Font",
+  "files.associations": {
+    "pixi.lock": "yaml"
+  },
+  "terminal.external.linuxExec": "kitty",
+  "editor.lineNumbers": "relative",
+  "workbench.iconTheme": "vscode-icons",
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff"
+  },
+  "python.venvPath": ".pixi/envs",
+  "redhat.telemetry.enabled": true,
+  "terminal.integrated.copyOnSelection": true,
+  "terminal.integrated.inheritEnv": false,
+  "terminal.integrated.localEchoExcludePrograms": [
+    "vim",
+    "vi",
+    "nano",
+    "tmux",
+    "nvim"
+  ],
+  "terminal.integrated.stickyScroll.enabled": true,
+  "terminal.integrated.shellIntegration.enabled": true,
+  "terminal.integrated.mouseWheelZoom": true,
+  "C_Cpp.default.cppStandard": "c++20",
+  "C_Cpp.default.cStandard": "c99",
+  "Lua.diagnostics.globals": [
+    "vim"
+  ],
+  "vs-kubernetes": {
+    "vs-kubernetes.crd-code-completion": "disabled"
+  },
+  "quarto.lua.provideTypes": false,
+}

@@ -1,0 +1,184 @@
+// 将键绑定放在此文件中以覆盖默认值
+[
+  {
+    "key": "shift+d",
+    "command": "editor.action.showHover",
+    "when": "editorHoverVisible && editorTextFocus && neovim.init && neovim.mode == 'normal'"
+  },
+  {
+    "key": "shift+k",
+    "command": "-editor.action.showHover",
+    "when": "editorHoverVisible && editorTextFocus && neovim.init && neovim.mode == 'normal'"
+  },
+  {
+    "key": "ctrl+shift+h",
+    "command": "-workbench.action.replaceInFiles"
+  },
+  {
+    "key": "ctrl+shift+l",
+    "command": "-editor.action.selectHighlights",
+    "when": "editorFocus"
+  },
+  {
+    "key": "ctrl+/",
+    "command": "workbench.action.terminal.toggleTerminal",
+    "when": "terminal.active"
+  },
+  {
+    "key": "ctrl+`",
+    "command": "-workbench.action.terminal.toggleTerminal",
+    "when": "terminal.active"
+  },
+  {
+    "key": "alt+h",
+    "command": "-git.viewFileHistory"
+  },
+  {
+    "key": "ctrl+shift+h",
+    "command": "vscode-neovim.send",
+    "when": "editorTextFocus && neovim.mode != insert",
+    "args": "<C-H>"
+  },
+  {
+    "key": "ctrl+shift+l",
+    "command": "vscode-neovim.send",
+    "when": "editorTextFocus && neovim.mode != insert",
+    "args": "<C-L>"
+  },
+  {
+    "key": "j",
+    "command": "cursorMove",
+    "when": "editorTextFocus && neovim.mode != insert",
+    "args": {
+      "to": "down",
+      "by": "wrappedLine",
+      "value": 1
+    }
+  },
+  {
+    "key": "shift+j",
+    "command": "cursorMove",
+    "when": "editorTextFocus && neovim.mode != insert",
+    "args": {
+      "to": "down",
+      "by": "wrappedLine",
+      "value": 6
+    }
+  },
+  {
+    "key": "k",
+    "command": "cursorMove",
+    "when": "editorTextFocus && neovim.mode != insert",
+    "args": {
+      "to": "up",
+      "by": "wrappedLine",
+      "value": 1
+    }
+  },
+  {
+    "key": "shift+k",
+    "command": "cursorMove",
+    "when": "editorTextFocus && neovim.mode != insert",
+    "args": {
+      "to": "up",
+      "by": "wrappedLine",
+      "value": 6
+    }
+  },
+  {
+    "key": "alt+q",
+    "command": "vscode-neovim.send",
+    "when": "editorTextFocus && neovim.mode != insert",
+    "args": "<A-q>"
+  },
+  {
+    "key": "alt+h",
+    "command": "vscode-neovim.send",
+    "when": "editorTextFocus && neovim.mode != insert",
+    "args": "<A-h>"
+  },
+  {
+    "key": "alt+j",
+    "command": "vscode-neovim.send",
+    "when": "editorTextFocus && neovim.mode != insert",
+    "args": "<A-j>"
+  },
+  {
+    "key": "alt+k",
+    "command": "vscode-neovim.send",
+    "when": "editorTextFocus && neovim.mode != insert",
+    "args": "<A-k>"
+  },
+  {
+    "key": "alt+l",
+    "command": "vscode-neovim.send",
+    "when": "editorTextFocus && neovim.mode != insert",
+    "args": "<A-l>"
+  },
+  {
+    "key": "alt+left",
+    "command": "vscode-neovim.send",
+    "when": "editorTextFocus && neovim.mode != insert",
+    "args": "<A-Left>"
+  },
+  {
+    "key": "alt+down",
+    "command": "vscode-neovim.send",
+    "when": "editorTextFocus && neovim.mode != insert",
+    "args": "<A-Down>"
+  },
+  {
+    "key": "alt+up",
+    "command": "vscode-neovim.send",
+    "when": "editorTextFocus && neovim.mode != insert",
+    "args": "<A-Up>"
+  },
+  {
+    "key": "alt+right",
+    "command": "vscode-neovim.send",
+    "when": "editorTextFocus && neovim.mode != insert",
+    "args": "<A-Right>"
+  },
+  {
+    "key": "alt+q",
+    "command": "workbench.action.navigateLeft",
+    "when": "!editorTextFocus && !terminalFocus && neovim.mode != 'cmdline'"
+  },
+  {
+    "key": "alt+h",
+    "command": "workbench.action.navigateLeft",
+    "when": "!editorTextFocus && !terminalFocus && neovim.mode != 'cmdline'"
+  },
+  {
+    "key": "alt+j",
+    "command": "workbench.action.navigateDown",
+    "when": "!editorTextFocus && !terminalFocus && neovim.mode != 'cmdline'"
+  },
+  {
+    "key": "alt+k",
+    "command": "workbench.action.navigateUp",
+    "when": "!editorTextFocus && !terminalFocus && neovim.mode != 'cmdline'"
+  },
+  {
+    "key": "alt+l",
+    "command": "workbench.action.navigateRight",
+    "when": "!editorTextFocus && !terminalFocus && neovim.mode != 'cmdline'"
+  },
+  {
+    "key": "enter",
+    "command": "search.action.focusSearchList",
+    "when": "searchViewletVisible && searchInputBoxFocus"
+  },
+  {
+    "key": "ctrl+n",
+    "command": "-workbench.action.files.newUntitledFile"
+  },
+  {
+    "key": "ctrl+p",
+    "command": "-workbench.action.quickOpen"
+  },
+  {
+    "key": "ctrl+q",
+    "command": "-workbench.action.quit"
+  }
+]

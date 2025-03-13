@@ -1,0 +1,69 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "maximize_terminal",
+      "command": "${command:workbench.action.toggleMaximizedPanel}"
+    },
+    {
+      "label": "unmaximize_terminal",
+      "command": "${command:workbench.action.toggleMaximizedPanel}"
+    },
+    {
+      "label": "focus_back",
+      "command": "${command:workbench.action.focusActiveEditorGroup}"
+    },
+    {
+      "label": "yazi_cmd",
+      "type": "shell",
+      "command": "yazi",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "dedicated",
+        "clear": true,
+        "close": true,
+        "showReuseMessage": true
+      }
+    },
+    {
+      "label": "lazygit_cmd",
+      "type": "shell",
+      "command": "lazygit",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "dedicated",
+        "clear": true,
+        "close": true,
+        "showReuseMessage": true
+      }
+    },
+    {
+      "label": "yazi",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        // "maximize_terminal",
+        "yazi_cmd",
+        // "unmaximize_terminal",
+        "focus_back"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "lazygit",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "maximize_terminal",
+        "lazygit_cmd",
+        "unmaximize_terminal",
+        "focus_back"
+      ],
+      "problemMatcher": []
+    }
+  ]
+}
