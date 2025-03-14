@@ -25,18 +25,6 @@ if vim.g.vscode then
     map("n", "Q", "<cmd>Quit<cr>", { desc = "quit" })
     map(
         { "n", "v", "o" },
-        "<C-H>",
-        function() require("vscode").call("workbench.action.previousEditor") end,
-        { desc = "Prev buffer" }
-    )
-    map(
-        { "n", "v", "o" },
-        "<C-L>",
-        function() require("vscode").call("workbench.action.nextEditor") end,
-        { desc = "Prev buffer" }
-    )
-    map(
-        { "n", "v", "o" },
         "<A-q>",
         function() require("vscode").call("workbench.action.closeActiveEditor") end,
         { desc = "Prev buffer" }
