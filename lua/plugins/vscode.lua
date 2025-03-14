@@ -122,7 +122,19 @@ vim.api.nvim_create_autocmd("User", {
         )
         map(
             "n",
+            "<leader>zc",
+            '<Cmd>call VSCodeNotify("editor.foldAll")<CR>',
+            { noremap = true, silent = true }
+        )
+        map(
+            "n",
             "zR",
+            '<Cmd>call VSCodeNotify("editor.unfoldAll")<CR>',
+            { noremap = true, silent = true }
+        )
+        map(
+            "n",
+            "<leader>zo",
             '<Cmd>call VSCodeNotify("editor.unfoldAll")<CR>',
             { noremap = true, silent = true }
         )

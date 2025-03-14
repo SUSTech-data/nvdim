@@ -245,7 +245,7 @@
     "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
   },
   {
-    "key": "ctrl+enter",
+    "key": "alt+f",
     "command": "workbench.action.toggleMaximizedPanel",
     "when": "terminalFocus"
   },
@@ -272,5 +272,14 @@
   {
     "key": "ctrl+pageup",
     "command": "-workbench.action.previousEditor"
+  },
+  {
+    "key": "ctrl+e",
+    "command": "-workbench.action.quickOpen"
+  },
+  {
+    "key": "ctrl+e",
+    "command": "hideSuggestWidget",
+    "when": "suggestWidgetVisible"
   }
 ]

@@ -1,5 +1,6 @@
 {
   "http.proxy": "http://127.0.0.1:7890",
+  "workbench.activityBar.orientation": "vertical",
   "editor.inlineSuggest.enabled": true,
   "editor.tabSize": 2,
   "editor.fontSize": 25,
@@ -35,7 +36,7 @@
     {
       "name": "vectorbtpro",
       "depth": 5
-    },
+    }
   ],
   "workbench.colorTheme": "Catppuccin Macchiato",
   "vscode-neovim.logOutputToConsole": true,
@@ -111,4 +112,11 @@
     "vs-kubernetes.crd-code-completion": "disabled"
   },
   "quarto.lua.provideTypes": false,
+  "cmake.showConfigureWithDebuggerNotification": false,
+  "cursor.cpp.disabledLanguages": [
+    "plaintext",
+    "markdown",
+    "scminput"
+  ],
+  "terminal.integrated.fontSize": 23,
 }
