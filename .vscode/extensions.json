@@ -1,5 +1,6 @@
 {
   "recommendations": [
+    "albert.TabOut",
     "alefragnani.project-manager",
     "asvetliakov.vscode-neovim",
     "be5invis.vscode-custom-css",
@@ -43,7 +44,6 @@
     "nefrob.vscode-just-syntax",
     "quarto.quarto",
     "redhat.vscode-yaml",
-    "saoudrizwan.claude-dev",
     "shardulm94.trailing-spaces",
     "sumneko.lua",
     "tamasfe.even-better-toml",
