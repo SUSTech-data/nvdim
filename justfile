@@ -17,3 +17,10 @@ syncto target:
 pager:
     ln -sf ~/.config/nvim ~/.config/nvimpager
     ln -sf ~/.local/share/nvim ~/.local/share/nvimpager
+
+link:
+    for f in $(ls -d vscode/*.json); do ln -sf "$(realpath "$f")" ~/.config/Code/User/$(basename $f); done
+    for f in $(ls -d vscode/*.json); do ln -sf "$(realpath "$f")" ~/.config/Cursor/User/$(basename $f); done
+
+ext:
+    code --list-extensions | jq -R '[inputs] | {"recommendations": .}' > .vscode/extensions.json
