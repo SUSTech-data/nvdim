@@ -22,6 +22,8 @@ end, { noremap = true, expr = true })
 
 -- buffers
 if vim.g.vscode then
+    map({ "n", "v", "o" }, "J", "6j", { desc = "Join line with smart whitespace removal" })
+    map({ "n", "v", "o" }, "K", "6k", { desc = "Join line with smart whitespace removal" })
     map("n", "Q", "<cmd>Quit<cr>", { desc = "quit" })
     map(
         { "n", "v", "o" },
@@ -86,7 +88,6 @@ end
 
 -- Copy/paste with system clipboard
 map({ "x" }, "y", "mmy`m", { desc = "no move yank" })
-map({ "n", "x" }, "gy", '"+y', { desc = "Copy to system clipboard" })
 map("n", "gY", '"+y$', { desc = "Copy to system clipboard" })
 map("n", "gp", '"+p', { desc = "Paste from system clipboard" })
 -- Paste in Visual with `P` to not copy selected text (`:h v_P`)
@@ -139,6 +140,10 @@ vim.api.nvim_set_keymap("x", "/", "<Esc>/\\%V", { noremap = true, silent = true 
 
 map("n", "<C-i>", "<C-i>")
 -- https://www.reddit.com/r/neovim/comments/1h7f0bz/share_your_coolest_keymap/
-map("n", "dc", "yy<cmd>normal gcc<CR>p", { desc = "Copy current line and comment" })
---
--- map("v", "dc", "ygv<cmd>normal gc<CR>gv<esc>o<esc>p", { desc = "Copy current line and comment" })
+map("n", "yc", "yy<cmd>normal gcc<CR>p", { desc = "Copy current line and comment" })
+vim.api.nvim_set_keymap("v", "<leader>yc", "ygvgc`>p", { desc = "[C]opy to a comment above" })
+map({ "x" }, "gc", function()
+    vim.cmd.normal("mm")
+    vim.cmd.normal(require("vim._comment").operator())
+    vim.cmd.normal("`m")
+end)

@@ -22,7 +22,7 @@
   {
     "key": "ctrl+/",
     "command": "workbench.action.terminal.toggleTerminal",
-    "when": "terminal.active"
+    "when": "terminal.active && terminalFocus"
   },
   {
     "key": "ctrl+`",
@@ -36,7 +36,7 @@
   {
     "key": "j",
     "command": "cursorMove",
-    "when": "editorTextFocus && neovim.mode != insert",
+    "when": "editorTextFocus && neovim.mode == normal",
     "args": {
       "to": "down",
       "by": "wrappedLine",
@@ -46,7 +46,7 @@
   {
     "key": "shift+j",
     "command": "cursorMove",
-    "when": "editorTextFocus && neovim.mode != insert",
+    "when": "editorTextFocus && neovim.mode == normal",
     "args": {
       "to": "down",
       "by": "wrappedLine",
@@ -56,7 +56,7 @@
   {
     "key": "k",
     "command": "cursorMove",
-    "when": "editorTextFocus && neovim.mode != insert",
+    "when": "editorTextFocus && neovim.mode == normal",
     "args": {
       "to": "up",
       "by": "wrappedLine",
@@ -66,7 +66,7 @@
   {
     "key": "shift+k",
     "command": "cursorMove",
-    "when": "editorTextFocus && neovim.mode != insert",
+    "when": "editorTextFocus && neovim.mode == normal",
     "args": {
       "to": "up",
       "by": "wrappedLine",
@@ -78,11 +78,11 @@
     "command": "cursorHome",
     "when": "editorTextFocus && neovim.mode != insert"
   },
-  {
-    "key": "shift+l",
-    "command": "cursorLineEnd",
-    "when": "editorTextFocus && neovim.mode != insert"
-  },
+  // {
+  //   "key": "shift+l",
+  //   "command": "cursorLineEnd",
+  //   "when": "editorTextFocus && neovim.mode != insert"
+  // },
   {
     "key": "alt+q",
     "command": "vscode-neovim.send",
@@ -205,17 +205,12 @@
     "when": "editorTextFocus && neovim.ctrlKeysInsert.o && neovim.init && neovim.mode == 'insert' && editorLangId not in 'neovim.editorLangIdExclusions'"
   },
   {
-    "key": "ctrl+o",
-    "command": "-vscode-neovim.send",
-    "when": "editorTextFocus && neovim.ctrlKeysNormal.o && neovim.init && neovim.mode != 'insert' && editorLangId not in 'neovim.editorLangIdExclusions'"
-  },
-  {
-    "key": "ctrl+o",
+    "key": "ctrl+p",
     "command": "-workbench.action.files.openLocalFile",
     "when": "remoteFileDialogVisible"
   },
   {
-    "key": "ctrl+o",
+    "key": "ctrl+p",
     "command": "aipopup.action.modal.generate",
     "when": "editorFocus && !composerBarIsVisible"
   },
@@ -235,7 +230,7 @@
     "when": "editorTextFocus && neovim.ctrlKeysNormal.b && neovim.init && neovim.mode != 'insert' && editorLangId not in 'neovim.editorLangIdExclusions'"
   },
   {
-    "key": "ctrl+o",
+    "key": "ctrl+p",
     "command": "cursorai.action.generateInTerminal",
     "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
   },
@@ -281,5 +276,10 @@
     "key": "ctrl+e",
     "command": "hideSuggestWidget",
     "when": "suggestWidgetVisible"
+  },
+  {
+    "key": "ctrl+enter",
+    "command": "-github.copilot.generate",
+    "when": "editorTextFocus && github.copilot.activated && !commentEditorFocused && !inInteractiveInput && !interactiveEditorFocused"
   }
 ]

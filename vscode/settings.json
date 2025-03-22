@@ -4,7 +4,7 @@
   "editor.inlineSuggest.enabled": true,
   "editor.tabSize": 2,
   "editor.fontSize": 25,
-  "editor.fontFamily": "JetBrainsMono Nerd Font",
+  "editor.fontFamily": "Maple Mono NF CN",
   "editor.smoothScrolling": true,
   "python.analysis.autoFormatStrings": true,
   "python.analysis.enablePytestSupport": false,
@@ -41,7 +41,8 @@
   "workbench.colorTheme": "Catppuccin Macchiato",
   "vscode-neovim.logOutputToConsole": true,
   "github.copilot.enable": {
-    "*": true,
+    "quarto": false,
+    "*": false,
     "plaintext": false,
     "markdown": false,
     "scminput": false
@@ -67,7 +68,6 @@
   "liveshare.publishWorkspaceInfo": true,
   "http.proxyStrictSSL": false,
   "diffEditor.codeLens": true,
-  "codetogether.userName": "host",
   "remote.SSH.configFile": "~/.ssh/config",
   "remote.SSH.remotePlatform": {
     "frp-host": "linux",
@@ -85,7 +85,7 @@
   },
   "terminal.external.linuxExec": "kitty",
   "editor.lineNumbers": "relative",
-  "workbench.iconTheme": "vscode-icons",
+  "workbench.iconTheme": "catppuccin-macchiato",
   "[python]": {
     "editor.defaultFormatter": "charliermarsh.ruff"
   },
@@ -119,4 +119,11 @@
     "scminput"
   ],
   "terminal.integrated.fontSize": 23,
+  "editor.wordWrap": "on",
+  "workbench.editor.enablePreview": false,
+  "python.analysis.inlayHints.functionReturnTypes": true,
+  "python.analysis.inlayHints.variableTypes": true,
+  "python.analysis.inlayHints.callArgumentNames": "partial",
+  "python.analysis.inlayHints.pytestParameters": true,
+  "editor.minimap.enabled": true,
 }

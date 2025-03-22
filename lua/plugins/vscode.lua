@@ -13,11 +13,10 @@ local vscodes = {
     "mfussenegger/nvim-treehopper",
     "mizlan/iswap.nvim",
     "JoosepAlviste/nvim-ts-context-commentstring",
-    "numToStr/Comment.nvim",
     -- "kiyoon/jupynium.nvim",
     "smoka7/hop.nvim",
     "keaising/im-select.nvim",
-    "Pocco81/auto-save.nvim",
+    -- "Pocco81/auto-save.nvim",
     -- "stevearc/conform.nvim",
     -- "williamboman/mason.nvim",
     -- "neovim/nvim-lspconfig",
@@ -51,6 +50,13 @@ vim.api.nvim_create_autocmd("User", {
         vim.keymap.del("n", "<leader>gG")
         vim.keymap.del("n", "<leader>ft")
         vim.keymap.del("n", "gf")
+        -- vim.keymap.del({ "n", "x" }, "gc")
+        -- map(
+        --     { "n", "x" },
+        --     "gc",
+        --     function() return require("vim._comment").operator() end,
+        --     { expr = true }
+        -- )
         map(
             "n",
             "<c-/>",
@@ -94,10 +100,16 @@ vim.api.nvim_create_autocmd("User", {
                 require("vscode").call("workbench.action.tasks.runTask", { args = { "lazygit" } })
             end
         )
-        map("n", "ga", function() require("vscode").call("editor.action.quickFix") end)
+        map("n", "gy", function() require("vscode").call("editor.action.goToTypeDefinition") end)
+        map(
+            "n",
+            "gr",
+            function() require("vscode").call("editor.action.referenceSearch.trigger") end
+        )
+        map("n", "go", function() require("vscode").call("breadcrumbs.focusAndSelect") end)
         map("n", "<leader>rn", function() require("vscode").call("editor.action.rename") end)
         map(
-            { "v", "o" },
+            { "x" },
             "<leader>fm",
             function() require("vscode").call("editor.action.formatSelection") end
         )
@@ -106,13 +118,7 @@ vim.api.nvim_create_autocmd("User", {
             "<leader>fm",
             function() require("vscode").call("editor.action.formatDocument") end
         )
-        map(
-            "n",
-            "gr",
-            function() require("vscode").call("editor.action.referenceSearch.trigger") end
-        )
 
-        map("n", "go", function() require("vscode").call("breadcrumbs.focusAndSelect") end)
         -- Remap folding keys
         map(
             "n",
