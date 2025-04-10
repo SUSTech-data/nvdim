@@ -64,6 +64,18 @@
         "focus_back"
       ],
       "problemMatcher": []
+    },
+    {
+      "label": "在外部终端中用 Neovim 打开当前文件",
+      "type": "shell",
+      "command": "kitty @ launch --cwd=${fileDirname} nvim ${file}",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "new"
+      },
+      "problemMatcher": []
     }
   ]
 }

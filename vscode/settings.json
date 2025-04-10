@@ -79,7 +79,6 @@
   "terminal.integrated.enableImages": true,
   "terminal.integrated.fontLigatures.enabled": true,
   "terminal.integrated.smoothScrolling": true,
-  "terminal.integrated.fontFamily": "VictorMono Nerd Font",
   "files.associations": {
     "pixi.lock": "yaml"
   },
@@ -126,4 +125,6 @@
   "python.analysis.inlayHints.callArgumentNames": "partial",
   "python.analysis.inlayHints.pytestParameters": true,
   "editor.minimap.enabled": true,
+  "notebook.output.scrolling": true,
+  "chat.editor.fontSize": 23,
 }
