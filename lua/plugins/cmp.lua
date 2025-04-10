@@ -1,3 +1,11 @@
+local source_priority = {
+    lsp = 1,
+    path = 2,
+    buffer = 3,
+    ripgrep = 4,
+    neopyter = 1,
+    snippets = 5,
+}
 return {
     {
         "Saghen/blink.cmp",
@@ -18,13 +26,22 @@ return {
             },
             sources = {
                 compat = { "neopyter" },
-                default = { "lsp", "path", "snippets", "buffer" },
+                default = { "snippets", "lsp", "path", "buffer" },
                 providers = {
                     neopyter = {
                         name = "neopyter",
                         module = "blink.compat.source",
                         opts = { completers = { "CompletionProvider:kernel" } },
                     },
+                },
+            },
+            fuzzy = {
+                sorts = {
+                    function(a, b)
+                        return source_priority[a.source_id] > source_priority[b.source_id]
+                    end,
+                    "score",
+                    "sort_text",
                 },
             },
             cmdline = {
@@ -43,6 +60,9 @@ return {
             keymap = {
                 preset = "enter",
                 ["<Tab>"] = {
+                    function(cmp)
+                        if require("luasnip").expandable() then return cmp.accept() end
+                    end,
                     function(cmp)
                         if cmp.snippet_active() then return cmp.accept() end
                     end,

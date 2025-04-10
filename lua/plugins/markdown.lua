@@ -48,7 +48,8 @@ return {
         cond = function() return vim.g.neovide == nil and vim.g.vscode == nil end,
         opts = {
             backend = "kitty",
-            processor = "magick_rock",
+            processor = "magick_cli",
+            hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.avif" },
             integrations = {
                 markdown = {
                     enabled = true,

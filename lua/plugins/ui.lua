@@ -185,4 +185,12 @@ return {
         "0xstepit/flow.nvim",
         opts = {},
     },
+    {
+        "anAcc22/sakura.nvim",
+        dependencies = {
+            "rktjmp/lush.nvim",
+            -- "preservim/vim-markdown",
+            -- "lervag/vimtex",
+        },
+    },
 }
