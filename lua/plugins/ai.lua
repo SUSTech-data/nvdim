@@ -1,18 +1,53 @@
 return {
     {
         "yetone/avante.nvim",
-        -- init = function() require("avante_lib").load() end,
-        keys = { "<leader>a" },
+        event = "VeryLazy",
+        dependencies = {
+            "stevearc/dressing.nvim",
+            "ibhagwan/fzf-lua",
+        },
         opts = {
-            provider = "copilot",
             hints = { enabled = false },
+            provider = "openrouter",
+            auto_suggestions_provider = "copilot", -- Since auto-suggestions are a high-frequency operation and therefore expensive, it is recommended to specify an inexpensive provider or even a free provider: copilot
+            vendors = {
+                openrouter = {
+                    __inherited_from = "openai",
+                    endpoint = "https://openrouter.ai/api/v1",
+                    api_key_name = "OPENROUTER_API_KEY",
+                    model = "anthropic/claude-3.7-sonnet",
+                },
+            },
+            -- File selector configuration
+            file_selector = {
+                provider = "telescope", -- Avoid native provider issues
+                provider_opts = {},
+            },
         },
         build = LazyVim.is_win()
                 and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
             or "make",
     },
     {
+        "MeanderingProgrammer/render-markdown.nvim",
+        optional = true,
+        ft = function(_, ft) vim.list_extend(ft, { "Avante" }) end,
+        opts = function(_, opts)
+            opts.file_types = vim.list_extend(opts.file_types or {}, { "Avante" })
+        end,
+    },
+    {
+        "folke/which-key.nvim",
+        optional = true,
+        opts = {
+            spec = {
+                { "<leader>a", group = "ai" },
+            },
+        },
+    },
+    {
         "GeorgesAlkhouri/nvim-aider",
+        enabled = false,
         cmd = {
             "Aider",
         },
