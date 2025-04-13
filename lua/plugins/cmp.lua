@@ -1,11 +1,3 @@
-local source_priority = {
-    lsp = 1,
-    path = 2,
-    buffer = 3,
-    ripgrep = 4,
-    neopyter = 1,
-    snippets = 5,
-}
 return {
     {
         "Saghen/blink.cmp",
@@ -25,20 +17,72 @@ return {
                 jump = function(direction) require("luasnip").jump(direction) end,
             },
             sources = {
-                compat = { "neopyter" },
-                default = { "snippets", "lsp", "path", "buffer" },
+                compat = {
+                    "neopyter",
+                    "avante_commands",
+                    "avante_mentions",
+                    "avante_files",
+                },
+                default = {
+                    "snippets",
+                    "lsp",
+                    "path",
+                    "buffer",
+                    "neopyter",
+                    "avante_commands",
+                    "avante_mentions",
+                    "avante_files",
+                },
                 providers = {
                     neopyter = {
                         name = "neopyter",
                         module = "blink.compat.source",
                         opts = { completers = { "CompletionProvider:kernel" } },
                     },
+                    avante_commands = {
+                        name = "avante_commands",
+                        module = "blink.compat.source",
+                        score_offset = 90,
+                        opts = {},
+                    },
+                    avante_files = {
+                        name = "avante_files",
+                        module = "blink.compat.source",
+                        score_offset = 100,
+                        opts = {},
+                    },
+                    avante_mentions = {
+                        name = "avante_mentions",
+                        module = "blink.compat.source",
+                        score_offset = 1000,
+                        opts = {},
+                    },
                 },
             },
             fuzzy = {
                 sorts = {
                     function(a, b)
-                        return source_priority[a.source_id] > source_priority[b.source_id]
+                        local source_priority = {
+                            lsp = 4,
+                            neopyter = 1,
+                            path = 2,
+                            buffer = 3,
+                            ripgrep = 3,
+                            snippets = 5,
+                            avante = 4,
+                        }
+
+                        local function get_priority(source_id)
+                            if source_priority[source_id] then return source_priority[source_id] end
+
+                            for prefix, priority in pairs(source_priority) do
+                                if source_id:find("^" .. prefix) then return priority end
+                            end
+
+                            return 0
+                        end
+
+                        return get_priority(a.source_id) > get_priority(b.source_id)
                     end,
                     "score",
                     "sort_text",
@@ -71,6 +115,9 @@ return {
                 ["<Tab>"] = {
                     function(cmp)
                         if require("luasnip").expandable() then return cmp.accept() end
+                    end,
+                    function(cmp)
+                        if cmp.snippet_active() then return cmp.accept() end
                     end,
                     function(cmp)
                         if cmp.snippet_active() then return cmp.accept() end
