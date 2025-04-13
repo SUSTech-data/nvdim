@@ -56,6 +56,15 @@ return {
                     if type == ":" or type == "@" then return { "cmdline" } end
                     return {}
                 end,
+                completion = {
+                    menu = {
+                        auto_show = function(ctx)
+                            return vim.fn.getcmdtype() == ":"
+                            -- enable for inputs as well, with:
+                            -- or vim.fn.getcmdtype() == '@'
+                        end,
+                    },
+                },
             },
             keymap = {
                 preset = "enter",
@@ -151,5 +160,76 @@ return {
                 end
             end
         end,
+    },
+    {
+        "folke/noice.nvim",
+        event = function(event) return "User IceLoad" end,
+        opts = {
+            notify = { enabled = true },
+            messages = {
+                enabled = true, -- enables the Noice messages UI
+                view = "mini",
+            },
+            routes = {
+                {
+                    filter = {
+                        event = "notify",
+                        any = { { find = "# Active:" }, { find = "# Inactive:" } },
+                    },
+                },
+                {
+                    filter = {
+                        -- any = { { find = "kernelComplete" }, { find = "[cord.nvim]" } },
+                        find = "kernelComplete",
+                    },
+                    opts = { skip = true },
+                },
+                -- {
+                --     filter = {
+                --         any = { { find = "Neopyter" }, { find = "incorrect offset" } },
+                --     },
+                --     opts = { skip = true },
+                -- },
+                {
+                    filter = {
+                        event = "notify",
+                        any = { { find = "# Plugin Updates" } },
+                    },
+                    view = "notify_send",
+                },
+                {
+                    filter = {
+                        -- any = { { find = "kernelComplete" }, { find = "[cord.nvim]" } },
+                        find = "SUCCESS",
+                    },
+                    view = "mini",
+                },
+                {
+                    filter = {
+                        -- any = { { find = "kernelComplete" }, { find = "[cord.nvim]" } },
+                        find = "cord.nvim",
+                    },
+                    view = "mini",
+                },
+                {
+                    view = "split",
+                    filter = { event = "msg_show", min_height = 20 },
+                },
+            },
+            popupmenu = {
+                enabled = true, -- enables the Noice popupmenu UI
+                backend = "nui", -- backend to use to show regular cmdline completions
+            },
+            lsp = {
+                signature = {
+                    auto_open = {
+                        enabled = true,
+                        trigger = true, -- Automatically show signature help when typing a trigger character from the LSP
+                        luasnip = true, -- Will open signature help when jumping to Luasnip insert nodes
+                        throttle = 50, -- Debounce lsp signature help request by 50ms
+                    },
+                },
+            },
+        },
     },
 }
