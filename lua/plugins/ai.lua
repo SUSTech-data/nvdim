@@ -14,34 +14,29 @@ return {
     {
         "GeorgesAlkhouri/nvim-aider",
         cmd = {
-            "AiderTerminalToggle",
-            "AiderHealth",
+            "Aider",
         },
         keys = {
-            { "<leader>a/", "<cmd>AiderTerminalToggle<cr>", desc = "Open Aider" },
+            { "<leader>a/", "<cmd>Aider toggle<cr>", desc = "Toggle Aider" },
+            { "<leader>as", "<cmd>Aider send<cr>", desc = "Send to Aider", mode = { "n", "v" } },
+            { "<leader>ac", "<cmd>Aider command<cr>", desc = "Aider Commands" },
+            { "<leader>ab", "<cmd>Aider buffer<cr>", desc = "Send Buffer" },
+            { "<leader>a+", "<cmd>Aider add<cr>", desc = "Add File" },
+            { "<leader>a-", "<cmd>Aider drop<cr>", desc = "Drop File" },
+            { "<leader>ar", "<cmd>Aider add readonly<cr>", desc = "Add Read-Only" },
             {
-                "<leader>as",
-                "<cmd>AiderTerminalSend<cr>",
-                desc = "Send to Aider",
-                mode = { "n", "v" },
-            },
-            { "<leader>ac", "<cmd>AiderQuickSendCommand<cr>", desc = "Send Command To Aider" },
-            { "<leader>ab", "<cmd>AiderQuickSendBuffer<cr>", desc = "Send Buffer To Aider" },
-            { "<leader>a+", "<cmd>AiderQuickAddFile<cr>", desc = "Add File to Aider" },
-            { "<leader>a-", "<cmd>AiderQuickDropFile<cr>", desc = "Drop File from Aider" },
-            { "<leader>ar", "<cmd>AiderQuickReadOnlyFile<cr>", desc = "Add File as Read-Only" },
-            -- Example nvim-tree.lua integration if needed
-            {
-                "<leader>a+",
-                "<cmd>AiderTreeAddFile<cr>",
-                desc = "Add File from Tree to Aider",
-                ft = "NvimTree",
-            },
-            {
-                "<leader>a-",
-                "<cmd>AiderTreeDropFile<cr>",
-                desc = "Drop File from Tree from Aider",
-                ft = "NvimTree",
+                "<leader>aa",
+                function()
+                    local buffers = vim.api.nvim_list_bufs()
+                    local api = require("nvim_aider").api
+                    for _, bufnr in ipairs(buffers) do
+                        if vim.api.nvim_buf_is_valid(bufnr) then
+                            local bufname = vim.api.nvim_buf_get_name(bufnr)
+                            if bufname:find("^" .. LazyVim.root()) then api.add_file(bufname) end
+                        end
+                    end
+                end,
+                desc = "Add all Buffer",
             },
         },
         dependencies = {
