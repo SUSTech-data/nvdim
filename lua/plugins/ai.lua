@@ -4,7 +4,6 @@ return {
         event = "VeryLazy",
         dependencies = {
             "stevearc/dressing.nvim",
-            "ibhagwan/fzf-lua",
         },
         opts = {
             provider = "openrouter",
@@ -33,7 +32,7 @@ return {
             },
             -- File selector configuration
             file_selector = {
-                provider = "telescope", -- Avoid native provider issues
+                provider = "snacks", -- Avoid native provider issues
                 provider_opts = {},
             },
             behaviour = {
