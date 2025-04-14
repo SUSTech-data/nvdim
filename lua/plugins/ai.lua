@@ -4,7 +4,6 @@ return {
         event = "VeryLazy",
         dependencies = {
             "stevearc/dressing.nvim",
-            "ibhagwan/fzf-lua",
         },
         opts = {
             hints = { enabled = false },
@@ -20,13 +19,19 @@ return {
             },
             -- File selector configuration
             file_selector = {
-                provider = "telescope", -- Avoid native provider issues
+                provider = "snacks", -- Avoid native provider issues
                 provider_opts = {},
+            },
+            behaviour = {
+                enable_claude_text_editor_tool_mode = true,
             },
         },
         build = LazyVim.is_win()
                 and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
             or "make",
+        keys = {
+            { "<leader>aC", "<cmd>AvanteClear<cr>", desc = "avante: clear" },
+        },
     },
     {
         "MeanderingProgrammer/render-markdown.nvim",
