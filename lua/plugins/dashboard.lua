@@ -18,7 +18,7 @@ return {
                             icon = " ",
                             key = "f",
                             desc = "Recent Files",
-                            action = ":lua Snacks.dashboard.pick('oldfiles')",
+                            action = ":lua Snacks.picker.recent()"
                         },
                         {
                             icon = " ",
