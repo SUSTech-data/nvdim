@@ -42,7 +42,7 @@
   "vscode-neovim.logOutputToConsole": true,
   "github.copilot.enable": {
     "quarto": false,
-    "*": false,
+    "*": true,
     "plaintext": false,
     "markdown": false,
     "scminput": false
@@ -127,4 +127,5 @@
   "editor.minimap.enabled": true,
   "notebook.output.scrolling": true,
   "chat.editor.fontSize": 23,
+  "chat.editing.confirmEditRequestRetry": false,
 }
