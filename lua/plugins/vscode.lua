@@ -1,4 +1,14 @@
-if not vim.g.vscode then return {} end
+if not vim.g.vscode then
+    return {
+        {
+            "fecet/vicode",
+            cmd = { "ShareEditStart" },
+            dependencies = {
+                { "vim-denops/denops.vim", setup = true },
+            },
+        },
+    }
+end
 
 local g, o, opt = vim.g, vim.o, vim.opt
 o.cmdheight = 10
