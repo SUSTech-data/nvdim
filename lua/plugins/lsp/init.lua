@@ -73,6 +73,16 @@ return {
                 basics_ls = require("plugins.lsp.servers.basics"),
                 protols = {},
                 clangd = { filetypes = { "c", "cpp", "cuda" } },
+                harper_ls = {
+                    settings = {
+                        ["harper-ls"] = {
+                            userDictPath = vim.fs.joinpath(
+                                vim.fn.stdpath("config"),
+                                "dictionary.txt"
+                            ),
+                        },
+                    },
+                },
             },
         },
     },
