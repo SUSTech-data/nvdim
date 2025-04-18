@@ -1,0 +1,9 @@
+clangd
+protols
+quitall
+cuda
+Kurtosis
+scrollback
+cpp
+Skewness
+autoformat
