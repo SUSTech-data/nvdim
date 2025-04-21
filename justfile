@@ -20,6 +20,7 @@ pager:
 
 link:
     -for f in $(ls -d vscode/*.json); do ln -sf "$(realpath "$f")" ~/.config/Code/User/$(basename $f); done
+    -for f in $(ls -d vscode/*.json); do ln -sf "$(realpath "$f")" "$HOME/.config/Code - Insiders/User/$(basename $f)"; done
     -for f in $(ls -d vscode/*.json); do ln -sf "$(realpath "$f")" ~/.config/Cursor/User/$(basename $f); done
 
 ext:
