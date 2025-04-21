@@ -88,7 +88,7 @@ return {
     },
     {
         "williamboman/mason.nvim",
-        opts = { ensure_installed = { "basics-language-server", "harper-ls", "protols" } },
+        opts = { ensure_installed = { "basics-language-server", "harper-ls", "protols", "buf" } },
     },
     {
         "nvimdev/lspsaga.nvim",
