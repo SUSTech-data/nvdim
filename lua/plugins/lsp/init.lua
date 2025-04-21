@@ -195,46 +195,8 @@ return {
         branch = "nightly",
         opts = {
             virt_text_pos = "inline",
-            -- display_callback = function(line_hints, options, bufnr)
-            --     local lhint = {}
-            --     for _, hint in pairs(line_hints) do
-            --         local line = vim.api.nvim_win_get_cursor(0)[1]
-            --         if hint.position.line ~= (line - 1) then
-            --             -- Whatever styling you want goes here
-            --             local text = ""
-            --             local label = hint.label
-            --             if type(label) == "string" then
-            --                 text = label
-            --             else
-            --                 for _, part in ipairs(label) do
-            --                     text = text .. part.value
-            --                 end
-            --             end
-            --             if hint.paddingLeft then text = " " .. text end
-            --             if hint.paddingRight then text = text .. " " end
-            --             lhint[#lhint + 1] = {
-            --                 text = text,
-            --                 col = hint.position.character,
-            --             }
-            --         end
-            --         -- 如果需要在这里添加其他逻辑，可以继续
-            --     end
-            --     return lhint
-            -- end,
         },
         config = function(_, opts)
-            -- require("inlay-hint").setup({
-            --     opts,
-            -- })
-            -- vim.api.nvim_create_autocmd({
-            --     "CursorMoved",
-            --     "CursorMovedI",
-            -- }, {
-            --     callback = function(_)
-            --         local hint = require("inlay-hint")
-            --         if hint.is_enabled() then hint.enable() end
-            --     end,
-            -- })
             vim.api.nvim_create_autocmd("InsertEnter", {
                 callback = function() vim.lsp.inlay_hint.enable(false) end,
             })
@@ -243,5 +205,13 @@ return {
                 callback = function() vim.lsp.inlay_hint.enable(true) end,
             })
         end,
+    },
+    {
+        "mfussenegger/nvim-lint",
+        opts = {
+            linters_by_ft = {
+                proto = { "buf_lint" },
+            },
+        },
     },
 }
