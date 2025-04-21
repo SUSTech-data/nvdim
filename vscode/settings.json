@@ -41,11 +41,7 @@
   "workbench.colorTheme": "Catppuccin Macchiato",
   "vscode-neovim.logOutputToConsole": true,
   "github.copilot.enable": {
-    "quarto": false,
-    "*": true,
-    "plaintext": false,
-    "markdown": false,
-    "scminput": false
+    "*": false
   },
   "extensions.experimental.affinity": {
     "asvetliakov.vscode-neovim": 1
@@ -128,4 +124,18 @@
   "notebook.output.scrolling": true,
   "chat.editor.fontSize": 23,
   "chat.editing.confirmEditRequestRetry": false,
+  "chat.edits2.enabled": true,
+  "chat.renderRelatedFiles": true,
+  "inlineChat.enableV2": true,
+  "debug.console.fontSize": 20,
+  "scm.inputFontSize": 20,
+  "remote.extensionKind": {
+    "GitHub.copilot": [
+      "ui"
+    ],
+    "GitHub.copilot-chat": [
+      "ui"
+    ],
+  },
+  "npm.packageManager": "pnpm"
 }
