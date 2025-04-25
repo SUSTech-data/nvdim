@@ -1,5 +1,9 @@
 return {
     {
+        "folke/snacks.nvim",
+        opts = { image = {} },
+    },
+    {
         "iamcco/markdown-preview.nvim",
         build = "cd app && yarn install",
         ft = { "quarto", "markdown", "rmd" },
@@ -43,35 +47,8 @@ return {
     },
 
     {
-        "3rd/image.nvim",
-        event = "User IceLoad",
-        cond = function() return vim.g.neovide == nil and vim.g.vscode == nil end,
-        opts = {
-            backend = "kitty",
-            processor = "magick_cli",
-            hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.avif" },
-            integrations = {
-                markdown = {
-                    enabled = true,
-                    clear_in_insert_mode = true,
-                    download_remote_images = true,
-                    only_render_image_at_cursor = true,
-                    filetypes = { "markdown", "vimwiki", "quarto" }, -- markdown extensions (ie. quarto) can go here
-                },
-            },
-        },
-    },
-    {
         "MeanderingProgrammer/render-markdown.nvim",
         ft = { "markdown", "norg", "rmd", "org", "quarto" },
-    },
-    {
-        "Thiago4532/mdmath.nvim",
-        ft = { "markdown", "norg", "rmd", "org", "quarto" },
-        dependencies = {
-            "nvim-treesitter/nvim-treesitter",
-        },
-        opts = { filetypes = { "markdown", "quarto" } },
     },
     {
         "neovim/nvim-lspconfig",
