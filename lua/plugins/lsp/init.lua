@@ -71,7 +71,6 @@ return {
                 pylance = require("plugins.lsp.servers.pylance"),
                 ruff = require("plugins.lsp.servers.ruff"),
                 basics_ls = require("plugins.lsp.servers.basics"),
-                protols = {},
                 clangd = { filetypes = { "c", "cpp", "cuda" } },
                 harper_ls = {
                     settings = {
@@ -88,7 +87,7 @@ return {
     },
     {
         "williamboman/mason.nvim",
-        opts = { ensure_installed = { "basics-language-server", "harper-ls", "protols", "buf" } },
+        opts = { ensure_installed = { "basics-language-server", "harper-ls", "buf" } },
     },
     {
         "nvimdev/lspsaga.nvim",
