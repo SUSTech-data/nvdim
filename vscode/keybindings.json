@@ -210,11 +210,6 @@
     "when": "remoteFileDialogVisible"
   },
   {
-    "key": "ctrl+p",
-    "command": "aipopup.action.modal.generate",
-    "when": "editorFocus && !composerBarIsVisible"
-  },
-  {
     "key": "ctrl+k",
     "command": "-aipopup.action.modal.generate",
     "when": "editorFocus && !composerBarIsVisible"
@@ -228,11 +223,6 @@
     "key": "ctrl+b",
     "command": "-vscode-neovim.ctrl-b",
     "when": "editorTextFocus && neovim.ctrlKeysNormal.b && neovim.init && neovim.mode != 'insert' && editorLangId not in 'neovim.editorLangIdExclusions'"
-  },
-  {
-    "key": "ctrl+p",
-    "command": "cursorai.action.generateInTerminal",
-    "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
   },
   {
     "key": "ctrl+k",
