@@ -1,0 +1,13 @@
+[workspace]
+authors = ["fecet <xiezej@gmail.com>"]
+channels = ["conda-forge"]
+name = "nvim"
+platforms = ["linux-64"]
+version = "0.1.0"
+
+[tasks]
+
+[dependencies]
+just = "*"
+yq = "*"
+jq = "*"
