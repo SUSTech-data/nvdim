@@ -1,3 +1,6 @@
+code := "code-insiders"
+Code := "Code - Insiders"
+
 syncfrom target:
     rsync -avP {{ target }}:~/codes/nvim/ ~/.config/nvim/ --delete
     rsync -avP {{ target }}:~/.local/share/nvim/ ~/.local/share/nvim/ --delete
@@ -18,10 +21,12 @@ pager:
     ln -sf ~/.config/nvim ~/.config/nvimpager
     ln -sf ~/.local/share/nvim ~/.local/share/nvimpager
 
-link:
-    -for f in $(ls -d vscode/*.json); do ln -sf "$(realpath "$f")" ~/.config/Code/User/$(basename $f); done
-    -for f in $(ls -d vscode/*.json); do ln -sf "$(realpath "$f")" "$HOME/.config/Code - Insiders/User/$(basename $f)"; done
-    -for f in $(ls -d vscode/*.json); do ln -sf "$(realpath "$f")" ~/.config/Cursor/User/$(basename $f); done
+setup:
+    for f in $(ls -d vscode/*.json); do ln -sf "$(realpath "$f")" "$HOME/.config/{{ Code }}/User/$(basename $f)"; done
 
-ext:
-    code --list-extensions | jq -R '[inputs] | {"recommendations": .}' > .vscode/extensions.json
+export-ext:
+    # ${{ code }} --list-extensions | jq -R '[inputs] | {"recommendations": .}' > .vscode/extensions.json
+    {{ code }} --list-extensions > extensions-list.txt
+
+import-ext:
+    xargs -L1 {{ code }} --install-extension < extensions-list.txt
