@@ -135,7 +135,8 @@
     ],
     "GitHub.copilot-chat": [
       "ui"
-    ],
+    ]
   },
-  "npm.packageManager": "pnpm"
+  "npm.packageManager": "pnpm",
+  "augment.chat.userGuidelines": "- 使用中文展示思考过程\n- 确保只针对关键代码添加注释,并使用英文",
 }
