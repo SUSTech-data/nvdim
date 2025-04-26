@@ -138,5 +138,5 @@
     ]
   },
   "npm.packageManager": "pnpm",
-  "augment.chat.userGuidelines": "- 使用中文展示思考过程\n- 确保只针对关键代码添加注释,并使用英文",
+  "augment.chat.userGuidelines": "- 使用中文展示思考过程, 但使用英文注释\n- 确保只针对关键代码添加注释",
 }
