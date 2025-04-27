@@ -21,12 +21,15 @@ pager:
     ln -sf ~/.config/nvim ~/.config/nvimpager
     ln -sf ~/.local/share/nvim ~/.local/share/nvimpager
 
-setup:
+install-arch:
+    yay -S ttf-maple-beta-nf-cn
+
+setup: && export-ext
     for f in $(ls -d vscode/*.json); do ln -sf "$(realpath "$f")" "$HOME/.config/{{ Code }}/User/$(basename $f)"; done
 
 export-ext:
     # ${{ code }} --list-extensions | jq -R '[inputs] | {"recommendations": .}' > .vscode/extensions.json
-    {{ code }} --list-extensions > extensions-list.txt
+    {{ code }} --list-extensions > vscode/extensions-list.txt
 
 import-ext:
-    xargs -L1 {{ code }} --install-extension < extensions-list.txt
+    xargs -L1 {{ code }} --install-extension < vscode/extensions-list.txt
