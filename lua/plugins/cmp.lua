@@ -78,7 +78,19 @@ local function safe_copilot_accept()
         jump_info.jump_chain = {}
         local temp_node = current_node
         local idx = 1
+        -- Use a table to track visited nodes to detect circular references
+        local visited_nodes = {}
         while temp_node and temp_node.next do
+            -- Check if we've already seen this node (circular reference)
+            if visited_nodes[temp_node.next] then
+                -- We found a circular reference, break the loop
+                break
+            end
+
+            -- Record this node as visited
+            visited_nodes[temp_node.next] = true
+
+            -- Store node information
             jump_info.jump_chain[idx] = {
                 node = temp_node.next,
                 pos = temp_node.next.pos,
@@ -86,8 +98,6 @@ local function safe_copilot_accept()
             }
             temp_node = temp_node.next
             idx = idx + 1
-            -- Prevent infinite loops in case of circular references
-            if idx > 100 then break end
         end
     end
 
