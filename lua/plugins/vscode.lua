@@ -24,16 +24,8 @@ local vscodes = {
     "mfussenegger/nvim-treehopper",
     "mizlan/iswap.nvim",
     "JoosepAlviste/nvim-ts-context-commentstring",
-    -- "kiyoon/jupynium.nvim",
     "smoka7/hop.nvim",
     "keaising/im-select.nvim",
-    -- "Pocco81/auto-save.nvim",
-    -- "stevearc/conform.nvim",
-    -- "williamboman/mason.nvim",
-    -- "neovim/nvim-lspconfig",
-    -- "p00f/clangd_extensions.nvim",
-    -- "mikavilpas/yazi.nvim",
-    -- "nvim-lua/plenary.nvim",
 }
 local L = {}
 for _, key in ipairs(vscodes) do
@@ -54,20 +46,12 @@ vim.api.nvim_create_autocmd("User", {
             [[<cmd>lua require('vscode').action('workbench.action.gotoSymbol')<cr>]]
         )
 
-        -- Navigate VSCode tabs like lazyvim buffers
         vim.keymap.del("n", "<c-/>")
         vim.keymap.del("n", "<c-_>")
         vim.keymap.del("n", "<leader>gg")
         vim.keymap.del("n", "<leader>gG")
         vim.keymap.del("n", "<leader>ft")
         vim.keymap.del("n", "gf")
-        -- vim.keymap.del({ "n", "x" }, "gc")
-        -- map(
-        --     { "n", "x" },
-        --     "gc",
-        --     function() return require("vim._comment").operator() end,
-        --     { expr = true }
-        -- )
         map(
             "n",
             "<c-/>",
@@ -76,7 +60,6 @@ vim.api.nvim_create_autocmd("User", {
         )
         local terminal_name = "zsh"
         map("n", "<leader>ft", function()
-            -- 通过 eval 查找当前终端列表中是否存在指定名称的终端，findIndex 返回 -1 表示未找到
             local idx = require("vscode").eval(
                 "return vscode.window.terminals.findIndex((t, i) => i > 0 && t.name === '"
                     .. terminal_name
@@ -92,7 +75,6 @@ vim.api.nvim_create_autocmd("User", {
         local yazi_name = "yazi_cmd"
 
         map("n", "<leader>ee", function()
-            -- 通过 eval 查找当前终端列表中是否存在指定名称的终端，findIndex 返回 -1 表示未找到
             local idx = require("vscode").eval(
                 "return vscode.window.terminals.findIndex(t => t.name === '" .. yazi_name .. "')"
             )
@@ -232,7 +214,5 @@ vim.api.nvim_create_autocmd("User", {
         end)
     end,
 })
-
--- vim.list_extend(L, enables)
 
 return L
