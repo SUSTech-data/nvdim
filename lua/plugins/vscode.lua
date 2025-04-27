@@ -2,6 +2,7 @@ if not vim.g.vscode then
     return {
         {
             "fecet/vicode",
+            build = "rsync -avP $PWD ~/.vscode-insiders/extensions/ --delete --exclude .git",
             cmd = { "ShareEditStart" },
             dependencies = {
                 { "vim-denops/denops.vim", setup = true },
