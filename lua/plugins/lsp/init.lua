@@ -73,6 +73,10 @@ return {
                 basics_ls = require("plugins.lsp.servers.basics"),
                 clangd = { filetypes = { "c", "cpp", "cuda" } },
                 harper_ls = {
+                    filetypes = {
+                        "gitcommit",
+                        "markdown",
+                    },
                     settings = {
                         ["harper-ls"] = {
                             userDictPath = vim.fs.joinpath(
