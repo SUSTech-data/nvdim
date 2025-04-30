@@ -397,12 +397,12 @@ return {
                     },
                     opts = { skip = true },
                 },
-                -- {
-                --     filter = {
-                --         any = { { find = "Neopyter" }, { find = "incorrect offset" } },
-                --     },
-                --     opts = { skip = true },
-                -- },
+                {
+                    filter = {
+                        any = { { find = "Copilot.lua" } },
+                    },
+                    opts = { skip = true },
+                },
                 {
                     filter = {
                         event = "notify",
