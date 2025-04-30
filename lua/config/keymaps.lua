@@ -75,35 +75,6 @@ else
     map("n", "<S-left>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
     map("n", "<S-right>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
     map("n", "D", "K", { noremap = true })
-    map("n", "<leader>ov", function()
-        local force_new = false
-
-        local file_path = vim.fn.expand("%:p")
-        local line_num = vim.fn.line(".")
-        local col_num = vim.fn.col(".")
-
-        local result = vim.fn.system(
-            "git -C "
-                .. vim.fn.shellescape(vim.fn.expand("%:p:h"))
-                .. " rev-parse --show-toplevel 2>/dev/null"
-        )
-        local git_root = vim.v.shell_error ~= 0 and nil or result:gsub("\n", "")
-
-        local cursor_args = { "code-insiders" }
-
-        if force_new then
-            table.insert(cursor_args, "-n") -- 新しいウィンドウを強制
-        elseif git_root then
-            table.insert(cursor_args, "-r")
-        end
-
-        if git_root then table.insert(cursor_args, git_root) end
-
-        table.insert(cursor_args, "-g")
-        table.insert(cursor_args, string.format("%s:%s:%s", file_path, line_num, col_num))
-
-        vim.system(cursor_args, { detach = true })
-    end, { desc = "Open in vscode" })
 end
 
 vim.keymap.del("n", "gco")

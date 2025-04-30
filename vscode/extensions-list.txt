@@ -5,6 +5,7 @@ bhargavdetroja.export-your-extensions
 catppuccin.catppuccin-vsc
 catppuccin.catppuccin-vsc-icons
 charliermarsh.ruff
+coder.coder-remote
 connor4312.esbuild-problem-matchers
 davidanson.vscode-markdownlint
 dbaeumer.vscode-eslint
