@@ -2,9 +2,10 @@ return {
     -- { "goolord/alpha-nvim", enabled = false },
     {
         "folke/snacks.nvim",
+        dependencies = { { "wolfwfr/vimatrix.nvim" } },
         opts = {
             dashboard = {
-                -- width = 100,
+                width = 70,
                 autokeys = "etovxqpdygfblzhckisuran",
                 preset = {
                     keys = {
@@ -18,7 +19,7 @@ return {
                             icon = " ",
                             key = "f",
                             desc = "Recent Files",
-                            action = ":lua Snacks.picker.recent()"
+                            action = ":lua Snacks.picker.recent()",
                         },
                         {
                             icon = " ",
@@ -55,14 +56,14 @@ return {
                     },
                 },
                 sections = {
-                    {
-                        section = "terminal",
-                        cmd = "cmatrix",
-                        enabled = vim.env.TERM ~= "linux",
-                        height = 5,
-                        pane = 2,
-                        padding = 3,
-                    },
+                    -- {
+                    --     section = "terminal",
+                    --     cmd = "cmatrix",
+                    --     enabled = vim.env.TERM ~= "linux",
+                    --     height = 5,
+                    --     pane = 2,
+                    --     padding = 3,
+                    -- },
 
                     { section = "header" },
                     -- {
@@ -74,7 +75,7 @@ return {
                     -- },
                     { section = "keys", padding = 4 },
                     {
-                        pane = 2,
+                        -- pane = 2,
                         icon = " ",
                         title = "Recent Files",
                         section = "recent_files",
@@ -83,7 +84,7 @@ return {
                         action = function(path) vim.cmd(":e " .. path) end,
                     },
                     {
-                        pane = 2,
+                        -- pane = 2,
                         icon = " ",
                         title = "Projects",
                         section = "projects",
@@ -112,22 +113,34 @@ return {
                             })
                         end,
                     },
-                    {
-                        pane = 2,
-                        icon = " ",
-                        title = "Git Status",
-                        section = "terminal",
-                        enabled = vim.fn.isdirectory(".git") == 1,
-                        cmd = "hub status --short --branch --renames",
-                        height = 5,
-                        padding = 1,
-                        ttl = 0,
-                        indent = 3,
-                    },
+                    -- {
+                    --     pane = 2,
+                    --     icon = " ",
+                    --     title = "Git Status",
+                    --     section = "terminal",
+                    --     enabled = vim.fn.isdirectory(".git") == 1,
+                    --     cmd = "hub status --short --branch --renames",
+                    --     height = 5,
+                    --     padding = 1,
+                    --     ttl = 0,
+                    --     indent = 3,
+                    -- },
                     { section = "startup" },
                 },
             },
         },
+        init = function()
+            ---@class snacks.dashboard
+            local M = require("snacks.dashboard")
+            local _orig_open = M.open
+            ---@param opts? snacks.dashboard.Opts
+            ---@diagnostic disable-next-line: duplicate-set-field
+            function M.open(opts)
+                local self = _orig_open(opts)
+                M.instance = self
+                return self
+            end
+        end,
     },
     {
         "nvimdev/dashboard-nvim",
@@ -226,5 +239,64 @@ return {
                 content_type = "tips",
             })
         end,
+    },
+    {
+        "wolfwfr/vimatrix.nvim",
+        opts = {
+            auto_activation = {
+                screensaver = {
+                    setup_deferral = 0,
+                    timeout = 0,
+                    ignore_focus = false,
+                    block_on_term = true,
+                    block_on_cmd_line = true,
+                },
+                on_filetype = { "snacks_dashboard" },
+            },
+            droplet = {
+                max_size_offset = 5,
+                timings = {
+                    max_fps = 180,
+                    fps_variance = 20,
+                    glitch_fps_divider = 8,
+                    max_timeout = 200,
+                    local_glitch_frame_sharing = false,
+                    global_glitch_frame_sharing = true,
+                },
+                random = {
+                    body_to_tail = 50,
+                    head_to_glitch = 5,
+                    head_to_tail = 50,
+                    kill_head = 150,
+                    new_head = 30,
+                },
+            },
+            window = {
+                general = {
+                    background = "#000000",
+                    blend = 0,
+                },
+                by_filetype = {
+                    snacks_dashboard = {
+                        background = "",
+                        blend = 100,
+                        -- a crude example but it works
+                        ignore_cells = function(_, ln, cl)
+                            -- print(vim.inspect(Snacks.dashboard.instance))
+                            -- -- local width = (vim.api.nvim_win_get_width(0))
+                            local db_height = #Snacks.dashboard.instance.lines
+                            local size = Snacks.dashboard.instance:size()
+                            local db_width = require("snacks").config.dashboard.width
+                            return (
+                                cl > (size.width - db_width) / 2
+                                and cl < (size.width + db_width) / 2
+                            )
+                                and (ln > (size.height - db_height) / 2 + 5)
+                                and ln < (size.height + db_height) / 2 - 5
+                        end,
+                    },
+                },
+            },
+        },
     },
 }
