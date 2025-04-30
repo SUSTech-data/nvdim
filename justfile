@@ -30,6 +30,7 @@ setup: && export-ext
 export-ext:
     # ${{ code }} --list-extensions | jq -R '[inputs] | {"recommendations": .}' > .vscode/extensions.json
     {{ code }} --list-extensions > vscode/extensions-list.txt
+    sed -i '/fecet/d' vscode/extensions-list.txt
 
 import-ext:
     xargs -L1 {{ code }} --install-extension < vscode/extensions-list.txt

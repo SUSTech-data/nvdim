@@ -2,8 +2,22 @@ if not vim.g.vscode then
     return {
         {
             "fecet/vicode",
-            build = "rsync -avP $PWD ~/.vscode-insiders/extensions/ --delete --exclude .git",
-            cmd = { "ShareEditStart" },
+            build = "pixi run pnpm run package && code-insiders --install-extension vicode.vsix",
+            cmd = { "ShareEditStart", "VicodeStart" },
+            keys = {
+                { "<leader>ov", ":VicodeStart<CR>" },
+                {
+                    "<leader>aa",
+
+                    function() require("vicode").call("vscode-augment.focusAugmentPanel") end,
+                    mode = { "n", "v", "o" },
+                },
+                {
+                    "<C-CR>",
+                    function() require("vicode").call("jupyter.runcurrentcell") end,
+                    mode = { "n", "v", "o" },
+                },
+            },
             dependencies = {
                 { "vim-denops/denops.vim", setup = true },
             },
@@ -58,41 +72,7 @@ vim.api.nvim_create_autocmd("User", {
             function() require("vscode").action("workbench.action.terminal.toggleTerminal") end,
             { desc = "Open terminal" }
         )
-        local terminal_name = "zsh"
-        map("n", "<leader>ft", function()
-            local idx = require("vscode").eval(
-                "return vscode.window.terminals.findIndex((t, i) => i > 0 && t.name === '"
-                    .. terminal_name
-                    .. "')"
-            )
-            if idx == -1 then
-                require("vscode").call("workbench.action.terminal.new")
-            else
-                local focus_command = "workbench.action.terminal.focusAtIndex" .. idx
-                require("vscode").call(focus_command)
-            end
-        end, { silent = true })
-        local yazi_name = "yazi_cmd"
 
-        map("n", "<leader>ee", function()
-            local idx = require("vscode").eval(
-                "return vscode.window.terminals.findIndex(t => t.name === '" .. yazi_name .. "')"
-            )
-            print(vim.inspect(require("vscode").eval("return vscode.window.terminals")))
-            if idx == -1 then
-                require("vscode").call("workbench.action.tasks.runTask", { args = { "yazi" } })
-            else
-                local focus_command = "workbench.action.terminal.focusAtIndex" .. idx
-                require("vscode").call(focus_command)
-            end
-        end, { silent = true })
-        map(
-            "n",
-            "<leader>gg",
-            function()
-                require("vscode").call("workbench.action.tasks.runTask", { args = { "lazygit" } })
-            end
-        )
         map("n", "gy", function() require("vscode").call("editor.action.goToTypeDefinition") end)
         map(
             "n",
