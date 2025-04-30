@@ -94,4 +94,5 @@ return {
             },
         },
     },
+    { "HawkinsT/pathfinder.nvim", setup = true, event = "BufRead" },
 }
