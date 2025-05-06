@@ -3,7 +3,14 @@ if not vim.g.vscode then
         {
             "fecet/vicode",
             build = "pixi run pnpm run package && code-insiders --install-extension vicode.vsix",
-            cmd = { "ShareEditStart", "VicodeStart" },
+            cmd = { "VicodeStart" },
+            opts = {
+                vscode = {
+                    force_new = true, -- Force new VSCode window
+                    executable = "code", -- VSCode executable to use
+                },
+            },
+            config = true,
             keys = {
                 { "<leader>ov", ":VicodeStart<CR>" },
                 {

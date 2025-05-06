@@ -6,7 +6,7 @@
   "editor.fontSize": 25,
   "editor.fontFamily": "Maple Mono NF CN",
   "editor.smoothScrolling": true,
-  "python.analysis.autoFormatStrings": true,
+  "python.analysis.autoFormatStrings": false,
   "python.analysis.enablePytestSupport": false,
   "python.analysis.packageIndexDepths": [
     {
@@ -38,10 +38,13 @@
       "depth": 5
     }
   ],
-  "workbench.colorTheme": "Catppuccin Macchiato",
+  "workbench.colorTheme": "Catppuccin Latte",
   "vscode-neovim.logOutputToConsole": true,
   "github.copilot.enable": {
-    "*": false
+    "quarto": false,
+    "*": true,
+    "yaml": false,
+    "prompt": true
   },
   "extensions.experimental.affinity": {
     "asvetliakov.vscode-neovim": 1
@@ -65,10 +68,6 @@
   "http.proxyStrictSSL": false,
   "diffEditor.codeLens": true,
   "remote.SSH.configFile": "~/.ssh/config",
-  "remote.SSH.remotePlatform": {
-    "frp-host": "linux",
-    "stat1-stat2": "linux"
-  },
   "security.workspace.trust.untrustedFiles": "open",
   "vscode-neovim.useWSL": true,
   "window.customMenuBarAltFocus": false,
@@ -80,7 +79,7 @@
   },
   "terminal.external.linuxExec": "kitty",
   "editor.lineNumbers": "relative",
-  "workbench.iconTheme": "catppuccin-macchiato",
+  "workbench.iconTheme": "catppuccin-latte",
   "[python]": {
     "editor.defaultFormatter": "charliermarsh.ruff"
   },
@@ -115,7 +114,6 @@
   ],
   "terminal.integrated.fontSize": 23,
   "editor.wordWrap": "on",
-  "workbench.editor.enablePreview": false,
   "python.analysis.inlayHints.functionReturnTypes": true,
   "python.analysis.inlayHints.variableTypes": true,
   "python.analysis.inlayHints.callArgumentNames": "partial",
@@ -139,4 +137,38 @@
   },
   "npm.packageManager": "pnpm",
   "augment.chat.userGuidelines": "- 使用中文展示思考过程, 但使用英文注释\n- 确保只针对关键代码添加注释",
+  "augment.nextEdit.enableBackgroundSuggestions": false,
+  "augment.nextEdit.enableAutoApply": false,
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "github.copilot.chat.codesearch.enabled": true,
+  "github.copilot.chat.startDebugging.enabled": false,
+  "github.copilot.chat.agent.thinkingTool": true,
+  "workbench.preferredHighContrastColorTheme": "Catppuccin Mocha",
+  "http.noProxy": [
+    "coder.lionrock.com"
+  ],
+  "remote.SSH.connectTimeout": 1800,
+  "codetogether.userName": "host",
+  "augment.advanced": {
+    
+    
+  },
+  "mcp": {
+    "servers": {
+      "my-mcp-server-7c5e9ffa": {
+        "type": "stdio",
+        "command": "npx",
+        "args": [
+          "-y",
+          "mcp-deepwiki@latest"
+        ]
+      }
+    }
+  },
+  "remote.SSH.remotePlatform": {
+    "coder-vscode.coder.lionrock.com--lujy--gui-agent": "linux"
+  },
+  "jupyter.allowUnauthorizedRemoteConnection": true,
+  "jupyter.interactiveWindow.notebookRepl": true,
+  "workbench.editor.enablePreview": false
 }

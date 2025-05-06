@@ -16,6 +16,7 @@ github.copilot
 github.copilot-chat
 github.vscode-pull-request-github
 golang.go
+housebirdgames.commands-explorer
 jock.svg
 mkhl.direnv
 ms-azuretools.vscode-docker
