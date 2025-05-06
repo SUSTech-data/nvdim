@@ -1,5 +1,5 @@
-code := "code-insiders"
-Code := "Code - Insiders"
+code := "code"
+Code := "Code"
 
 syncfrom target:
     rsync -avP {{ target }}:~/codes/nvim/ ~/.config/nvim/ --delete
@@ -24,7 +24,7 @@ pager:
 install-arch:
     yay -S ttf-maple-beta-nf-cn
 
-setup: && export-ext
+setup: && import-ext
     for f in $(ls -d vscode/*.json); do ln -sf "$(realpath "$f")" "$HOME/.config/{{ Code }}/User/$(basename $f)"; done
 
 export-ext:
