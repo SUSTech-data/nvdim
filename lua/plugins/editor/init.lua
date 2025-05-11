@@ -119,17 +119,6 @@ local editor = {
             -- { "<S-Tab>", "<cmd>AerialPrev<CR>" },
         },
     },
-    {
-        "aaronik/treewalker.nvim",
-        cmd = "Treewalker",
-        opts = {
-            highlight = true, -- default is false
-        },
-        keys = {
-            { "<Tab>", "<cmd>Treewalker Down<CR>" },
-            { "<S-Tab>", "<cmd>Treewalker Up<CR>" },
-        },
-    },
 }
 
 return editor

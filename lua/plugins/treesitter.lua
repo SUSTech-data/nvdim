@@ -19,6 +19,10 @@ return {
                 },
             },
             { "NvChad/nvim-colorizer.lua" },
+            {
+                "hiphish/rainbow-delimiters.nvim",
+                -- enabled = false,
+            },
             { "JoosepAlviste/nvim-ts-context-commentstring" },
             {
                 "roobert/tabtree.nvim",
@@ -39,6 +43,17 @@ return {
                 },
                 opts = {
                     key_bindings_disabled = true,
+                },
+            },
+            {
+                "aaronik/treewalker.nvim",
+                cmd = "Treewalker",
+                opts = {
+                    highlight = true, -- default is false
+                },
+                keys = {
+                    { "<Tab>", "<cmd>Treewalker Down<CR>" },
+                    { "<S-Tab>", "<cmd>Treewalker Up<CR>" },
                 },
             },
             {
