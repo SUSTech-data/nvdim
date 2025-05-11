@@ -93,6 +93,8 @@ return {
         "williamboman/mason.nvim",
         opts = { ensure_installed = { "basics-language-server", "harper-ls", "buf" } },
     },
+    { "mason-org/mason.nvim", version = "^1.0.0" },
+    { "mason-org/mason-lspconfig.nvim", version = "^1.0.0" },
     {
         "nvimdev/lspsaga.nvim",
         -- enabled = false,
