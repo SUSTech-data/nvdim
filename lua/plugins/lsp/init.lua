@@ -38,6 +38,7 @@ return {
             keys[#keys + 1] = { "gr", false }
             keys[#keys + 1] = { "K", false }
             keys[#keys + 1] = { "<leader>cf", false }
+            keys[#keys + 1] = { "<leader>cc", false }
             keys[#keys + 1] = { "D", vim.lsp.buf.hover, desc = "Hover" }
             -- print(vim.inspect(keys))
         end,
