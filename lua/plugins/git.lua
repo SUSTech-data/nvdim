@@ -24,6 +24,16 @@ return {
                 desc = "View PR in browser",
             },
         },
-        cmd = { "PRView" },
+    },
+    {
+        "johnseth97/gh-dash.nvim",
+        cmd = { "GHdashToggle", "GHdash" },
+        keys = {
+            {
+                "<leader>cc",
+                function() require("gh_dash").toggle() end,
+                desc = "Toggle gh-dash popup",
+            },
+        },
     },
 }

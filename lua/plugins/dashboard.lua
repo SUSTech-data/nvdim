@@ -43,8 +43,9 @@ return {
                         {
                             icon = " ",
                             key = "g",
-                            desc = "Find Text",
-                            action = ":lua Snacks.dashboard.pick('live_grep')",
+                            desc = "GHdash",
+                            -- action = ":lua Snacks.dashboard.pick('live_grep')",
+                            action = ":GHdashToggle",
                         },
                         {
                             icon = " ",
