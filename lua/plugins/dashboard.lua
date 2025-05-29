@@ -272,6 +272,7 @@ return {
                     new_head = 30,
                 },
             },
+            keys = { cancellation = {} },
             window = {
                 general = {
                     background = "#000000",
