@@ -79,6 +79,9 @@ end
 
 vim.keymap.del("n", "gco")
 vim.keymap.del("n", "gcO")
+vim.keymap.del("n", "<leader>fT")
+vim.keymap.del("n", "<leader>ft")
+vim.keymap.del({ "n", "t" }, "<c-_>")
 vim.keymap.del({ "n", "v" }, "<leader>cf")
 
 if not Util.has("trouble.nvim") then
