@@ -154,23 +154,7 @@ return {
     --         },
     --     },
     -- },
-    {
-        "AckslD/swenv.nvim",
-        opts = {
-            get_venvs = function(venvs_path) return require("swenv.api").get_venvs(venvs_path) end,
-            -- Path passed to `get_venvs`.
-            venvs_path = vim.fn.expand((vim.env.MICROMAMBA_ROOT_PREFI or "~/.conda") .. "/envs"),
-            -- Something to do after setting an environment, for example call vim.cmd.LspRestart
-            post_set_venv = nil,
-        },
-        keys = {
-            {
-                "<leader>cv",
-                function() require("swenv.api").pick_venv() end,
-                desc = "Select CondaEnv",
-            },
-        },
-    },
+
     {
         "sustech-data/neopyter",
         enabled = false,
@@ -201,15 +185,21 @@ return {
     },
     {
         "benlubas/molten-nvim",
-        enabled = false,
-        dependencies = { "3rd/image.nvim" },
+        -- enabled = false,
         event = { "BufRead *.ju.*" },
         build = ":UpdateRemotePlugins",
         init = function()
             -- these are examples, not defaults. Please see the readme
-            vim.g.molten_image_provider = "image.nvim"
+            -- vim.g.molten_image_provider = "image.nvim"
             vim.g.molten_output_win_max_height = 20
         end,
+        keys = {
+            {
+                "<C-CR>",
+                ":MoltenReevaluateCell<CR>",
+                mode = { "i", "n" },
+            },
+        },
     },
     {
         "kiyoon/jupynium.nvim",

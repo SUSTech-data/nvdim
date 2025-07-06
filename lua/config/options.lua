@@ -27,7 +27,8 @@ o.virtualedit = "block,onemore" -- Allow going past the end of line in visual bl
 
 opt.sessionoptions =
     { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
-g.python3_host_prog = "python3"
-g.python_host_prog = "python"
+g.python3_host_prog = "~/.config/nvim/.pixi/envs/default/bin/python3"
+g.python_host_prog = "~/.config/nvim/.pixi/envs/default/bin/python"
+
 g.ai_cmp = false
 -- g.lazyvim_python_lsp = "basedpyright"
