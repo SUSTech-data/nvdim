@@ -51,7 +51,7 @@ return {
                             icon = " ",
                             key = "s",
                             desc = "Restore Session",
-                            action = ":Telescope persisted",
+                            action = ":lua require('persisted').load()",
                         },
                         { icon = " ", key = "q", desc = "Quit", action = ":qa" },
                     },
@@ -92,26 +92,26 @@ return {
                         indent = 2,
                         padding = 1,
                         action = function(path)
-                            if vim.env.SSH_TTY ~= nil then
-                                vim.cmd(":cd " .. path)
-                                return require("persisted").load()
-                            end
-                            vim.fn.system({
-                                "kitty",
-                                "@",
-                                "action",
-                                "combine",
-                                ":",
-                                "close_window",
-                                -- "signal_child",
-                                -- "SIGKILL",
-                                ":",
-                                "launch",
-                                "--cwd=" .. string.gsub(path, " ", "\\ "),
-                                "zsh",
-                                "-c",
-                                '"direnv exec . nvim +SessionLoad; zsh -l"',
-                            })
+                            -- if vim.env.SSH_TTY ~= nil then
+                            vim.cmd(":cd " .. path)
+                            return require("persisted").load()
+                            -- end
+                            -- vim.fn.system({
+                            --     "kitty",
+                            --     "@",
+                            --     "action",
+                            --     "combine",
+                            --     ":",
+                            --     "close_window",
+                            --     -- "signal_child",
+                            --     -- "SIGKILL",
+                            --     ":",
+                            --     "launch",
+                            --     "--cwd=" .. string.gsub(path, " ", "\\ "),
+                            --     "zsh",
+                            --     "-c",
+                            --     '"direnv exec . nvim +SessionLoad; zsh -l"',
+                            -- })
                         end,
                     },
                     -- {
@@ -299,6 +299,45 @@ return {
                     },
                 },
             },
+        },
+    },
+    {
+        "nvzone/floaterm",
+        dependencies = "nvzone/volt",
+        opts = {
+            terminals = {
+                { name = "Terminal" },
+                -- { name = "lazygit", cmd = "sleep 1 && lazygit" },
+            },
+            size = { h = 90, w = 100 },
+            mappings = {
+                term = function(buf)
+                    vim.keymap.set(
+                        { "t", "n" },
+                        "<A-h>",
+                        function() require("floaterm.api").switch_wins() end,
+                        { buffer = buf }
+                    )
+                    vim.keymap.set(
+                        { "n", "t" },
+                        "<A-k>",
+                        function() require("floaterm.api").cycle_term_bufs("prev") end,
+                        { buffer = buf }
+                    )
+                    vim.keymap.set(
+                        { "n", "t" },
+                        "<A-j>",
+                        function() require("floaterm.api").cycle_term_bufs("next") end,
+                        { buffer = buf }
+                    )
+                    vim.keymap.set({ "t" }, "<esc>", [[<c-\><c-n>]], { buffer = buf })
+                end,
+            },
+        },
+        cmd = "FloatermToggle",
+        keys = {
+            { "<leader>ft", "<cmd>FloatermToggle<cr>", desc = "Terminal (cwd)" },
+            { "<C-/>", "<cmd>FloatermToggle<cr>", mode = { "n", "t" }, desc = "Terminal (cwd)" },
         },
     },
 }
