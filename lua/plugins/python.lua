@@ -157,7 +157,7 @@ return {
 
     {
         "sustech-data/neopyter",
-        enabled = false,
+        -- enabled = false,
         cond = tool == "neopyter",
         dependencies = {
             "AbaoFromCUG/websocket.nvim",
@@ -185,7 +185,7 @@ return {
     },
     {
         "benlubas/molten-nvim",
-        -- enabled = false,
+        enabled = false,
         event = { "BufRead *.ju.*" },
         build = ":UpdateRemotePlugins",
         init = function()

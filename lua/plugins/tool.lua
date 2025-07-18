@@ -70,8 +70,17 @@ return {
     },
     {
         "keaising/im-select.nvim",
-        config = true,
-        event = { "InsertEnter" },
+        opts = {
+            set_default_events = {
+                "VimEnter",
+                "FocusGained",
+                "InsertLeave",
+                "CmdlineLeave",
+                "TermLeave",
+                "TermEnter",
+            },
+        },
+        event = { "User IceLoad" },
     },
     {
         "glacambre/firenvim",

@@ -67,40 +67,36 @@ return {
         },
     },
     {
-        "GeorgesAlkhouri/nvim-aider",
-        enabled = false,
-        cmd = {
-            "Aider",
-        },
-        keys = {
-            { "<leader>a/", "<cmd>Aider toggle<cr>", desc = "Toggle Aider" },
-            { "<leader>as", "<cmd>Aider send<cr>", desc = "Send to Aider", mode = { "n", "v" } },
-            { "<leader>ac", "<cmd>Aider command<cr>", desc = "Aider Commands" },
-            { "<leader>ab", "<cmd>Aider buffer<cr>", desc = "Send Buffer" },
-            { "<leader>a+", "<cmd>Aider add<cr>", desc = "Add File" },
-            { "<leader>a-", "<cmd>Aider drop<cr>", desc = "Drop File" },
-            { "<leader>ar", "<cmd>Aider add readonly<cr>", desc = "Add Read-Only" },
-            {
-                "<leader>aa",
-                function()
-                    local buffers = vim.api.nvim_list_bufs()
-                    local api = require("nvim_aider").api
-                    for _, bufnr in ipairs(buffers) do
-                        if vim.api.nvim_buf_is_valid(bufnr) then
-                            local bufname = vim.api.nvim_buf_get_name(bufnr)
-                            if bufname:find("^" .. LazyVim.root()) then api.add_file(bufname) end
-                        end
-                    end
-                end,
-                desc = "Add all Buffer",
+        "fecet/claudecode.nvim",
+        cmd = { "ClaudeCodeStart" },
+        -- event = "User IceLoad",
+        opts = {
+            log_level = "debug",
+            terminal = {
+                provider = "external",
+                provider_opts = {
+                    external_terminal_cmd = "kitty -e %s",
+                },
             },
         },
-        dependencies = {
-            "folke/snacks.nvim",
-            --- The below dependencies are optional
-            "catppuccin/nvim",
-            "nvim-tree/nvim-tree.lua",
-        },
         config = true,
+        keys = {
+            { "<leader>a", nil, desc = "AI/Claude Code" },
+            { "<leader>ac", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude" },
+            -- { "<leader>af", "<cmd>ClaudeCodeFocus<cr>", desc = "Focus Claude" },
+            { "<leader>ar", "<cmd>ClaudeCode --resume<cr>", desc = "Resume Claude" },
+            { "<leader>aC", "<cmd>ClaudeCode --continue<cr>", desc = "Continue Claude" },
+            { "<leader>ab", "<cmd>ClaudeCodeAdd %<cr>", desc = "Add current buffer" },
+            { "<leader>as", "<cmd>ClaudeCodeSend<cr>", mode = "v", desc = "Send to Claude" },
+            {
+                "<leader>as",
+                "<cmd>ClaudeCodeTreeAdd<cr>",
+                desc = "Add file",
+                ft = { "NvimTree", "neo-tree", "oil" },
+            },
+            -- Diff management
+            { "<leader>aa", "<cmd>ClaudeCodeDiffAccept<cr>", desc = "Accept diff" },
+            { "<leader>ad", "<cmd>ClaudeCodeDiffDeny<cr>", desc = "Deny diff" },
+        },
     },
 }

@@ -51,7 +51,6 @@ return {
     },
     {
         "sindrets/winshift.nvim",
-        cmd = "WinShift",
         opts = { highlight_moving_win = true },
         keys = {
             { "<leader>ws", "<CMD>WinShift<CR>", desc = "Win Shift/Swap" },
@@ -61,26 +60,27 @@ return {
     -- { "kwkarlwang/bufresize.nvim", opts = {}, event = "WinEnter" }, -- on terminal resize
     {
         "mrjones2014/smart-splits.nvim",
+        event = { "UIEnter" },
         keys = {
             {
                 "<A-h>",
                 function() require("smart-splits").move_cursor_left() end,
-                mode = { "n", "x", "o", "i" },
+                mode = { "n", "x", "o", "i", "t" },
             },
             {
                 "<A-j>",
                 function() require("smart-splits").move_cursor_down() end,
-                mode = { "n", "x", "o", "i" },
+                mode = { "n", "x", "o", "i", "t" },
             },
             {
                 "<A-k>",
                 function() require("smart-splits").move_cursor_up() end,
-                mode = { "n", "x", "o", "i" },
+                mode = { "n", "x", "o", "i", "t" },
             },
             {
                 "<A-l>",
                 function() require("smart-splits").move_cursor_right() end,
-                mode = { "n", "x", "o", "i" },
+                mode = { "n", "x", "o", "i", "t" },
             },
             { "<M-Left>", "<CMD>SmartResizeLeft<CR>" },
             { "<M-Down>", "<CMD>SmartResizeDown<CR>" },
@@ -134,5 +134,10 @@ return {
         --         hint = "floating-big-letter",
         --     })
         -- end,
+    },
+    {
+        "nvim-zh/colorful-winsep.nvim",
+        config = true,
+        event = { "WinLeave" },
     },
 }
