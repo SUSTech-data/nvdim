@@ -302,12 +302,13 @@ return {
         },
     },
     {
-        "nvzone/floaterm",
+        "fecet/floaterm",
         dependencies = "nvzone/volt",
         opts = {
             terminals = {
+                { name = "Terminal", cmd = "lazygit" },
                 { name = "Terminal" },
-                -- { name = "lazygit", cmd = "sleep 1 && lazygit" },
+                -- { name = "Terminal", cmd = "zsh -c lazygit" },
             },
             size = { h = 90, w = 100 },
             mappings = {

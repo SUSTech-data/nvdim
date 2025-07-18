@@ -47,6 +47,7 @@ vim.filetype.add({
     filename = {
         -- [".env"] = "dotenv",
         ["tsconfig.json"] = "jsonc",
+        ["config.json"] = "jsonc",
         [".yamlfmt"] = "yaml",
         [".rsync_exclude"] = "gitignore",
         ["JUSTFILE"] = "just",

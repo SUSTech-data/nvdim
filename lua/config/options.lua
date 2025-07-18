@@ -32,3 +32,6 @@ g.python_host_prog = "~/.config/nvim/.pixi/envs/default/bin/python"
 
 g.ai_cmp = false
 -- g.lazyvim_python_lsp = "basedpyright"
+g.root_spec = { "lsp", { ".git", ".pixi", "pixi.lock", "lua" }, "cwd" }
+vim.env.http_proxy = "http://127.0.0.1:7890"
+vim.env.https_proxy = "http://127.0.0.1:7890"
