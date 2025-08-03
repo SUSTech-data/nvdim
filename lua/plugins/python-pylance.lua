@@ -20,17 +20,24 @@ return {
             configs["pylance"] = {
                 default_config = {
                     filetypes = { "python" },
-                    root_dir = util.root_pattern(unpack({
-                        ".venv",
-                        ".git",
-                        "pyproject.toml",
-                        "setup.py",
-                        "setup.cfg",
-                        "requirements.txt",
-                        "Pipfile",
-                        "pyrightconfig.json",
-                        "environment.yml",
-                    })),
+                    root_dir = function(fname)
+                        local root_dir = util.root_pattern(unpack({
+                            ".venv",
+                            "pixi.toml",
+                            ".git",
+                            "pyproject.toml",
+                            "setup.py",
+                            "setup.cfg",
+                            "requirements.txt",
+                            "Pipfile",
+                            "pyrightconfig.json",
+                            "environment.yml",
+                        }))
+                        local result = root_dir(fname)
+
+                        if result == vim.fn.expand("~") then return vim.fs.dirname(fname) end
+                        return result
+                    end,
                     cmd = { "pylance", "--stdio" },
                     single_file_support = true,
                     capabilities = capabilities,
