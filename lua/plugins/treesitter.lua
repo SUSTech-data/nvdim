@@ -70,6 +70,7 @@ return {
             },
             {
                 "andymass/vim-matchup",
+                enabled = false, -- FIXME: this hert performance
                 config = function()
                     vim.cmd("nmap ; %")
                     -- vim.cmd("vmap ' %")
