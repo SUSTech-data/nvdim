@@ -81,7 +81,7 @@ return {
                 })
             end,
         },
-        { "chrisgrieser/nvim-origami", opts = true },
+        { "fecet/nvim-origami", opts = true, tag = "v1.9" }, -- FIXME: remove ufo in the future
     },
     opts = {
         enable_get_fold_virt_text = true,
