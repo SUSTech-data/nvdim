@@ -92,26 +92,43 @@ return {
                         indent = 2,
                         padding = 1,
                         action = function(path)
-                            -- if vim.env.SSH_TTY ~= nil then
-                            vim.cmd(":cd " .. path)
-                            return require("persisted").load()
-                            -- end
-                            -- vim.fn.system({
-                            --     "kitty",
-                            --     "@",
-                            --     "action",
-                            --     "combine",
-                            --     ":",
-                            --     "close_window",
-                            --     -- "signal_child",
-                            --     -- "SIGKILL",
-                            --     ":",
-                            --     "launch",
-                            --     "--cwd=" .. string.gsub(path, " ", "\\ "),
-                            --     "zsh",
-                            --     "-c",
-                            --     '"direnv exec . nvim +SessionLoad; zsh -l"',
-                            -- })
+                            if vim.env.SSH_TTY ~= nil then
+                                vim.cmd(":cd " .. path)
+                                return require("persisted").load()
+                            end
+                            if vim.env.KITTY_WINDOW_ID ~= nil then
+                                print("kitty detected, using direnv exec")
+                                -- if kitty is running, use it to open the project
+                                vim.system({
+                                    "kitty",
+                                    "@",
+                                    "action",
+                                    "combine",
+                                    ":",
+                                    "close_window",
+                                    -- "signal_child",
+                                    -- "SIGKILL",
+                                    ":",
+                                    "launch",
+                                    "--cwd=" .. string.gsub(path, " ", "\\ "),
+                                    "zsh",
+                                    "-c",
+                                    '"direnv exec . nvim +SessionLoad; zsh -l"',
+                                })
+                                return
+                            end
+                            if vim.g.neovide then
+                                vim.system({
+                                    "direnv",
+                                    "exec",
+                                    ".",
+                                    "neovide",
+                                    "+SessionLoad",
+                                }, {
+                                    cwd = string.gsub(path, " ", "\\ "),
+                                })
+                                vim.cmd("qa!")
+                            end
                         end,
                     },
                     -- {
@@ -309,7 +326,7 @@ return {
                 { name = "Terminal" },
             },
             size = { h = 90, w = 100 },
-            autoinsert = false,
+            -- autoinsert = false,
             mappings = {
                 term = function(buf)
                     vim.keymap.set(
