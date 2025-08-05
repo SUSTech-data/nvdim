@@ -306,11 +306,10 @@ return {
         dependencies = "nvzone/volt",
         opts = {
             terminals = {
-                { name = "Terminal", cmd = "lazygit" },
                 { name = "Terminal" },
-                -- { name = "Terminal", cmd = "zsh -c lazygit" },
             },
             size = { h = 90, w = 100 },
+            autoinsert = false,
             mappings = {
                 term = function(buf)
                     vim.keymap.set(
@@ -339,6 +338,7 @@ return {
         keys = {
             { "<leader>ft", "<cmd>FloatermToggle<cr>", desc = "Terminal (cwd)" },
             { "<C-/>", "<cmd>FloatermToggle<cr>", mode = { "n", "t" }, desc = "Terminal (cwd)" },
+            { "<C-_>", "<cmd>FloatermToggle<cr>", mode = { "n", "t" }, desc = "Terminal (cwd)" },
         },
     },
 }
