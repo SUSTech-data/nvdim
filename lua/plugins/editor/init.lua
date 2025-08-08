@@ -4,11 +4,10 @@ local editor = {
         cmd = { "UnstackFromSelection", "UnstackFromClipboard", "Unstack" },
     },
     {
-        "Pocco81/auto-save.nvim",
+        "okuuva/auto-save.nvim",
         event = "User IceLoad",
         cond = vim.env.KITTY_SCROLLBACK_NVIM ~= "true",
         opts = {
-            enabled = true,
             execution_message = {
                 message = function()
                     return " AutoSave: saved at " .. vim.fn.strftime("%H:%M:%S")
@@ -16,26 +15,37 @@ local editor = {
                 dim = 0.18,
                 cleaning_interval = 1250,
             },
-            trigger_events = { "InsertLeave", "TextChanged" },
             condition = function(buf)
-                local fn = vim.fn
-                local utils = require("auto-save.utils.data")
+                -- some recommended exclusions. you can use `:lua print(vim.bo.filetype)` to
+                -- get the filetype string of the current buffer
+                local excluded_filetypes = {
+                    -- this one is especially useful if you use neovim as a commit message editor
+                    "gitcommit",
+                    -- most of these are usually set to non-modifiable, which prevents autosaving
+                    -- by default, but it doesn't hurt to be extra safe.
+                    "NvimTree",
+                    "Outline",
+                    "TelescopePrompt",
+                    "alpha",
+                    "dashboard",
+                    "lazygit",
+                    "neo-tree",
+                    "oil",
+                    "prompt",
+                    "toggleterm",
+                    "OverseerForm",
+                    "harpoon",
+                    "VoltWindow",
+                }
 
                 if
-                    fn.getbufvar(buf, "&modifiable") == 1
-                    and utils.not_in(
-                        fn.getbufvar(buf, "&filetype"),
-                        { "oil", "OverseerForm", "harpoon", "VoltWindow" }
-                    )
+                    vim.tbl_contains(excluded_filetypes, vim.fn.getbufvar(buf, "&filetype"))
+                    or string.match(vim.fn.expand("%:t"), "%[Claude Code]")
                 then
-                    return true -- met condition(s), can save
+                    return false
                 end
-                return false -- can't save
+                return true
             end,
-            write_all_buffers = false,
-            on_off_commands = true,
-            clean_command_line_interval = 0,
-            debounce_delay = 135,
         },
     },
     { "lambdalisue/suda.vim", cmd = { "SudaRead", "SudaWrite" } },
