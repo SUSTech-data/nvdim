@@ -104,4 +104,5 @@ return {
         },
     },
     { "HawkinsT/pathfinder.nvim", setup = true, event = "BufRead" },
+    { "tamton-aquib/keys.nvim", cmd = "KeysToggle" },
 }
