@@ -121,4 +121,11 @@ return {
             -- "lervag/vimtex",
         },
     },
+    {
+        "mvllow/modes.nvim",
+        event = "BufRead",
+        opts = {
+            set_cursor = false,
+        },
+    },
 }
