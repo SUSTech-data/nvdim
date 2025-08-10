@@ -252,28 +252,21 @@ return {
                             snippets = 3,
                             avante = 4,
                         }
-
-                        local function get_priority(source_id)
-                            if source_priority[source_id] then return source_priority[source_id] end
-
-                            for prefix, priority in pairs(source_priority) do
-                                if source_id:find("^" .. prefix) then return priority end
-                            end
-
-                            return 0
-                        end
-
-                        return get_priority(a.source_id) > get_priority(b.source_id)
+                        local a_priority = source_priority[a.source_id]
+                        local b_priority = source_priority[b.source_id]
+                        if a_priority ~= b_priority then return a_priority > b_priority end
                     end,
                     "score",
                     "sort_text",
                 },
             },
             cmdline = {
+                enabled = true,
                 keymap = {
-                    preset = "super-tab",
-                    ["<Tab>"] = { "select_next" },
-                    ["<S-Tab>"] = { "select_prev" },
+                    ["<CR>"] = {
+                        "accept_and_enter",
+                        "fallback",
+                    },
                 },
                 sources = function()
                     local type = vim.fn.getcmdtype()
