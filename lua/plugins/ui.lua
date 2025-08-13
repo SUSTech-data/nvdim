@@ -128,4 +128,8 @@ return {
             set_cursor = false,
         },
     },
+    {
+        "lewis6991/satellite.nvim",
+        event = "BufRead",
+    },
 }
