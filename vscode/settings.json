@@ -42,9 +42,10 @@
   "vscode-neovim.logOutputToConsole": true,
   "github.copilot.enable": {
     "quarto": false,
-    "*": true,
+    "*": false,
     "yaml": false,
-    "prompt": true
+    "prompt": true,
+    "github-actions-workflow": false
   },
   "extensions.experimental.affinity": {
     "asvetliakov.vscode-neovim": 1
@@ -139,7 +140,7 @@
   "augment.chat.userGuidelines": "- 使用中文展示思考过程, 但使用英文注释\n- 确保只针对关键代码添加注释",
   "augment.nextEdit.enableBackgroundSuggestions": false,
   "augment.nextEdit.enableAutoApply": false,
-  "github.copilot.nextEditSuggestions.enabled": true,
+  "github.copilot.nextEditSuggestions.enabled": false,
   "github.copilot.chat.codesearch.enabled": true,
   "github.copilot.chat.startDebugging.enabled": false,
   "github.copilot.chat.agent.thinkingTool": true,
@@ -153,22 +154,11 @@
     
     
   },
-  "mcp": {
-    "servers": {
-      "my-mcp-server-7c5e9ffa": {
-        "type": "stdio",
-        "command": "npx",
-        "args": [
-          "-y",
-          "mcp-deepwiki@latest"
-        ]
-      }
-    }
-  },
-  "remote.SSH.remotePlatform": {
-    "coder-vscode.coder.lionrock.com--lujy--gui-agent": "linux"
-  },
+  "remote.SSH.remotePlatform": {"coder-vscode.coder.lionrock.com--lujy--gui-agent":"linux","coder-vscode.coder.lionrock.com--zhangjj--sgl-reproduce.main":"linux","coder-vscode.coder.lionrock.com--zhangjj--sgl-reproduce":"linux","coder-vscode.coder.lionrock.com--admin--pink-lark-22.main":"linux","coder-vscode.coder.lionrock.com--admin--pink-lark-22":"linux","coder-vscode.coder.lionrock.com--fecet--forge.main":"linux","coder-vscode.coder.lionrock.com--fecet--forge":"linux","coder-vscode.coder.lionrock.com--Linh-Ice--TaskServer":"linux","coder-vscode.coder.lionrock.com--junjzhang--paradev":"linux","coder-vscode.coder.lionrock.com--junjzhang--devdev":"linux","coder-vscode.coder.lionrock.com--junjzhang--paradev.main":"linux","coder-vscode.coder.lionrock.com--kyh035--kyh-dev.main":"linux","coder-vscode.coder.lionrock.com--kyh035--kyh-gpu.main":"linux","coder-vscode.coder.lionrock.com--junjzhang--gpudev.main":"linux"},
   "jupyter.allowUnauthorizedRemoteConnection": true,
   "jupyter.interactiveWindow.notebookRepl": true,
-  "workbench.editor.enablePreview": false
+  "workbench.editor.enablePreview": false,
+  "enableTelemetry": false,
+  "docker.extension.enableComposeLanguageServer": false,
+  "githubPullRequests.pullBranch": "never"
 }
