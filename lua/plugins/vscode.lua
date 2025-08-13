@@ -2,6 +2,7 @@ if not vim.g.vscode then
     return {
         {
             "fecet/vicode",
+            enabled = false,
             build = "pixi run pnpm run package && code-insiders --install-extension vicode.vsix",
             cmd = { "VicodeStart" },
             opts = {
@@ -9,19 +10,27 @@ if not vim.g.vscode then
                     force_new = true, -- Force new VSCode window
                     executable = "code", -- VSCode executable to use
                 },
+                ignored_filetypes = { "noice", "yazi", "snacks_input" },
             },
             config = true,
             keys = {
                 { "<leader>ov", ":VicodeStart<CR>" },
                 {
-                    "<leader>aa",
-
-                    function() require("vicode").call("vscode-augment.focusAugmentPanel") end,
-                    mode = { "n", "v", "o" },
+                    "<leader>ae",
+                    -- function() require("vicode").call("workbench.panel.chat") end,
+                    -- function() require("vicode").call("inlineChat.start") end,
+                    -- inlineChat.start
+                    function() require("vicode").call("github.copilot.chat.explain") end,
+                    mode = { "v", "o" },
                 },
                 {
                     "<C-CR>",
-                    function() require("vicode").call("jupyter.runcurrentcell") end,
+                    ":VicodeExecuteCell<CR>",
+                    mode = { "i", "n" },
+                },
+                {
+                    "<leader>ks",
+                    function() require("vicode").call("jupyter.createnewinteractive") end,
                     mode = { "n", "v", "o" },
                 },
             },
