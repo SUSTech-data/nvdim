@@ -37,9 +37,10 @@ local editor = {
                     "harpoon",
                     "VoltWindow",
                 }
-
+                local buf_filetype = vim.fn.getbufvar(buf, "&filetype")
                 if
-                    vim.tbl_contains(excluded_filetypes, vim.fn.getbufvar(buf, "&filetype"))
+                    buf_filetype == ""
+                    or vim.tbl_contains(excluded_filetypes, buf_filetype)
                     or string.match(vim.fn.expand("%:t"), "%[Claude Code]")
                 then
                     return false

@@ -8,3 +8,4 @@ nav.md
 # pixi environments
 .pixi
 *.egg-info
+claude-code-config.json
