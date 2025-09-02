@@ -130,6 +130,19 @@ local editor = {
             -- { "<S-Tab>", "<cmd>AerialPrev<CR>" },
         },
     },
+    {
+        "piersolenski/import.nvim",
+        opts = {
+            picker = "snacks",
+        },
+        keys = {
+            {
+                "<leader>i",
+                function() require("import").pick() end,
+                desc = "Import",
+            },
+        },
+    },
 }
 
 return editor
