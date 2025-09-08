@@ -413,6 +413,13 @@ return {
                 {
                     filter = {
                         -- any = { { find = "kernelComplete" }, { find = "[cord.nvim]" } },
+                        find = "AutoSave",
+                    },
+                    view = "mini",
+                },
+                {
+                    filter = {
+                        -- any = { { find = "kernelComplete" }, { find = "[cord.nvim]" } },
                         find = "cord.nvim",
                     },
                     view = "mini",

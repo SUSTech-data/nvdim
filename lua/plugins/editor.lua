@@ -1,3 +1,16 @@
+vim.api.nvim_create_autocmd("User", {
+    pattern = "AutoSaveWritePost",
+    group = vim.api.nvim_create_augroup("autosave", {}),
+    callback = function(opts)
+        if opts.data.saved_buffer ~= nil then
+            local filename = vim.api.nvim_buf_get_name(opts.data.saved_buffer)
+            vim.notify(
+                " AutoSave: saved " .. filename .. " at " .. vim.fn.strftime("%H:%M:%S"),
+                vim.log.levels.INFO
+            )
+        end
+    end,
+})
 local editor = {
     {
         "mattboehm/vim-unstack",
@@ -8,13 +21,6 @@ local editor = {
         event = "User IceLoad",
         cond = vim.env.KITTY_SCROLLBACK_NVIM ~= "true",
         opts = {
-            execution_message = {
-                message = function()
-                    return " AutoSave: saved at " .. vim.fn.strftime("%H:%M:%S")
-                end,
-                dim = 0.18,
-                cleaning_interval = 1250,
-            },
             condition = function(buf)
                 -- some recommended exclusions. you can use `:lua print(vim.bo.filetype)` to
                 -- get the filetype string of the current buffer
