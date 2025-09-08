@@ -1,82 +1,21 @@
 return {
     {
-        "yetone/avante.nvim",
-        enabled = false,
-        event = "VeryLazy",
-        dependencies = {
-            "stevearc/dressing.nvim",
-        },
-        opts = {
-            provider = "openrouter",
-            hints = { enabled = false },
-            auto_suggestions_provider = "openrouter_qwen", -- Since auto-suggestions are a high-frequency operation and therefore expensive, it is recommended to specify an inexpensive provider or even a free provider: copilot
-            cursor_applying_provider = "openrouter_qwen",
-            vendors = {
-                openrouter_gemini = {
-                    __inherited_from = "openai",
-                    endpoint = "https://openrouter.ai/api/v1",
-                    api_key_name = "OPENROUTER_API_KEY",
-                    model = "google/gemini-2.5-pro-preview-03-25",
-                },
-                openrouter_qwen = {
-                    __inherited_from = "openai",
-                    endpoint = "https://openrouter.ai/api/v1",
-                    api_key_name = "OPENROUTER_API_KEY",
-                    model = "qwen/qwen-2.5-coder-32b-instruct",
-                },
-                openrouter = {
-                    __inherited_from = "openai",
-                    endpoint = "https://openrouter.ai/api/v1",
-                    api_key_name = "OPENROUTER_API_KEY",
-                    model = "anthropic/claude-3.7-sonnet",
-                },
-            },
-            -- File selector configuration
-            file_selector = {
-                provider = "snacks", -- Avoid native provider issues
-                provider_opts = {},
-            },
-            behaviour = {
-                enable_cursor_planning_mode = false,
-                enable_claude_text_editor_tool_mode = true,
-                auto_suggestions = false,
-            },
-        },
-        build = LazyVim.is_win()
-                and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
-            or "make",
-        keys = {
-            { "<leader>aC", "<cmd>AvanteClear<cr>", desc = "avante: clear" },
-        },
-    },
-    {
-        "MeanderingProgrammer/render-markdown.nvim",
-        optional = true,
-        ft = function(_, ft) vim.list_extend(ft, { "Avante" }) end,
-        opts = function(_, opts)
-            opts.file_types = vim.list_extend(opts.file_types or {}, { "Avante" })
-        end,
-    },
-    {
-        "folke/which-key.nvim",
-        optional = true,
-        opts = {
-            spec = {
-                { "<leader>a", group = "ai" },
-            },
-        },
-    },
-    {
         "fecet/claudecode.nvim",
         cmd = { "ClaudeCodeStart" },
         -- event = "User IceLoad",
         opts = {
-            log_level = "debug",
+            -- port_range = { min = 65535, max = 65535 }, -- WebSocket server port range
+            log_level = "trace",
             terminal = {
                 provider = "external",
                 provider_opts = {
                     external_terminal_cmd = "kitty -e %s",
                 },
+            },
+            streamable = {
+                enabled = true, -- Streamable MCP server enabled by default
+                path = "/mcp", -- Streamable endpoint path
+                require_auth = false, -- Whether to require authentication for streamable connections (default on)
             },
         },
         config = true,
