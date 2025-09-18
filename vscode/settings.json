@@ -160,5 +160,6 @@
   "workbench.editor.enablePreview": false,
   "enableTelemetry": false,
   "docker.extension.enableComposeLanguageServer": false,
-  "githubPullRequests.pullBranch": "never"
+  "githubPullRequests.pullBranch": "never",
+  "workbench.panel.opensMaximized": "always"
 }

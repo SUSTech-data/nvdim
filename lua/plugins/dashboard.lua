@@ -119,13 +119,19 @@ return {
                             end
                             if vim.g.neovide then
                                 vim.system({
-                                    "direnv",
-                                    "exec",
-                                    ".",
-                                    "neovide",
-                                    "+SessionLoad",
+                                    "zsh",
+                                    "-c",
+                                    "env -u NVIM_LISTEN_ADDRESS direnv exec . neovide +Yazi",
+                                    -- "direnv",
+                                    -- "exec",
+                                    -- ".",
+                                    -- "neovide",
+                                    -- -- "--fork",
+                                    -- "+SessionLoad",
                                 }, {
                                     cwd = string.gsub(path, " ", "\\ "),
+                                    detach = true,
+                                    -- clean_env = true,
                                 })
                                 vim.cmd("qa!")
                             end

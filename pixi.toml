@@ -6,8 +6,6 @@ platforms = ["linux-64"]
 version = "0.1.0"
 
 [tasks]
-config-ccr = "ln -sf $PIXI_PROJECT_ROOT/claude-code-config.json $HOME/.claude-code-router/config.json"
-# config-ccr = "cp $PIXI_PROJECT_ROOT/claude-code-config.json $HOME/.claude-code-router/config.json"
 
 [dependencies]
 just = "*"
@@ -16,7 +14,6 @@ jq = "*"
 python = "*"
 neovim = "*"
 pixi-kernel = "*"
-claude-code-router = "*"
 
 [pypi-dependencies]
 neopyter = "*"
